@@ -40,6 +40,12 @@ function addPost($post) {
         return 'Cannot create post without title.';
     }
 
+    // Validate the post slug
+    if (!isset($post->slug)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Cannot create post without slug.';
+    }
+
     // Validate the post status
     if ($post->status !== 'draft' || $post->status !== 'published' || $post->status !== 'unlisted') {
         header('HTTP/1.1 400 Bad Request');
@@ -51,10 +57,12 @@ function addPost($post) {
         mysql_real_escape_string($post->content),
         mysql_real_escape_string($post->featuredImage),
         mysql_real_escape_string($post->title),
-        mysql_real_escape_string($post->tags),
+        mysql_real_escape_string(json_encode($post->tags)),
         mysql_real_escape_string($post->type),
         mysql_real_escape_string($post->subtype),
-        mysql_real_escape_string($post->status));
+        mysql_real_escape_string($post->status),
+        mysql_real_escape_string($post->slug),
+        mysql_real_escape_string($post->referenceUrl));
 
     // Alert success
     if (mysql_query($sql)) {
@@ -84,10 +92,12 @@ function updatePost($post) {
     $vars['content'] = $post->content;
     $vars['featured_image'] = $post->featuredImage;
     $vars['title'] = $post->title;
-    $vars['tags'] = $post->tags;
+    $vars['tags'] = json_encode($post->tags);
     $vars['type'] = $post->type;
     $vars['subtype'] = $post->subtype;
     $vars['status'] =$post->status;
+    $vars['slug'] =$post->slug;
+    $vars['reference_url'] =$post->referenceUrl;
     $success = true;
     foreach($vars as $metric => $val) {
         if (!isset($val)) {
@@ -140,6 +150,8 @@ function getPosts() {
         $post->type = mysql_result($result, $i, 'type');
         $post->subtype = mysql_result($result, $i, 'subtype');
         $post->status = mysql_result($result, $i, 'status');
+        $post->slug = mysql_result($result, $i, 'slug');
+        $post->referenceUrl = mysql_result($result, $i, 'reference_url');
         array_push($posts->posts, $post);
     }
 
@@ -163,17 +175,18 @@ function getPost($id) {
 
     // Generate the data structure
     $post = (object) array();
-    $post->post = (object) array();
-    $post->$post->id = mysql_result($result, $i, 'id');
-    $post->$post->created = mysql_result($result, $i, 'created');
-    $post->$post->updated = mysql_result($result, $i, 'updated');
-    $post->$post->content = mysql_result($result, $i, 'content');
-    $post->$post->featuredImage = mysql_result($result, $i, 'featured_image');
-    $post->$post->title = mysql_result($result, $i, 'title');
-    $post->$post->tags = mysql_result($result, $i, 'tags');
-    $post->$post->type = mysql_result($result, $i, 'type');
-    $post->$post->subtype = mysql_result($result, $i, 'subtype');
-    $post->$post->status = mysql_result($result, $i, 'status');
+    $post->id = mysql_result($result, $i, 'id');
+    $post->created = mysql_result($result, $i, 'created');
+    $post->updated = mysql_result($result, $i, 'updated');
+    $post->content = mysql_result($result, $i, 'content');
+    $post->featuredImage = mysql_result($result, $i, 'featured_image');
+    $post->title = mysql_result($result, $i, 'title');
+    $post->tags = mysql_result($result, $i, 'tags');
+    $post->type = mysql_result($result, $i, 'type');
+    $post->subtype = mysql_result($result, $i, 'subtype');
+    $post->status = mysql_result($result, $i, 'status');
+    $post->slug = mysql_result($result, $i, 'slug');
+    $post->referenceUrl = mysql_result($result, $i, 'reference_url');
 
     // Alert success
     header('HTTP/1.1 200 OK');

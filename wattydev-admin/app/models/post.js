@@ -11,12 +11,12 @@ export default DS.Model.extend({
     created: DS.attr('date'),
 
     /**
-     * The date that the post was udated.
+     * The date that the post was updated.
      *
-     * @property udated
+     * @property updated
      * @type {DateTime}
      */
-    udated: DS.attr('date'),
+    updated: DS.attr('date'),
 
     /**
      * The title of the post.
@@ -40,7 +40,7 @@ export default DS.Model.extend({
      * @property featuredImage
      * @type {Ember.Model}
      */
-    //featuredImage: DS.belongsTo('image'),
+    featuredImage: DS.belongsTo('image'),
 
     /**
      * The post type
@@ -64,5 +64,21 @@ export default DS.Model.extend({
      * @property status
      * @type {String}
      */
-    status: DS.attr('string')
+    status: DS.attr('string'),
+
+    /**
+     * The post slug
+     *
+     * @property slug
+     * @type {String}
+     */
+    slug: DS.attr('string'),
+
+    /**
+     * The post referenceUrl
+     *
+     * @property referenceUrl
+     * @type {String}
+     */
+    referenceUrl: DS.attr('string')
 });
