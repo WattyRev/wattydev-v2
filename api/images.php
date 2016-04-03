@@ -55,7 +55,7 @@ function addImage($image) {
     $data = str_replace('data:image/png;base64,', '', $image->file);
     $data = str_replace(' ', '+', $data);
     $data = base64_decode($data);
-    $file = 'images/'. uniqid() . '.png';
+    $file = '../images/'. uniqid() . '.png';
     $success = file_put_contents($file, $data);
 
     if (!$success) {
