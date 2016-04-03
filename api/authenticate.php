@@ -1,5 +1,5 @@
 <?php
-if($_SERVER['HTTP_ORIGIN'] === 'http://localhost:9000') {
+if($_SERVER['HTTP_ORIGIN'] === 'http://localhost:4200') {
     header("Access-Control-Allow-Origin: *");
 }
 include 'database_connect.php';
