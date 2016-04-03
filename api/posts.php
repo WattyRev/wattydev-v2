@@ -2,25 +2,14 @@
 if($_SERVER['HTTP_ORIGIN'] === 'http://localhost:9000') {
     header("Access-Control-Allow-Origin: *");
 }
-// Database settings
-// database hostname or IP. default:localhost
-// localhost will be correct for 99% of times
-define("HOST", "localhost");
-// Database user
-// Database password
-define("DBUSER", "r3vfan_wattydev2");
-define("PASS", "ooNoOThtylQJ");
-// Database name
-define("DB", "r3vfan_wattydev");
-
-############## Make the mysql connection ###########
-$conn = mysql_connect(HOST, DBUSER, PASS) or  die('Could not connect !<br />Please contact the site\'s administrator.');
-
-$db = mysql_select_db(DB) or  die('Could not connect to database !<br />Please contact the site\'s administrator.');
+include 'database_connect.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
     case 'PUT':
+        if (!isAuthenticated()) {
+            return;
+        }
         if (isset($_GET['update'])) {
             echo updatePost($_POST['post']);
         } else {
@@ -35,6 +24,9 @@ switch ($method) {
         }
         break;
     case 'DELETE':
+        if (!isAuthenticated()) {
+            return;
+        }
         echo deletePost($_GET['id']);
         break;
     default:
@@ -168,7 +160,6 @@ function getPost($id) {
     if(!mysql_num_rows($result)) {
         header('HTTP/1.1 404 Not Found');
         return 'Could not find post.';
-        return;
     }
 
     // Generate the data structure
@@ -211,4 +202,19 @@ function deletePost($id) {
         header('HTTP/1.1 500 Internal Server Error');
         return 'Failed to delete post';
     }
+}
+
+function isAuthenticated() {
+    $headers = getallheaders();
+    if (!isset($headers['x-wattydev-authentication']) || !isset($_COOKIE['auth-token'])) {
+        header('HTTP/1.1 401 Unauthorized');
+        return false;
+    }
+
+    $token = $headers['x-wattydev-authentication'];
+    if ($token !== $_COOKIE['auth-token']) {
+        header('HTTP/1.1 401 Unauthorized');
+        return false;
+    }
+    return true;
 }
