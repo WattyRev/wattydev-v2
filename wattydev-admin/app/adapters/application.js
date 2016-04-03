@@ -20,7 +20,6 @@ export default DS.RESTAdapter.extend({
      * @return {Promise}
      */
     ajax: function (url, method, hash) {
-        console.log('ajax', url);
         hash = hash || {};
         hash.crossDomain = true;
         return this._super(url, method, hash);

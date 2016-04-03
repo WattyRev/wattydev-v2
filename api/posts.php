@@ -126,7 +126,8 @@ function getPosts() {
     $num = mysql_num_rows($result);
 
     // Generate data structure
-    $posts = array();
+    $posts = (object) array();
+    $posts->posts = array();
     for($i = 0; $i < $num; $i++) {
         $post = (object) array();
         $post->id = mysql_result($result, $i, 'id');
@@ -139,7 +140,7 @@ function getPosts() {
         $post->type = mysql_result($result, $i, 'type');
         $post->subtype = mysql_result($result, $i, 'subtype');
         $post->status = mysql_result($result, $i, 'status');
-        array_push($posts, $post);
+        array_push($posts->posts, $post);
     }
 
     // Alert succcess
