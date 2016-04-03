@@ -1,8 +1,8 @@
 <?php
 
 // Copy and paste the results from `passgen` here
-// $salt = '1635004208';
-// $pass = '4dc972c4caea23e9724562ef7a478cb0';
+$salt = '2007356260';
+$pass = '5fb8fc241ed85b642e08b0f664156b2e';
 // End copy and paste
 
 
