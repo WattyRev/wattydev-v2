@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        {{#link-to 'new-image' class="btn btn-default btn-xs pull-right" tagName="button"}}Add New Image{{/link-to}}
+        <h3 class="panel-title">Recent Images</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="list-group">
+            {{#each recentImages as |image|}}
+                <li class="list-group-item">
+                    <img class="thumbnail-small" src="{{permalink.publicRoot}}{{permalink.imagesPath}}{{image.url}}" alt="" />
+                    {{image.title}}
+                    <div class="actions pull-right">
+                        <a href="{{permalink.publicRoot}}{{permalink.imagesPath}}{{image.url}}" title="View image"><i class="fa fa-eye"></i></a>
+                        {{#link-to 'image' image.id title="Edit image"}}<i class="fa fa-pencil"></i>{{/link-to}}
+                    </div>
+                </li>
+            {{else}}
+                <li class="list-group-item">You haven't added any images yet.</li>
+            {{/each}}
+        </ul>
+    </div>
+</div>

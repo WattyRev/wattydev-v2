@@ -1,0 +1,57 @@
+<div class="container">
+    <h1>Posts</h1>
+    {{#link-to 'new-post' class="btn btn-primary pull-right"}}New Post{{/link-to}}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    Subtype
+                </th>
+                <th>
+                    Created
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each model.posts as |post|}}
+                <tr>
+                    <td>
+                        {{post.title}}
+                    </td>
+                    <td>
+                        {{post.type}}
+                    </td>
+                    <td>
+                        {{post.subType}}
+                    </td>
+                    <td>
+                        {{post.created}}
+                    </td>
+                    <td>
+                        {{post.status}}
+                    </td>
+                    <td>
+                        <a href="{{permalink.publicRoot}}post/{{post.slug}}"><i class="fa fa-eye"></i></a>
+                        {{#link-to 'post' post.id}}<i class="fa fa-pencil"></i>{{/link-to}}
+                    </td>
+                </tr>
+            {{else}}
+                <tr>
+                    <td colspan="6">You haven't added any posts.</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

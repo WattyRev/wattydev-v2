@@ -70,7 +70,7 @@ function addImage($image) {
     $sql = sprintf("insert into images (created,title,description,url) value (now(),'%s','%s','%s')",
         mysql_real_escape_string($image->title),
         mysql_real_escape_string($image->description),
-        mysql_real_escape_string($file));
+        mysql_real_escape_string(str_replace('../images/', '', $file)));
 
     // Alert success
     if (mysql_query($sql)) {

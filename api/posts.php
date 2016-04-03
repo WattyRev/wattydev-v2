@@ -1,5 +1,5 @@
 <?php
-header("Access-Control-Allow-Origin: *");
+header('Access-Control-Allow-Origin: *'); 
 include 'database_connect.php';
 
 $method = $_SERVER['REQUEST_METHOD'];

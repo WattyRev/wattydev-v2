@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        {{#link-to 'new-post' class="btn btn-default btn-xs pull-right" tagName="button"}}Add New Post{{/link-to}}
+        <h3 class="panel-title">Recent Posts</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="list-group">
+            {{#each recentPosts as |post|}}
+                <li class="list-group-item">
+                    {{post.title}}
+                    <div class="actions pull-right">
+                        <a href="{{permalink.publicRoot}}post/{{post.slug}}" title="View post"><i class="fa fa-eye"></i></a>
+                        {{#link-to 'post' post.id title="Edit post"}}<i class="fa fa-pencil"></i>{{/link-to}}
+                    </div>
+                </li>
+            {{else}}
+                <li class="list-group-item">You haven't added any posts yet.</li>
+            {{/each}}
+        </ul>
+    </div>
+</div>

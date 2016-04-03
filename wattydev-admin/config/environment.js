@@ -6,6 +6,12 @@ module.exports = function(environment) {
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
+    contentSecurityPolicy: {
+        'font-src': "'self' http://maxcdn.bootstrapcdn.com",
+        'style-src': "'self' https://maxcdn.bootstrapcdn.com",
+        'img-src': "'self' http://wattydev.com",
+        'connect-src': "'self' ws://localhost:49152 ws://0.0.0.0:49152 http://0.0.0.0:4200/csp-report http://wattydev.com"
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -40,7 +46,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+      ENV.baseURL = '/admin/';
   }
 
   return ENV;

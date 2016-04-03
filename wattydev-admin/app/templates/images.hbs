@@ -1,0 +1,44 @@
+<div class="container">
+    <h1>Images</h1>
+    {{#link-to 'new-image' class="btn btn-primary pull-right"}}New Image{{/link-to}}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Created
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each model.images as |image|}}
+                <tr>
+                    <td>
+                        <img class="thumbnail-small" src="{{permalink.publicRoot}}{{permalink.imagesPath}}{{image.url}}">
+                    </td>
+                    <td>
+                        {{image.title}}
+                    </td>
+                    <td>
+                        {{image.created}}
+                    </td>
+                    <td>
+                        <a href="{{permalink.publicRoot}}{{permalink.imagesPath}}{{image.url}}"><i class="fa fa-eye"></i></a>
+                        {{#link-to 'image' image.id}}<i class="fa fa-pencil"></i>{{/link-to}}
+                    </td>
+                </tr>
+            {{else}}
+                <tr>
+                    <td colspan="4">You haven't added any posts.</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
