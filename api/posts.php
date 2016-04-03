@@ -1,5 +1,5 @@
 <?php
-header('Access-Control-Allow-Origin: *'); 
+header('Access-Control-Allow-Origin: *');
 include 'database_connect.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
@@ -19,6 +19,7 @@ switch ($method) {
             echo getPost($_GET['id']);
         } else {
             echo getPosts();
+            echo 'test';
         }
         break;
     case 'DELETE':
