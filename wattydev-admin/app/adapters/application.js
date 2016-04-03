@@ -5,6 +5,11 @@ export default DS.RESTAdapter.extend({
 
     host: 'http://wattydev.com',
 
+    buildURL: function(record, suffix) {
+        var s = this._super(record, suffix);
+        return s + ".php";
+    },
+
     /**
      * Override for ajax to support CORS.
      *

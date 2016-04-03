@@ -19,7 +19,6 @@ switch ($method) {
             echo getPost($_GET['id']);
         } else {
             echo getPosts();
-            echo 'test';
         }
         break;
     case 'DELETE':
