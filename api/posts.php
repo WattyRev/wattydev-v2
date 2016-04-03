@@ -163,20 +163,21 @@ function getPost($id) {
 
     // Generate the data structure
     $post = (object) array();
-    $post->id = mysql_result($result, $i, 'id');
-    $post->created = mysql_result($result, $i, 'created');
-    $post->updated = mysql_result($result, $i, 'updated');
-    $post->content = mysql_result($result, $i, 'content');
-    $post->featuredImage = mysql_result($result, $i, 'featured_image');
-    $post->title = mysql_result($result, $i, 'title');
-    $post->tags = mysql_result($result, $i, 'tags');
-    $post->type = mysql_result($result, $i, 'type');
-    $post->subtype = mysql_result($result, $i, 'subtype');
-    $post->status = mysql_result($result, $i, 'status');
+    $post->post = (object) array();
+    $post->$post->id = mysql_result($result, $i, 'id');
+    $post->$post->created = mysql_result($result, $i, 'created');
+    $post->$post->updated = mysql_result($result, $i, 'updated');
+    $post->$post->content = mysql_result($result, $i, 'content');
+    $post->$post->featuredImage = mysql_result($result, $i, 'featured_image');
+    $post->$post->title = mysql_result($result, $i, 'title');
+    $post->$post->tags = mysql_result($result, $i, 'tags');
+    $post->$post->type = mysql_result($result, $i, 'type');
+    $post->$post->subtype = mysql_result($result, $i, 'subtype');
+    $post->$post->status = mysql_result($result, $i, 'status');
 
     // Alert success
     header('HTTP/1.1 200 OK');
-    return JSON_encode($guest);
+    return JSON_encode($post);
 }
 
 function deletePost($id) {

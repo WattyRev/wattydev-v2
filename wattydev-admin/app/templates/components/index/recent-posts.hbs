@@ -6,10 +6,11 @@
     <div class="panel-body">
         <ul class="list-group">
             {{#each recentPosts as |post|}}
+                {{log post}}
                 <li class="list-group-item">
-                    {{post.title}}
+                    {{post._data.title}}
                     <div class="actions pull-right">
-                        <a href="{{permalink.publicRoot}}post/{{post.slug}}" title="View post"><i class="fa fa-eye"></i></a>
+                        <a href="{{permalink.publicRoot}}post/{{post._data.slug}}" title="View post"><i class="fa fa-eye"></i></a>
                         {{#link-to 'post' post.id title="Edit post"}}<i class="fa fa-pencil"></i>{{/link-to}}
                     </div>
                 </li>

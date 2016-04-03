@@ -1,13 +1,6 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-    /**
-     * The id of the post.
-     *
-     * @property id
-     * @type {String}
-     */
-    id: DS.attr('string'),
 
     /**
      * The date that the post was created.

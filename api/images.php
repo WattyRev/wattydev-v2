@@ -165,7 +165,8 @@ function getImages() {
     $num = mysql_num_rows($result);
 
     // Generate data structure
-    $images = array();
+    $images = (object) array();
+    $images->images = array();
     for($i = 0; $i < $num; $i++) {
         $image = (object) array();
         $image->id = mysql_result($result, $i, 'id');
@@ -173,7 +174,7 @@ function getImages() {
         $image->title = mysql_result($result, $i, 'title');
         $image->description = mysql_result($result, $i, 'description');
         $image->url = mysql_result($result, $i, 'url');
-        array_push($images, $image);
+        array_push($images->images, $image);
     }
 
     // Alert succcess
@@ -196,11 +197,12 @@ function getImage($id) {
 
     // Generate the data structure
     $image = (object) array();
-    $image->id = mysql_result($result, $i, 'id');
-    $image->created = mysql_result($result, $i, 'created');
-    $image->title = mysql_result($result, $i, 'title');
-    $image->description = mysql_result($result, $i, 'description');
-    $image->url = mysql_result($result, $i, 'url');
+    $image->image = (object) array();
+    $image->image->id = mysql_result($result, $i, 'id');
+    $image->image->created = mysql_result($result, $i, 'created');
+    $image->image->title = mysql_result($result, $i, 'title');
+    $image->image->description = mysql_result($result, $i, 'description');
+    $image->image->url = mysql_result($result, $i, 'url');
 
     // Alert success
     header('HTTP/1.1 200 OK');
