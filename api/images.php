@@ -63,6 +63,7 @@ function addImage($image) {
         return 'Something went wrong when uploading the file.';
     }
 
+    // Sync with git
     $output = shell_exec('git commit -a -m Add image file && git push');
 
     // Add the image to the database
