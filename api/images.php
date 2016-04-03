@@ -63,6 +63,8 @@ function addImage($image) {
         return 'Something went wrong when uploading the file.';
     }
 
+    $output = shell_exec('git commit -a -m Add image file && git push');
+
     // Add the image to the database
     $sql = sprintf("insert into images (created,title,description,url) value (now(),'%s','%s','%s')",
         mysql_real_escape_string($image->title),
