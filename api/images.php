@@ -38,8 +38,7 @@ function addImage($image) {
     // Validate the image title
     if (!isset($image->title)) {
         header('HTTP/1.1 400 Bad Request');
-        $json = file_get_contents('php://input');
-        var_dump($json);
+        var_dump($POST);
         return 'Cannot create image without title.';
     }
 
