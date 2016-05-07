@@ -1,6 +1,7 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 include 'database_connect.php';
+include 'is_authenticated.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
@@ -215,19 +216,4 @@ function deletePost($id) {
         header('HTTP/1.1 500 Internal Server Error');
         return 'Failed to delete post';
     }
-}
-
-function isAuthenticated() {
-    $headers = getallheaders();
-    if (!isset($headers['x-wattydev-authentication']) || !isset($_COOKIE['auth-token'])) {
-        header('HTTP/1.1 401 Unauthorized');
-        return false;
-    }
-
-    $token = $headers['x-wattydev-authentication'];
-    if ($token !== $_COOKIE['auth-token']) {
-        header('HTTP/1.1 401 Unauthorized');
-        return false;
-    }
-    return true;
 }

@@ -2,6 +2,7 @@
 header("Access-Control-Allow-Origin: *");
 
 include 'database_connect.php';
+include 'is_authenticated.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
@@ -237,19 +238,4 @@ function deleteImage($id) {
 
     // Sync with git
     shell_exec('git commit -a -m \'Delete image\' file && git push');
-}
-
-function isAuthenticated() {
-    $headers = getallheaders();
-    if (!isset($headers['x-wattydev-authentication']) || !isset($_COOKIE['auth-token'])) {
-        header('HTTP/1.1 401 Unauthorized');
-        return false;
-    }
-
-    $token = $headers['x-wattydev-authentication'];
-    if ($token !== $_COOKIE['auth-token']) {
-        header('HTTP/1.1 401 Unauthorized');
-        return false;
-    }
-    return true;
 }

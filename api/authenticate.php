@@ -1,4 +1,7 @@
 <?php
+/**
+ * Handle client authentication for actions that modify the database.
+ */
 if($_SERVER['HTTP_ORIGIN'] === 'http://localhost:4200') {
     header("Access-Control-Allow-Origin: *");
 }
@@ -7,7 +10,7 @@ include 'database_connect.php';
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
     case 'PUT':
-        echo authentiate();
+        echo authenticate();
         break;
     case 'GET':
         echo getAuthentication();
@@ -16,6 +19,7 @@ switch ($method) {
         break;
 }
 
+// Get and refresh the authentication token
 function getAuthentication() {
     if (isset($_COOKIE['auth-token'])) {
         header('HTTP/1.1 200 OK');
@@ -34,6 +38,7 @@ function getAuthentication() {
     }
 }
 
+// Authenticate using email and password
 function authenticate() {
     // Check for email address
     if (!isset($_POST['email'])) {
