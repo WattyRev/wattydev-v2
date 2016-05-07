@@ -102,7 +102,7 @@ function updateImage($image) {
         }
 
         // Get the record so that we can save the image to the same url
-        $query = sprintf("SELECT url FROM image WHERE id = '%s'",
+        $query = sprintf("SELECT url FROM images WHERE id = '%s'",
             mysql_real_escape_string($id));
         $result = mysql_query($query);
         mysql_close();
@@ -186,7 +186,7 @@ function getImages() {
 
 function getImage($id) {
     // Get image
-    $query = sprintf("SELECT * FROM image WHERE id = '%s'",
+    $query = sprintf("SELECT * FROM images WHERE id = '%s'",
         mysql_real_escape_string($id));
     $result = mysql_query($query);
     mysql_close();
