@@ -3,6 +3,7 @@ header("Access-Control-Allow-Origin: *");
 
 include 'init.php';
 
+// Determine behavior based on method
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
     case 'PUT':
@@ -32,11 +33,11 @@ switch ($method) {
         break;
 }
 
+// Add a new image
 function addImage($image) {
     // Validate the image title
     if (!isset($image->title)) {
         header('HTTP/1.1 400 Bad Request');
-        var_dump($POST);
         return 'Cannot create image without title.';
     }
 
@@ -84,6 +85,7 @@ function addImage($image) {
     }
 }
 
+// Update an existing image
 function updateImage($image) {
     $id = $image->id;
 
@@ -94,7 +96,7 @@ function updateImage($image) {
     }
 
     if (isset($image->file)) {
-        if (!strpos($image->file, 'data:image/png;base64')) {
+        if (strpos($image->file, 'data:image/png;base64') === -1) {
             header('HTTP/1.1 400 Bad Request');
             return 'The file must be a base64 encoded PNG.';
         }
