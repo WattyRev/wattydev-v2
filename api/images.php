@@ -6,7 +6,7 @@ include 'is_authenticated.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
-    case 'PUT':
+    case 'POST':
         if (!isAuthenticated()) {
             return;
         }
