@@ -2,6 +2,8 @@
 header("Access-Control-Allow-Origin: *");
 
 include 'init.php';
+include 'database_connect.php';
+include 'is_authenticated.php';
 
 // Determine behavior based on method
 $method = $_SERVER['REQUEST_METHOD'];
