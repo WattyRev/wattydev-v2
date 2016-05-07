@@ -39,8 +39,8 @@ function addImage($image) {
     // Validate the image title
     if (!isset($image->title)) {
         header('HTTP/1.1 400 Bad Request');
-        return 'Cannot create image without title.';
         var_dump($image);
+        return 'Cannot create image without title.';
     }
 
     if (!isset($image->file)) {
