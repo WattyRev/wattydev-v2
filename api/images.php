@@ -1,19 +1,18 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 
-include 'database_connect.php';
-include 'is_authenticated.php';
+include 'init.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
-    case 'POST':
+    case 'PUT':
         if (!isAuthenticated()) {
             return;
         }
         if (isset($_GET['update'])) {
-            echo updateImage($_POST['image']);
+            echo updateImage($POST['image']);
         } else {
-            echo addImage($_POST['image']);
+            echo addImage($POST['image']);
         }
         break;
     case 'GET':
