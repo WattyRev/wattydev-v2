@@ -10,9 +10,9 @@ switch ($method) {
             return;
         }
         if (isset($_GET['update'])) {
-            echo updateImage($POST['image']);
+            echo updateImage($POST->image);
         } else {
-            echo addImage($POST['image']);
+            echo addImage($POST->image);
         }
         break;
     case 'GET':
