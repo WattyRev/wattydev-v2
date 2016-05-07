@@ -45,7 +45,7 @@ function addImage($image) {
         return 'Cannot create image without the file.';
     }
 
-    if (!strpos($image->file, 'data:image/png;base64')) {
+    if (strpos($image->file, 'data:image/png;base64') === -1) {
         header('HTTP/1.1 400 Bad Request');
         return 'The file must be a base64 encoded PNG.';
     }
