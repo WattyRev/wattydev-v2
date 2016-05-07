@@ -33,8 +33,6 @@ switch ($method) {
 }
 
 function addImage($image) {
-    $image = json_decode($image);
-
     // Validate the image title
     if (!isset($image->title)) {
         header('HTTP/1.1 400 Bad Request');
@@ -87,7 +85,6 @@ function addImage($image) {
 }
 
 function updateImage($image) {
-    $image = json_decode($image);
     $id = $image->id;
 
     // Check for image id
