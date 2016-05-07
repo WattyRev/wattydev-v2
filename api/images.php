@@ -5,10 +5,8 @@ include 'database_connect.php';
 include 'is_authenticated.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
-echo 'about to check method\n';
 switch ($method) {
     case 'PUT':
-        echo 'method is PUT\n';
         if (!isAuthenticated()) {
             return;
         }
