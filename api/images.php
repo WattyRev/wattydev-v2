@@ -111,7 +111,6 @@ function updateImage($image) {
         if(!mysql_num_rows($result)) {
             header('HTTP/1.1 404 Not Found');
             return 'Could not find image.';
-            return;
         }
 
         // Generate the data structure
