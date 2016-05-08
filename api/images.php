@@ -128,7 +128,7 @@ function updateImage($image) {
         }
 
         // Sync with git
-        // $output = putenv("HOME=/home1/r3vfan");
+        $output = putenv("HOME=/home1/r3vfan");
         $output = shell_exec('git config --global user.email "spencer@wattydev.com" 2>&1');
         $output = shell_exec('git config --global user.name "WattyDev.com" 2>&1');
         $output = shell_exec("git add * 2>&1");
