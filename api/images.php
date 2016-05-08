@@ -128,8 +128,7 @@ function updateImage($image) {
         }
 
         // Sync with git
-        $output = shell_exec('env HOME="/home1/r3vfan"');
-        echo 'set home:' . $output;
+        putenv("ENV=/home1/r3vfan");
         $output = shell_exec('git config --global user.email "spencer@wattydev.com" 2>&1');
         echo 'git set email: ' . $output;
         $output = shell_exec('git config --global user.name "WattyDev.com" 2>&1');
