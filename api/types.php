@@ -51,8 +51,7 @@ function addType($type) {
 
     // Validate parent
     if (!isset($type->parent)) {
-        header('HTTP/1.1 400 Bad Request');
-        return 'Cannot update type without parent.';
+        $type->parent = null;
     }
 
     // Validate that the parent exists
