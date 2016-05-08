@@ -128,8 +128,12 @@ function updateImage($image) {
         }
 
         // Sync with git
-        $output = shell_exec("git add * && git commit -a -m 'Update image file' && git push");
-        var_dump($output);
+        $output = shell_exec("git add *");
+        echo 'git add: ' . $output;
+        shell_exec("git commit -a -m 'Update image file'");
+        echo 'git commit: ' . $output;
+        shell_exec("git push");
+        echo 'git push: ' . $output;
     }
 
     // Set values
