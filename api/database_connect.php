@@ -1,5 +1,4 @@
 <?php
-echo 'setup databse connection';
 // Database settings
 // database hostname or IP. default:localhost
 // localhost will be correct for 99% of times

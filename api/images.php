@@ -141,6 +141,9 @@ function updateImage($image) {
         if (!isset($val)) {
             continue;
         }
+        var_dump($val);
+        var_dump($metric);
+        var_dump($id);
         $query = sprintf("update images set $metric = '%s' where id = '%s'",
             mysql_real_escape_string($val), mysql_real_escape_string($id));
         if(!mysql_query($query)) {
