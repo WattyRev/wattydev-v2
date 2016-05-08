@@ -151,7 +151,7 @@ function retrieveTags() {
 // Get a specific tag by id
 function retrieveTag($id) {
     // Get tag
-    $query = sprintf("SELECT * FROM tag WHERE id = '%s'",
+    $query = sprintf("SELECT * FROM tags WHERE id = '%s'",
         mysql_real_escape_string($id));
     $result = mysql_query($query);
 
