@@ -232,30 +232,46 @@ function deleteImage($id) {
     // $output = shell_exec('git config --global user.email "spencer@wattydev.com"');
     // $output = shell_exec('git config --global user.name "WattyDev.com"');|
 
-    // Delete guest
+    // Delete image
     if(!isset($id)) {
         header('HTTP/1.1 400 Bad Request');
         return 'No id provided';
     }
 
-    // Delete image
+    // Get image name
+    $query = sprintf("SELECT url FROM images WHERE id = '%s'",
+        mysql_real_escape_string($id));
+    $result = mysql_query($query);
+
+    // Alert failure
+    if(!mysql_num_rows($result)) {
+        header('HTTP/1.1 404 Not Found');
+        return 'Could not find image.';
+    }
+    $url = '../images/' . mysql_result($result, 0, 'url');
+
+    // Delete image from database
     $query = sprintf("DELETE from images WHERE id = '%s'",
         mysql_real_escape_string($id));
     $result = mysql_query($query);
 
-    // Alert success
-    if($result) {
-        header('HTTP/1.1 200 OK');
-        return 'Image deleted';
-
-    // Alert failure
-    } else {
+    if(!$result) {
+        // Alert failure
         header('HTTP/1.1 500 Internal Server Error');
-        return 'Failed to delete image';
+        return 'Failed to delete image from database';
+    }
+
+    if (!unlink($url)) {
+        // Alert failure
+        header('HTTP/1.1 500 Internal Server Error');
+        return 'Failed to delete image file';
     }
 
     // Sync with git
     shell_exec("git add *");
     shell_exec("git commit -a -m 'Delete image file'");
     shell_exec("git push");
+
+    header('HTTP/1.1 200 OK');
+    return 'Image deleted';
 }
