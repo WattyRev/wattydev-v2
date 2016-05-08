@@ -227,6 +227,11 @@ function getImage($id) {
 }
 
 function deleteImage($id) {
+    // Setup to allow committing to git
+    $output = putenv("HOME=/home1/r3vfan");
+    // $output = shell_exec('git config --global user.email "spencer@wattydev.com"');
+    // $output = shell_exec('git config --global user.name "WattyDev.com"');|
+
     // Delete guest
     if(!isset($id)) {
         header('HTTP/1.1 400 Bad Request');
