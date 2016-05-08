@@ -356,20 +356,6 @@ function deleteType($id) {
         mysql_real_escape_string($id));
     $result = mysql_query($query);
 
-    // Alert failure
-    if(!mysql_num_rows($result)) {
-        header('HTTP/1.1 404 Not Found');
-        return 'Could not find type.';
-    }
-
-    // Alert success
-    if($result) {
-        header('HTTP/1.1 200 OK');
-        return 'Type deleted';
-
-    // Alert failure
-    } else {
-        header('HTTP/1.1 500 Internal Server Error');
-        return 'Failed to delete type';
-    }
+    header('HTTP/1.1 200 OK');
+    return 'Type deleted';
 }
