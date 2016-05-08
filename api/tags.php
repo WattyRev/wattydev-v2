@@ -85,6 +85,17 @@ function updateTag($tag) {
         return 'Cannot create tag without slug.';
     }
 
+    // Check that the request tag exists
+    $query = sprintf("SELECT * FROM tags WHERE id = '%s'",
+        mysql_real_escape_string($id));
+    $result = mysql_query($query);
+
+    // Alert failure
+    if(!mysql_num_rows($result)) {
+        header('HTTP/1.1 404 Not Found');
+        return 'Could not find tag.';
+    }
+
     // Set values
     $vars = array();
     $vars['title'] = $tag->title;
