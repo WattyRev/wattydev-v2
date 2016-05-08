@@ -171,7 +171,7 @@ function updateType($type) {
             }
 
             // Save the list of children
-            $newSiblings = json_decode(mysql_result($result, 0, 'id'));
+            $newSiblings = json_decode(mysql_result($result, 0, 'children'));
             if ($newSiblings === '' || $newSiblings === null) {
                 $newSiblings = array();
             }
@@ -199,7 +199,7 @@ function updateType($type) {
 
             // If the original parent exists, remove the reference from the parent
             if(mysql_num_rows($result)) {
-                $originalSiblings = json_decode(mysql_result($result, 0, 'id'));
+                $originalSiblings = json_decode(mysql_result($result, 0, 'children'));
                 if ($originalSiblings !== '' && $originalSiblings !== null) {
                     // Remove the type from the old parent's list of children
                     $pos = array_search($id, $originalSiblings);
