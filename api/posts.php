@@ -61,7 +61,7 @@ function addPost($post) {
     }
 
     // Create the post
-    $sql = sprintf("insert into posts (created,updated,content,featured_image,title,tags,type,subtype,status) value (now(),now(),'%s','%s','%s','%s','%s','%s','%s')",
+    $sql = sprintf("insert into posts (created,updated,content,featured_image,title,tags,type,status,slug,reference_url) value (now(),now(),'%s','%s','%s','%s','%s','%s','%s')",
         mysql_real_escape_string($post->content),
         mysql_real_escape_string($post->featuredImage),
         mysql_real_escape_string($post->title),
