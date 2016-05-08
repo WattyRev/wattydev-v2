@@ -1,4 +1,5 @@
 <?php
+// TODO When a type is deleted, remove the reference from any posts
 /**
  * Manage post record types.
  * A type is a category taxonomy for organizing posts. Only one type can be applied to a post.
@@ -349,6 +350,10 @@ function deleteType($id) {
             }
         }
     }
+
+    // Remove references in posts
+    $query = sprintf("UPDATE posts SET type = '%s' WHERE type = '%s'",
+        mysql_real_escape_string(0), mysql_real_escape_string($id));
 
     // Delete type
     $query = sprintf("DELETE from types WHERE id = '%s'",

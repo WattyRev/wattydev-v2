@@ -45,6 +45,12 @@ function addPost($post) {
         return 'Cannot create post without slug.';
     }
 
+    // Validate the post status exists
+    if (!isset($post->status)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Cannot create post without status.';
+    }
+
     // Validate the post status
     if ($post->status !== 'draft' || $post->status !== 'published' || $post->status !== 'unlisted') {
         header('HTTP/1.1 400 Bad Request');
@@ -58,7 +64,6 @@ function addPost($post) {
         mysql_real_escape_string($post->title),
         mysql_real_escape_string(json_encode($post->tags)),
         mysql_real_escape_string($post->type),
-        mysql_real_escape_string($post->subtype),
         mysql_real_escape_string($post->status),
         mysql_real_escape_string($post->slug),
         mysql_real_escape_string($post->referenceUrl));
@@ -86,6 +91,84 @@ function updatePost($post) {
         return 'Cannot update post without id.';
     }
 
+    // Validate content
+    if (!isset($post->content)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Cannot update post without content.';
+    }
+
+    // Validate featured image
+    if (!isset($post->featuredImage)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Cannot update post without featured image.';
+    }
+
+    // Validate that featured image exists
+    if ($post->featuredImage !== 0) {
+        $query = sprintf("SELECT * from images WHERE id = '%s'", mysql_real_escape_string($post->featuredImage));
+        $result = mysql_query($query);
+
+        // Alert failure
+        if(!mysql_num_rows($result)) {
+            header('HTTP/1.1 400 Bad Request');
+            return 'The featured image does not exist.';
+        }
+    }
+
+    // Validate title
+    if (!isset($post->title)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Cannot update post without title.';
+    }
+
+    // Validate tags
+    if (!isset($post->tags)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Cannot update post without tags.';
+    }
+
+    // Validate type
+    if (!isset($post->type)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Cannot update post without type.';
+    }
+
+    // Validate that type exists
+    if ($post->type !== 0) {
+        $query = sprintf("SELECT * from types WHERE id = '%s'", mysql_real_escape_string($post->type));
+        $result = mysql_query($query);
+
+        // Alert failure
+        if(!mysql_num_rows($result)) {
+            header('HTTP/1.1 400 Bad Request');
+            return 'The specified type does not exist.';
+        }
+    }
+
+    // Validate status
+    if (!isset($post->status)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Cannot update post without status.';
+    }
+
+    // Validate the post status is an appropariate string
+    if ($post->status !== 'draft' || $post->status !== 'published' || $post->status !== 'unlisted') {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Status must be draft, published, or unlisted.';
+    }
+
+    // Validate slug
+    if (!isset($post->slug)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Cannot update post without slug.';
+    }
+
+    // Validate referenceUrl
+    if (!isset($post->referenceUrl)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Cannot update post without referenceUrl.';
+    }
+
     // Set values
     $vars = array();
     $vars['content'] = $post->content;
@@ -93,10 +176,9 @@ function updatePost($post) {
     $vars['title'] = $post->title;
     $vars['tags'] = json_encode($post->tags);
     $vars['type'] = $post->type;
-    $vars['subtype'] = $post->subtype;
-    $vars['status'] =$post->status;
-    $vars['slug'] =$post->slug;
-    $vars['reference_url'] =$post->referenceUrl;
+    $vars['status'] = $post->status;
+    $vars['slug'] = $post->slug;
+    $vars['reference_url'] = $post->referenceUrl;
     $success = true;
     foreach($vars as $metric => $val) {
         if (!isset($val)) {
@@ -131,7 +213,6 @@ function getPosts() {
     // Get all posts
     $query = sprintf("SELECT * FROM posts");
     $result = mysql_query($query);
-    mysql_close();
     $num = mysql_num_rows($result);
 
     // Generate data structure
@@ -153,6 +234,7 @@ function getPosts() {
         $post->referenceUrl = mysql_result($result, $i, 'reference_url');
         array_push($posts->posts, $post);
     }
+    mysql_close();
 
     // Alert succcess
     header('HTTP/1.1 200 OK');
@@ -161,10 +243,9 @@ function getPosts() {
 
 function getPost($id) {
     // Get post
-    $query = sprintf("SELECT * FROM post WHERE id = '%s'",
+    $query = sprintf("SELECT * FROM posts WHERE id = '%s'",
         mysql_real_escape_string($id));
     $result = mysql_query($query);
-    mysql_close();
 
     // Alert failure
     if(!mysql_num_rows($result)) {
@@ -186,6 +267,7 @@ function getPost($id) {
     $post->status = mysql_result($result, 0, 'status');
     $post->slug = mysql_result($result, 0, 'slug');
     $post->referenceUrl = mysql_result($result, 0, 'reference_url');
+    mysql_close();
 
     // Alert success
     header('HTTP/1.1 200 OK');

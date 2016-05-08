@@ -186,6 +186,27 @@ function deleteTag($id) {
         mysql_real_escape_string($id));
     $result = mysql_query($query);
 
+    // Remove references to the tag
+    $query = sprintf("SELECT * from posts WHERE tags LIKE '%[$id]%' OR tags LIKE '%[$id,' OR tags LIKE '%,$id,%' OR tags LIKE '%,$id]%'");
+    $result = mysql_query($query);
+    $num = mysql_num_rows($result);
+    if ($num > 0) {
+        for($i = 0; $i < $num; $i++) {
+            // Get the list of tags for the post
+            $tags = json_decode(mysql_result($result, $i, 'tags'));
+            $id = mysql_result($result, $i, 'id');
+
+            // Remove the tag from the list
+            $pos = array_search($id, $tags);
+            unset($tags[$pos]);
+
+            // Save the new list
+            $query = sprintf("UPDATE posts SET tags = '%s' WHERE id = '%s'",
+                mysql_real_escape_string(json_encode($tags)), mysql_real_escape_string($id));
+            mysql_query($query);
+        }
+    }
+
     // Alert success
     if($result) {
         header('HTTP/1.1 200 OK');
