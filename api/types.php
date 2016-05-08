@@ -289,7 +289,7 @@ function retrieveType($id) {
 
     // Generate the data structure
     $type = (object) array();
-    $type->$type = (object) array();
+    $type->type = (object) array();
     $type->type->id = mysql_result($result, 0, 'id');
     $type->type->title = mysql_result($result, 0, 'title');
     $type->type->slug = mysql_result($result, 0, 'slug');
