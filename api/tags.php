@@ -5,6 +5,7 @@
  */
 include 'init.php';
 
+echo 'tags.php';
 // Determine bahavior based on request method
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
