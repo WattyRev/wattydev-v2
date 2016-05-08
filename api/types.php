@@ -75,7 +75,7 @@ function addType($type) {
     }
 
     // Create the type
-    $parent = $type->parent === null ? null : mysql_real_escape_string($type->parent);
+    $parent = $type->parent === null ? 'NULL' : mysql_real_escape_string($type->parent);
     $sql = sprintf("insert into types (title,slug,parent,children) value ('%s','%s','%s','%s')",
         mysql_real_escape_string($type->title),
         mysql_real_escape_string($type->slug),
