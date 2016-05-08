@@ -37,6 +37,11 @@ switch ($method) {
 
 // Create a new tag
 function addTag($tag) {
+    if (!isset($tag)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Please supply a tag to create';
+    }
+    
     // Validate the tag title
     if (!isset($tag->title)) {
         header('HTTP/1.1 400 Bad Request');
