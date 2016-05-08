@@ -128,6 +128,7 @@ function updateImage($image) {
         }
 
         // Sync with git
+        echo "running git command";
         shell_exec("git add * && git commit -a -m 'Update image file' && git push");
     }
 
