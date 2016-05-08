@@ -1,6 +1,7 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-
+/**
+ * Handles creating, editing, viewing, and deleting images
+ */
 include 'init.php';
 
 // Determine behavior based on method

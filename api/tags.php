@@ -3,10 +3,9 @@
  * Manage post record tags.
  * A tag is taxonomy for organizing posts. Many tags can be applied to a post.
  */
-header('Access-Control-Allow-Origin: *');
-include 'database_connect.php';
-include 'is_authenticated.php';
+include 'init.php';
 
+echo 'tags.php';
 // Determine bahavior based on request method
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
@@ -15,9 +14,9 @@ switch ($method) {
             return;
         }
         if (isset($_GET['update'])) {
-            echo updateTag($_POST['tag']);
+            echo updateTag($POST->tag);
         } else {
-            echo addTag($_POST['tag']);
+            echo addTag($POST->tag);
         }
         break;
     case 'GET':
@@ -39,8 +38,7 @@ switch ($method) {
 
 // Create a new tag
 function addTag($tag) {
-    $tag = json_decode($tag);
-
+    var_dump($tag);
     // Validate the tag title
     if (!isset($tag->title)) {
         header('HTTP/1.1 400 Bad Request');
@@ -75,7 +73,6 @@ function addTag($tag) {
 
 // Edit an existing tag
 function updateTag($tag) {
-    $tag = json_decode($tag);
     $id = $tag->id;
 
     // Check for tag id

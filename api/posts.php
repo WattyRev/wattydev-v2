@@ -1,7 +1,5 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-include 'database_connect.php';
-include 'is_authenticated.php';
+include 'init.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
