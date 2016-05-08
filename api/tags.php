@@ -5,7 +5,6 @@
  */
 include 'init.php';
 
-echo 'tags.php';
 // Determine bahavior based on request method
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
@@ -38,7 +37,6 @@ switch ($method) {
 
 // Create a new tag
 function addTag($tag) {
-    var_dump($tag);
     // Validate the tag title
     if (!isset($tag->title)) {
         header('HTTP/1.1 400 Bad Request');
