@@ -3,9 +3,7 @@
  * Manage post record types.
  * A type is a category taxonomy for organizing posts. Only one type can be applied to a post.
  */
-header('Access-Control-Allow-Origin: *');
-include 'database_connect.php';
-include 'is_authenticated.php';
+include 'init.php';
 
 // Determine bahavior based on request method
 $method = $_SERVER['REQUEST_METHOD'];
@@ -15,9 +13,9 @@ switch ($method) {
             return;
         }
         if (isset($_GET['update'])) {
-            echo updateType($_POST['type']);
+            echo updateType($POST->type);
         } else {
-            echo addType($_POST['type']);
+            echo addType($POST->type);
         }
         break;
     case 'GET':
@@ -39,28 +37,30 @@ switch ($method) {
 
 // Create a new type
 function addType($type) {
-    $type = json_decode($type);
-
     // Validate the type title
     if (!isset($type->title)) {
         header('HTTP/1.1 400 Bad Request');
-        return 'Cannot create type without title.';
+        return 'Cannot update type without title.';
     }
 
     // Validate the type slug
     if (!isset($type->slug)) {
         header('HTTP/1.1 400 Bad Request');
-        return 'Cannot create type without slug.';
+        return 'Cannot update type without slug.';
     }
 
     // Validate parent
-    $newSiblings;
-    if (isset($type->parent)) {
+    if (!isset($type->parent)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Cannot update type without parent.';
+    }
+
+    // Validate that the parent exists
+    if ($type->parent !== null) {
         // Get type
         $query = sprintf("SELECT children FROM types WHERE id = '%s'",
             mysql_real_escape_string($type->parent));
         $result = mysql_query($query);
-        mysql_close();
 
         // Alert failure
         if(!mysql_num_rows($result)) {
@@ -68,6 +68,7 @@ function addType($type) {
             return 'Indicated parent does not exist.';
         }
 
+        // Get the current children property from the new parent
         $newSiblings = json_decode(mysql_result($result, 0, 'id'));
         if ($newSiblings === '' || $newSiblings === null) {
             $newSiblings = array();
@@ -88,13 +89,17 @@ function addType($type) {
 
         // Add reference to parent type
         if (isset($type->parent)) {
+            // Add the new id to the new parent's children
             array_push($newSiblings, $id);
+
+            // Update the parent record
             $query = sprintf("update types set children = '%s' where id = '%s'",
                 mysql_real_escape_string(json_encode($newSiblings)), mysql_real_escape_string($type->parent));
             if (!mysql_query($query)) {
                 $success = false;
             }
         }
+        mysql_close();
 
         // Alert success
         if ($success) {
@@ -109,6 +114,7 @@ function addType($type) {
 
     // Alert failure
     } else {
+        mysql_close();
         header('HTTP/1.1 500 Internal Server Error');
         return 'Something went wrong when adding the record.';
     }
@@ -116,7 +122,6 @@ function addType($type) {
 
 // Edit an existing type
 function updateType($type) {
-    $type = json_decode($type);
     $id = $type->id;
 
     // Check for type id
@@ -125,70 +130,91 @@ function updateType($type) {
         return 'Cannot update type without id.';
     }
 
+    // Validate the type title
+    if (!isset($type->title)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Cannot update type without title.';
+    }
+
     // Validate the type slug
     if (!isset($type->slug)) {
         header('HTTP/1.1 400 Bad Request');
-        return 'Cannot create type without slug.';
+        return 'Cannot update type without slug.';
     }
 
-    // Validate and evaluate parent
-    $newSiblings;
-    if (isset($type->parent)) {
-        // Get type
-        $query = sprintf("SELECT children FROM types WHERE id = '%s'",
-            mysql_real_escape_string($type->parent));
-        $result = mysql_query($query);
-        mysql_close();
+    // Validate children
+    if (!isset($type->children)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Cannot update type without children.';
+    }
 
-        // Alert failure
-        if(!mysql_num_rows($result)) {
-            header('HTTP/1.1 400 Bad Request');
-            return 'Indicated parent does not exist.';
-        }
+    // Validate parent
+    if (!isset($type->parent)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Cannot update type without parent.';
+    }
 
-        $newSiblings = json_decode(mysql_result($result, 0, 'id'));
-        if ($newSiblings === '' || $newSiblings === null) {
-            $newSiblings = array();
-        }
-
-        // Add reference to new parent type
-        array_push($newSiblings, $id);
-        $query = sprintf("update types set children = '%s' where id = '%s'",
-            mysql_real_escape_string(json_encode($newSiblings)), mysql_real_escape_string($type->parent));
-        if (!mysql_query($query)) {
-            // Alert failure
-            header('HTTP/1.1 500 Internal Server Error');
-            return 'Something went wrong when adding the reference to the new parent type.';
-        }
-
-        // Check for previous parent
-        $originalSiblings;
-
-        // Get the original parent
-        $query = sprintf("SELECT parent FROM types WHERE id = '%s'",
-            mysql_real_escape_string($id));
-        $result = mysql_query($query);
-        mysql_close();
-
-        if(mysql_num_rows($result)) {
-            $originalParent = json_decode(mysql_result($result, 0, 'parent'));
-
-            // Get type
+    /**
+     * If the parent has changed, make the appropriate changes to other records
+     */
+    $query = sprintf("SELECT parent FROM types WHERE id = '%s'",
+       mysql_real_escape_string($id));
+    $result = mysql_query($query);
+    $originalParentId = json_decode(mysql_result($result, 0, 'parent'));
+    if ($type->parent !== $originalParentId) {
+        /**
+         * Add reference to this type to the new parent
+         */
+        if ($type->parent !== null) {
+            // Get the children property from the new parent record
             $query = sprintf("SELECT children FROM types WHERE id = '%s'",
-                mysql_real_escape_string($originalParent));
+                mysql_real_escape_string($type->parent));
             $result = mysql_query($query);
-            mysql_close();
+
+            // Alert failure
+            if(!mysql_num_rows($result)) {
+                header('HTTP/1.1 400 Bad Request');
+                return 'Indicated parent does not exist.';
+            }
+
+            // Save the list of children
+            $newSiblings = json_decode(mysql_result($result, 0, 'id'));
+            if ($newSiblings === '' || $newSiblings === null) {
+                $newSiblings = array();
+            }
+
+            // Add reference to the new parent's list of children
+            array_push($newSiblings, $id);
+
+            // Update the parent record
+            $query = sprintf("update types set children = '%s' where id = '%s'",
+                mysql_real_escape_string(json_encode($newSiblings)), mysql_real_escape_string($type->parent));
+            if (!mysql_query($query)) {
+                // Alert failure
+                header('HTTP/1.1 500 Internal Server Error');
+                return 'Something went wrong when adding the reference to the new parent type.';
+            }
+        }
+
+        /**
+         * Remove reference from the old parent
+         */
+        if ($originalParentId !== null) {
+            $query = sprintf("SELECT children FROM types WHERE id = '%s'",
+                mysql_real_escape_string($originalParentId));
+            $result = mysql_query($query);
 
             // If the original parent exists, remove the reference from the parent
             if(mysql_num_rows($result)) {
                 $originalSiblings = json_decode(mysql_result($result, 0, 'id'));
                 if ($originalSiblings !== '' && $originalSiblings !== null) {
+                    // Remove the type from the old parent's list of children
                     $pos = array_search($id, $originalSiblings);
                     unset($originalSiblings[$pos]);
 
-                    // Remove reference from original parent type
+                    // Update the old parent record
                     $query = sprintf("update types set children = '%s' where id = '%s'",
-                        mysql_real_escape_string(json_encode($originalSiblings)), mysql_real_escape_string($originalParent));
+                        mysql_real_escape_string(json_encode($originalSiblings)), mysql_real_escape_string($originalParentId));
                     if (!mysql_query($query)) {
                         // Alert failure
                         header('HTTP/1.1 500 Internal Server Error');
@@ -199,7 +225,9 @@ function updateType($type) {
         }
     }
 
-    // Set values
+    /**
+     * Update the type record
+     */
     $vars = array();
     $vars['title'] = $type->title;
     $vars['slug'] = $type->slug;
@@ -233,7 +261,6 @@ function retrieveTypes() {
     // Get all types
     $query = sprintf("SELECT * FROM types");
     $result = mysql_query($query);
-    mysql_close();
     $num = mysql_num_rows($result);
 
     // Generate data structure
@@ -248,6 +275,7 @@ function retrieveTypes() {
         $type->children = json_decode(mysql_result($result, $i, 'children'));
         array_push($types->types, $type);
     }
+    mysql_close();
 
     // Alert succcess
     header('HTTP/1.1 200 OK');
@@ -257,10 +285,9 @@ function retrieveTypes() {
 // Get a specific type by id
 function retrieveType($id) {
     // Get type
-    $query = sprintf("SELECT * FROM type WHERE id = '%s'",
+    $query = sprintf("SELECT * FROM types WHERE id = '%s'",
         mysql_real_escape_string($id));
     $result = mysql_query($query);
-    mysql_close();
 
     // Alert failure
     if(!mysql_num_rows($result)) {
@@ -275,6 +302,7 @@ function retrieveType($id) {
     $type->slug = mysql_result($result, $i, 'slug');
     $type->parent = mysql_result($result, $i, 'parent');
     $type->children = json_decode(mysql_result($result, $i, 'children'));
+    mysql_close();
 
     // Alert success
     header('HTTP/1.1 200 OK');
@@ -283,16 +311,64 @@ function retrieveType($id) {
 
 // Delete a type by id
 function deleteType($id) {
-    // Delete guest
+    // Validate id
     if(!isset($id)) {
         header('HTTP/1.1 400 Bad Request');
         return 'No id provided';
+    }
+
+    // Validate that type exists
+    $query = sprintf("SELECT parent from types WHERE id = '%s'",
+        mysql_real_escape_string($id));
+    $result = mysql_query($query);
+    $parentId;
+    if (mysql_num_rows($result)) {
+        $parentId = mysql_result($result, $i, 'parent');
+    } else {
+        header('HTTP/1.1 404 Not Found');
+        return 'Could not find type.';
+    }
+
+    // Remove parent references
+    $query = sprintf("update types set parent = '%s' where parent = '%s'",
+        mysql_real_escape_string(null), mysql_real_escape_string($id));
+    mysql_query($query);
+
+    // Remove children references
+    if ($parentId !== null) {
+        $query = sprintf("SELECT children from types WHERE id = '%s'",
+            mysql_real_escape_string($parentId));
+        $result = mysql_query($query);
+        if (mysql_num_rows($result)) {
+            $children = json_decode(mysql_result($result, $i, 'children'));
+            if ($children !== '' && $children !== null) {
+                // Remove the type from the old parent's list of children
+                $pos = array_search($id, $children);
+                unset($children[$pos]);
+
+                // Update the old parent record
+                $query = sprintf("update types set children = '%s' where id = '%s'",
+                    mysql_real_escape_string(json_encode($children)), mysql_real_escape_string($parentId));
+                if (!mysql_query($query)) {
+                    // Alert failure
+                    header('HTTP/1.1 500 Internal Server Error');
+                    return 'Something went wrong when removing the reference from the original parent type.';
+                }
+            }
+            
+        }
     }
 
     // Delete type
     $query = sprintf("DELETE from types WHERE id = '%s'",
         mysql_real_escape_string($id));
     $result = mysql_query($query);
+
+    // Alert failure
+    if(!mysql_num_rows($result)) {
+        header('HTTP/1.1 404 Not Found');
+        return 'Could not find type.';
+    }
 
     // Alert success
     if($result) {
