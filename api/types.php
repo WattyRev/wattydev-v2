@@ -141,12 +141,6 @@ function updateType($type) {
         return 'Cannot update type without slug.';
     }
 
-    // Validate children
-    if (!isset($type->children)) {
-        header('HTTP/1.1 400 Bad Request');
-        return 'Cannot update type without children.';
-    }
-
     // Validate parent
     if (!isset($type->parent)) {
         header('HTTP/1.1 400 Bad Request');
@@ -231,7 +225,6 @@ function updateType($type) {
     $vars['title'] = $type->title;
     $vars['slug'] = $type->slug;
     $vars['parent'] = $type->parent;
-    $vars['children'] = json_encode($type->children);
     $success = true;
     foreach($vars as $metric => $val) {
         if (!isset($val)) {
