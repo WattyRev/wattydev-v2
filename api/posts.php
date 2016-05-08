@@ -293,7 +293,6 @@ function getPost($id) {
     $post->title = mysql_result($result, 0, 'title');
     $post->tags = mysql_result($result, 0, 'tags');
     $post->type = mysql_result($result, 0, 'type');
-    $post->subtype = mysql_result($result, 0, 'subtype');
     $post->status = mysql_result($result, 0, 'status');
     $post->slug = mysql_result($result, 0, 'slug');
     $post->referenceUrl = mysql_result($result, 0, 'reference_url');
