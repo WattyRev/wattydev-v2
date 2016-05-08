@@ -200,7 +200,6 @@ function getImages() {
 }
 
 function getImage($id) {
-    echo 'getting image with id:' . $id;
     // Get image
     $query = sprintf("SELECT * FROM images WHERE id = '%s'",
         mysql_real_escape_string($id));
@@ -224,7 +223,7 @@ function getImage($id) {
 
     // Alert success
     header('HTTP/1.1 200 OK');
-    return JSON_encode($guest);
+    return JSON_encode($image);
 }
 
 function deleteImage($id) {
