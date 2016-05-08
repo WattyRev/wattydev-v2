@@ -2,11 +2,9 @@
 /**
  * Handle client authentication for actions that modify the database.
  */
-if($_SERVER['HTTP_ORIGIN'] === 'http://localhost:4200') {
-    header("Access-Control-Allow-Origin: *");
-}
-include 'database_connect.php';
+include 'init.php';
 
+// Determine behavior based on request method
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
     case 'PUT':
@@ -41,18 +39,18 @@ function getAuthentication() {
 // Authenticate using email and password
 function authenticate() {
     // Check for email address
-    if (!isset($_POST['email'])) {
+    if (!isset($POST->email)) {
         header('HTTP/1.1 400 Bad Request');
         return 'No email provided';
     }
 
     // Check for password
-    if (!isset($_POST['password'])) {
+    if (!isset($POST->password)) {
         header('HTTP/1.1 400 Bad Request');
         return 'No password provided';
     }
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = $POST->email;
+    $password = $POST->password;
 
     // Get account
     $query = sprintf("SELECT password FROM authentication WHERE email = '%s'",
