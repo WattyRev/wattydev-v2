@@ -128,11 +128,11 @@ function updateImage($image) {
         }
 
         // Sync with git
-        $output = exec("git add *");
+        $output = exec("git add * 2>&1");
         echo 'git add: ' . $output;
-        $output = exec("git commit -a -m 'Update image file'");
+        $output = exec("git commit -a -m 'Update image file' 2>&1");
         echo 'git commit: ' . $output;
-        $output = exec("git push");
+        $output = exec("git push 2>&1");
         echo 'git push: ' . $output;
     }
 
