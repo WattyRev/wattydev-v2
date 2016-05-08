@@ -87,7 +87,7 @@ function addType($type) {
         $success = true;
 
         // Add reference to parent type
-        if (isset($type->parent)) {
+        if ($type->parent !== 0) {
             // Add the new id to the new parent's children
             array_push($newSiblings, $id);
 
