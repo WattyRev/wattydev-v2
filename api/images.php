@@ -64,7 +64,7 @@ function addImage($image) {
     }
 
     // Sync with git
-    shell_exec('git add * && git commit -a -m \'Add image file\' && git push');
+    shell_exec("git add * && git commit -a -m 'Add image file' && git push");
 
     // Add the image to the database
     $sql = sprintf("insert into images (created,title,description,url) value (now(),'%s','%s','%s')",
@@ -128,7 +128,7 @@ function updateImage($image) {
         }
 
         // Sync with git
-        shell_exec('git add * && git commit -a -m \'Update image file\' && git push');
+        shell_exec("git add * && git commit -a -m 'Update image file' && git push");
     }
 
     // Set values
@@ -235,5 +235,5 @@ function deleteImage($id) {
     }
 
     // Sync with git
-    shell_exec('git add * && git commit -a -m \'Delete image\' file && git push');
+    shell_exec("git add * && git commit -a -m 'Delete image' file && git push");
 }
