@@ -200,6 +200,7 @@ function getImages() {
 }
 
 function getImage($id) {
+    echo 'getting image with id:' . $id;
     // Get image
     $query = sprintf("SELECT * FROM images WHERE id = '%s'",
         mysql_real_escape_string($id));
