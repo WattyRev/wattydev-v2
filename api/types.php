@@ -68,7 +68,7 @@ function addType($type) {
         }
 
         // Get the current children property from the new parent
-        $newSiblings = json_decode(mysql_result($result, 0, 'id'));
+        $newSiblings = json_decode(mysql_result($result, 0, 'chilren'));
         if ($newSiblings === '' || $newSiblings === null) {
             $newSiblings = array();
         }
