@@ -289,11 +289,12 @@ function retrieveType($id) {
 
     // Generate the data structure
     $type = (object) array();
-    $type->id = mysql_result($result, 0, 'id');
-    $type->title = mysql_result($result, 0, 'title');
-    $type->slug = mysql_result($result, 0, 'slug');
-    $type->parent = mysql_result($result, 0, 'parent');
-    $type->children = json_decode(mysql_result($result, 0, 'children'));
+    $type->$type = (object) array();
+    $type->type->id = mysql_result($result, 0, 'id');
+    $type->type->title = mysql_result($result, 0, 'title');
+    $type->type->slug = mysql_result($result, 0, 'slug');
+    $type->type->parent = mysql_result($result, 0, 'parent');
+    $type->type->children = json_decode(mysql_result($result, 0, 'children'));
     mysql_close();
 
     // Alert success
