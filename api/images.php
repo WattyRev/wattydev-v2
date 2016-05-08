@@ -35,6 +35,11 @@ switch ($method) {
 
 // Add a new image
 function addImage($image) {
+    // Setup to allow committing to git
+    $output = putenv("HOME=/home1/r3vfan");
+    // $output = shell_exec('git config --global user.email "spencer@wattydev.com"');
+    // $output = shell_exec('git config --global user.name "WattyDev.com"');
+
     // Validate the image title
     if (!isset($image->title)) {
         header('HTTP/1.1 400 Bad Request');
@@ -64,7 +69,9 @@ function addImage($image) {
     }
 
     // Sync with git
-    shell_exec("git add * && git commit -a -m 'Add image file' && git push");
+    shell_exec("git add *");
+    shell_exec("git commit -a -m 'Add image file'");
+    shell_exec("git push");
 
     // Add the image to the database
     $sql = sprintf("insert into images (created,title,description,url) value (now(),'%s','%s','%s')",
@@ -87,6 +94,12 @@ function addImage($image) {
 
 // Update an existing image
 function updateImage($image) {
+
+    // Setup to allow committing to git
+    $output = putenv("HOME=/home1/r3vfan");
+    // $output = shell_exec('git config --global user.email "spencer@wattydev.com"');
+    // $output = shell_exec('git config --global user.name "WattyDev.com"');
+
     $id = $image->id;
 
     // Check for image id
@@ -128,12 +141,9 @@ function updateImage($image) {
         }
 
         // Sync with git
-        $output = putenv("HOME=/home1/r3vfan");
-        // $output = shell_exec('git config --global user.email "spencer@wattydev.com"');
-        // $output = shell_exec('git config --global user.name "WattyDev.com"');
-        $output = shell_exec("git add *");
-        $output = shell_exec("git commit -a -m 'Update image file'");
-        $output = shell_exec("git push");
+        shell_exec("git add *");
+        shell_exec("git commit -a -m 'Update image file'");
+        shell_exec("git push");
     }
 
     // Set values
@@ -240,5 +250,7 @@ function deleteImage($id) {
     }
 
     // Sync with git
-    shell_exec("git add * && git commit -a -m 'Delete image' file && git push");
+    shell_exec("git add *");
+    shell_exec("git commit -a -m 'Delete image file'");
+    shell_exec("git push");
 }
