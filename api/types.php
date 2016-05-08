@@ -75,10 +75,11 @@ function addType($type) {
     }
 
     // Create the type
+    $parent = $type->parent === null ? 'NULL' : $type->parent;
     $sql = sprintf("insert into types (title,slug,parent,children) value ('%s','%s','%s','%s')",
         mysql_real_escape_string($type->title),
         mysql_real_escape_string($type->slug),
-        mysql_real_escape_string($type->parent),
+        mysql_real_escape_string($parent),
         mysql_real_escape_string(json_encode(array())));
 
     // Alert success
