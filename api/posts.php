@@ -55,7 +55,7 @@ function addPost($post) {
     }
 
     // Validate the post status
-    if ($post->status !== 'draft' || $post->status !== 'published' || $post->status !== 'unlisted') {
+    if ($post->status !== 'draft' && $post->status !== 'published' && $post->status !== 'unlisted') {
         header('HTTP/1.1 400 Bad Request');
         return 'Status must be draft, published, or unlisted.';
     }
