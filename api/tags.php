@@ -85,11 +85,6 @@ function updateTag($tag) {
         return 'Cannot create tag without slug.';
     }
 
-    // Get tag
-    $query = sprintf("SELECT parent FROM tags WHERE id = '%s'",
-        mysql_real_escape_string($id));
-    $result = mysql_query($query);
-
     // Set values
     $vars = array();
     $vars['title'] = $tag->title;
