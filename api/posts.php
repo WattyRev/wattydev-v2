@@ -31,7 +31,10 @@ switch ($method) {
 }
 
 function addPost($post) {
-    $post = json_decode($post);
+    if (!isset($post)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Please supply a post to create';
+    }
 
     // Validate the post title
     if (!isset($post->title)) {
@@ -82,7 +85,11 @@ function addPost($post) {
 }
 
 function updatePost($post) {
-    $post = json_decode($post);
+    if (!isset($post)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Please supply a post to update';
+    }
+
     $id = $post->id;
 
     // Check for post id

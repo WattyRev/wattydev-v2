@@ -41,7 +41,7 @@ function addTag($tag) {
         header('HTTP/1.1 400 Bad Request');
         return 'Please supply a tag to create';
     }
-    
+
     // Validate the tag title
     if (!isset($tag->title)) {
         header('HTTP/1.1 400 Bad Request');
@@ -76,6 +76,11 @@ function addTag($tag) {
 
 // Edit an existing tag
 function updateTag($tag) {
+    if (!isset($tag)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Please supply a tag to update';
+    }
+    
     $id = $tag->id;
 
     // Check for tag id

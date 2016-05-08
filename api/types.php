@@ -38,6 +38,11 @@ switch ($method) {
 
 // Create a new type
 function addType($type) {
+    if (!isset($type)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Please supply a type to create';
+    }
+
     // Validate the type title
     if (!isset($type->title)) {
         header('HTTP/1.1 400 Bad Request');
@@ -122,6 +127,11 @@ function addType($type) {
 
 // Edit an existing type
 function updateType($type) {
+    if (!isset($type)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Please supply a type to update';
+    }
+
     $id = $type->id;
 
     // Check for type id

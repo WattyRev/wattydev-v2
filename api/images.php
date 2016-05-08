@@ -41,6 +41,11 @@ function addImage($image) {
     // $output = shell_exec('git config --global user.email "spencer@wattydev.com"');
     // $output = shell_exec('git config --global user.name "WattyDev.com"');
 
+    if (!isset($image)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Please supply a image to create';
+    }
+
     // Validate the image title
     if (!isset($image->title)) {
         header('HTTP/1.1 400 Bad Request');
@@ -100,6 +105,11 @@ function updateImage($image) {
     $output = putenv("HOME=/home1/r3vfan");
     // $output = shell_exec('git config --global user.email "spencer@wattydev.com"');
     // $output = shell_exec('git config --global user.name "WattyDev.com"');
+
+    if (!isset($image)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Please supply a image to update';
+    }
 
     $id = $image->id;
 
