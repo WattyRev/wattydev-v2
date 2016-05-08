@@ -54,6 +54,30 @@ function addPost($post) {
         return 'Cannot create post without status.';
     }
 
+    // Validate that featured image exists
+    if (isset($post->featuredImage) && $post->featuredImage !== 0) {
+        $query = sprintf("SELECT * from images WHERE id = '%s'", mysql_real_escape_string($post->featuredImage));
+        $result = mysql_query($query);
+
+        // Alert failure
+        if(!mysql_num_rows($result)) {
+            header('HTTP/1.1 400 Bad Request');
+            return 'The featured image does not exist.';
+        }
+    }
+
+    // Validate that type exists
+    if (isset($post->type) && $post->type !== 0) {
+        $query = sprintf("SELECT * from types WHERE id = '%s'", mysql_real_escape_string($post->type));
+        $result = mysql_query($query);
+
+        // Alert failure
+        if(!mysql_num_rows($result)) {
+            header('HTTP/1.1 400 Bad Request');
+            return 'The specified type does not exist.';
+        }
+    }
+
     // Validate the post status
     if ($post->status !== 'draft' && $post->status !== 'published' && $post->status !== 'unlisted') {
         header('HTTP/1.1 400 Bad Request');
