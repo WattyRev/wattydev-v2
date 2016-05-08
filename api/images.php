@@ -128,11 +128,14 @@ function updateImage($image) {
         }
 
         // Sync with git
-        $output = exec("git add * 2>&1");
+        shell_exec("git config --global user.email spencer@wattydev.com");
+
+        shell_exec("git config --global user.name WattyDev.com");
+        $output = shell_exec("git add * 2>&1");
         echo 'git add: ' . $output;
-        $output = exec("git commit -a -m 'Update image file' 2>&1");
+        $output = shell_exec("git commit -a -m 'Update image file' 2>&1");
         echo 'git commit: ' . $output;
-        $output = exec("git push 2>&1");
+        $output = shell_exec("git push 2>&1");
         echo 'git push: ' . $output;
     }
 
