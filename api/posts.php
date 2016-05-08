@@ -259,7 +259,6 @@ function getPosts() {
         $post->title = mysql_result($result, $i, 'title');
         $post->tags = mysql_result($result, $i, 'tags');
         $post->type = mysql_result($result, $i, 'type');
-        $post->subtype = mysql_result($result, $i, 'subtype');
         $post->status = mysql_result($result, $i, 'status');
         $post->slug = mysql_result($result, $i, 'slug');
         $post->referenceUrl = mysql_result($result, $i, 'reference_url');
