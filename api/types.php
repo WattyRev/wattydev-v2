@@ -80,7 +80,7 @@ function addType($type) {
         mysql_real_escape_string($type->title),
         mysql_real_escape_string($type->slug),
         mysql_real_escape_string($type->parent),
-        mysql_real_escape_string(json_encode($type->children)));
+        mysql_real_escape_string(json_encode(array())));
 
     // Alert success
     if (mysql_query($sql)) {
@@ -355,7 +355,6 @@ function deleteType($id) {
                     return 'Something went wrong when removing the reference from the original parent type.';
                 }
             }
-            
         }
     }
 
