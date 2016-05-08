@@ -105,7 +105,6 @@ function updateImage($image) {
         $query = sprintf("SELECT url FROM images WHERE id = '%s'",
             mysql_real_escape_string($id));
         $result = mysql_query($query);
-        mysql_close();
 
         // Alert failure
         if(!mysql_num_rows($result)) {
@@ -141,15 +140,13 @@ function updateImage($image) {
         if (!isset($val)) {
             continue;
         }
-        var_dump($val);
-        var_dump($metric);
-        var_dump($id);
         $query = sprintf("update images set $metric = '%s' where id = '%s'",
             mysql_real_escape_string($val), mysql_real_escape_string($id));
         if(!mysql_query($query)) {
             $success = false;
         }
     }
+    mysql_close();
 
     // Alert failure
     if(!$success) {
