@@ -8,9 +8,9 @@ switch ($method) {
             return;
         }
         if (isset($_GET['update'])) {
-            echo updatePost($_POST['post']);
+            echo updatePost($POST->post);
         } else {
-            echo addPost($_POST['post']);
+            echo addPost($POST->post);
         }
         break;
     case 'GET':
@@ -174,18 +174,18 @@ function getPost($id) {
 
     // Generate the data structure
     $post = (object) array();
-    $post->id = mysql_result($result, $i, 'id');
-    $post->created = mysql_result($result, $i, 'created');
-    $post->updated = mysql_result($result, $i, 'updated');
-    $post->content = mysql_result($result, $i, 'content');
-    $post->featuredImage = mysql_result($result, $i, 'featured_image');
-    $post->title = mysql_result($result, $i, 'title');
-    $post->tags = mysql_result($result, $i, 'tags');
-    $post->type = mysql_result($result, $i, 'type');
-    $post->subtype = mysql_result($result, $i, 'subtype');
-    $post->status = mysql_result($result, $i, 'status');
-    $post->slug = mysql_result($result, $i, 'slug');
-    $post->referenceUrl = mysql_result($result, $i, 'reference_url');
+    $post->id = mysql_result($result, 0, 'id');
+    $post->created = mysql_result($result, 0, 'created');
+    $post->updated = mysql_result($result, 0, 'updated');
+    $post->content = mysql_result($result, 0, 'content');
+    $post->featuredImage = mysql_result($result, 0, 'featured_image');
+    $post->title = mysql_result($result, 0, 'title');
+    $post->tags = mysql_result($result, 0, 'tags');
+    $post->type = mysql_result($result, 0, 'type');
+    $post->subtype = mysql_result($result, 0, 'subtype');
+    $post->status = mysql_result($result, 0, 'status');
+    $post->slug = mysql_result($result, 0, 'slug');
+    $post->referenceUrl = mysql_result($result, 0, 'reference_url');
 
     // Alert success
     header('HTTP/1.1 200 OK');
