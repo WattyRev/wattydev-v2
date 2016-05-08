@@ -89,7 +89,6 @@ function updateTag($tag) {
     $query = sprintf("SELECT parent FROM tags WHERE id = '%s'",
         mysql_real_escape_string($id));
     $result = mysql_query($query);
-    mysql_close();
 
     // Set values
     $vars = array();
@@ -106,6 +105,7 @@ function updateTag($tag) {
             $success = false;
         }
     }
+    mysql_close();
 
     // Alert failure
     if(!$success) {
