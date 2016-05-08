@@ -154,7 +154,6 @@ function retrieveTag($id) {
     $query = sprintf("SELECT * FROM tag WHERE id = '%s'",
         mysql_real_escape_string($id));
     $result = mysql_query($query);
-    mysql_close();
 
     // Alert failure
     if(!mysql_num_rows($result)) {
@@ -167,6 +166,7 @@ function retrieveTag($id) {
     $tag->id = mysql_result($result, 0, 'id');
     $tag->title = mysql_result($result, 0, 'title');
     $tag->slug = mysql_result($result, 0, 'slug');
+    mysql_close();
 
     // Alert success
     header('HTTP/1.1 200 OK');
