@@ -129,11 +129,11 @@ function updateImage($image) {
 
         // Sync with git
         $output = putenv("HOME=/home1/r3vfan");
-        $output = shell_exec('git config --global user.email "spencer@wattydev.com" 2>&1');
-        $output = shell_exec('git config --global user.name "WattyDev.com" 2>&1');
-        $output = shell_exec("git add * 2>&1");
-        $output = shell_exec("git commit -a -m 'Update image file' 2>&1");
-        $output = shell_exec("git push 2>&1");
+        // $output = shell_exec('git config --global user.email "spencer@wattydev.com"');
+        // $output = shell_exec('git config --global user.name "WattyDev.com"');
+        $output = shell_exec("git add *");
+        $output = shell_exec("git commit -a -m 'Update image file'");
+        $output = shell_exec("git push");
     }
 
     // Set values
