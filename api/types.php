@@ -121,7 +121,7 @@ function addType($type) {
 
 // Edit an existing type
 function updateType($type) {
-    var_dump($type);
+    var_dump($POST);
     $id = $type->id;
 
     // Check for type id
