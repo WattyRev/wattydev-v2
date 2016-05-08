@@ -183,7 +183,7 @@ function updatePost($post) {
     }
 
     // Validate the post status is an appropariate string
-    if ($post->status !== 'draft' || $post->status !== 'published' || $post->status !== 'unlisted') {
+    if ($post->status !== 'draft' && $post->status !== 'published' && $post->status !== 'unlisted') {
         header('HTTP/1.1 400 Bad Request');
         return 'Status must be draft, published, or unlisted.';
     }
