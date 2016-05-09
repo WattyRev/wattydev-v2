@@ -79,21 +79,23 @@ function addPost($post) {
     }
 
     // Generate a slug for the post
-    function generateSlug($iteration) {
-        echo $post->title;
-        echo str_replace(' ', '_', $post->title);
-        $slug = urlencode(str_replace(' ', '_', $post->title));
+    function generateSlug($iteration, $title) {
+        echo $title;
+        echo str_replace(' ', '_', $title);
+        $slug = urlencode(str_replace(' ', '_', $title));
         if ($iteration > 0) {
             $slug .= "_$iteration";
         }
         $query = sprintf("SELECT * from posts WHERE slug = '%s'", mysql_real_escape_string($slug));
         $result = mysql_query($query);
         if (mysql_num_rows($result) > 0) {
-            return generateSlug($iteration + 1);
+            return generateSlug($iteration + 1, $title);
         }
         return $slug;
     }
-    $post->slug = generateSlug(0);
+    echo 'about to generate title';
+    var_dump($post);
+    $post->slug = generateSlug(0, $post->title);
 
     // Create the post
     $sql = sprintf("insert into posts (created,updated,content,featured_image,title,tags,type,status,slug,reference_url) value (now(),now(),'%s','%s','%s','%s','%s','%s','%s','%s')",
