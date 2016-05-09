@@ -80,7 +80,7 @@ function updateTag($tag) {
         header('HTTP/1.1 400 Bad Request');
         return 'Please supply a tag to update';
     }
-    
+
     $id = $tag->id;
 
     // Check for tag id
@@ -197,7 +197,7 @@ function deleteTag($id) {
     $result = mysql_query($query);
 
     // Remove references to the tag
-    $query = sprintf("SELECT * from posts WHERE tags LIKE '%[$id]%' OR tags LIKE '%[$id,' OR tags LIKE '%,$id,%' OR tags LIKE '%,$id]%'");
+    $query = "SELECT * from posts WHERE tags LIKE '%[$id]%' OR tags LIKE '%[$id,' OR tags LIKE '%,$id,%' OR tags LIKE '%,$id]%'";
     $result = mysql_query($query);
     $num = mysql_num_rows($result);
     if ($num > 0) {
