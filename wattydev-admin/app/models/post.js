@@ -1,22 +1,51 @@
-import DS from 'ember-data';
+import Ember from 'ember';
 
-export default DS.Model.extend({
+export default Ember.Object.extend({
+    /**
+     * The id of the post.
+     *
+     * @property id
+     * @type {String}
+     */
+    id: null,
 
     /**
      * The date that the post was created.
      *
      * @property created
-     * @type {DateTime}
+     * @type {String}
      */
-    created: DS.attr('date'),
+    created: null,
+
+    /**
+     * The date that the post was created.
+     *
+     * @property createdDate
+     * @type {DateTime}
+     * @readOnly
+     */
+    createdDate: Ember.computed('created', function () {
+        return new Date(this.get('created'));
+    }).readOnly(),
 
     /**
      * The date that the post was updated.
      *
      * @property updated
-     * @type {DateTime}
+     * @type {String}
      */
-    updated: DS.attr('date'),
+    updated: null,
+
+    /**
+     * The date that the post was updated.
+     *
+     * @property updatedDate
+     * @type {DateTime}
+     * @readOnly
+     */
+    updatedDate: Ember.computed('updated', function () {
+        return new Date(this.get('updated'));
+    }).readOnly(),
 
     /**
      * The title of the post.
@@ -24,7 +53,7 @@ export default DS.Model.extend({
      * @property title
      * @type {String}
      */
-    title: DS.attr('string'),
+    title: null,
 
     /**
      * The post's content.
@@ -32,7 +61,7 @@ export default DS.Model.extend({
      * @property description
      * @type {String}
      */
-    content: DS.attr('string'),
+    content: null,
 
     /**
      * The featured image
@@ -40,7 +69,7 @@ export default DS.Model.extend({
      * @property featuredImage
      * @type {Ember.Model}
      */
-    featuredImage: DS.belongsTo('image'),
+    featuredImage: 0,
 
     /**
      * The post type
@@ -48,15 +77,7 @@ export default DS.Model.extend({
      * @property type
      * @type {String}
      */
-    type: DS.attr('string'),
-
-    /**
-     * The post subType
-     *
-     * @property subType
-     * @type {String}
-     */
-    subType: DS.attr('string'),
+    type: 0,
 
     /**
      * The post status
@@ -64,7 +85,7 @@ export default DS.Model.extend({
      * @property status
      * @type {String}
      */
-    status: DS.attr('string'),
+    status: 'draft',
 
     /**
      * The post slug
@@ -72,7 +93,7 @@ export default DS.Model.extend({
      * @property slug
      * @type {String}
      */
-    slug: DS.attr('string'),
+    slug: null,
 
     /**
      * The post referenceUrl
@@ -80,5 +101,13 @@ export default DS.Model.extend({
      * @property referenceUrl
      * @type {String}
      */
-    referenceUrl: DS.attr('string')
+    referenceUrl: null,
+
+    /**
+     * A list of tags applied to the post.
+     *
+     * @property tags
+     * @type {Tag[]}
+     */
+    tags: Ember.makeArray()
 });

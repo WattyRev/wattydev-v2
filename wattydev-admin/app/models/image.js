@@ -1,13 +1,13 @@
-import DS from 'ember-data';
+import Ember from 'ember';
 
-export default DS.Model.extend({
+export default Ember.Object.extend({
     /**
      * The id of the image.
      *
      * @property id
      * @type {String}
      */
-    id: DS.attr('string'),
+    id: null,
 
     /**
      * The title of the image.
@@ -15,7 +15,7 @@ export default DS.Model.extend({
      * @property title
      * @type {String}
      */
-    title: DS.attr('string'),
+    title: null,
 
     /**
      * A description of the image.
@@ -23,7 +23,7 @@ export default DS.Model.extend({
      * @property description
      * @type {String}
      */
-    description: DS.attr('string'),
+    description: null,
 
     /**
      * A url tha references the image.
@@ -31,5 +31,5 @@ export default DS.Model.extend({
      * @property url
      * @type {String}
      */
-    url: DS.attr('string')
+    url: null
 });

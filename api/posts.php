@@ -42,12 +42,6 @@ function addPost($post) {
         return 'Cannot create post without title.';
     }
 
-    // Validate the post slug
-    if (!isset($post->slug)) {
-        header('HTTP/1.1 400 Bad Request');
-        return 'Cannot create post without slug.';
-    }
-
     // Validate the post status exists
     if (!isset($post->status)) {
         header('HTTP/1.1 400 Bad Request');
@@ -83,6 +77,21 @@ function addPost($post) {
         header('HTTP/1.1 400 Bad Request');
         return 'Status must be draft, published, or unlisted.';
     }
+
+    // Generate a slug for the post
+    function generateSlug($iteration) {
+        $slug = urlencode(str_replace(' ', '_', $name));
+        if ($iteration > 0) {
+            $slug .= "_$iteration";
+        }
+        $query = sprintsf("SELECT * from posts WHERE slug = '%s'", mysql_real_escape_string($slug));
+        $result = mysql_query($query);
+        if (mysql_num_rows($result)) {
+            return generateSlug($iteration + 1);
+        }
+        return $slug;
+    }
+    $post->slug = generateSlug(0);
 
     // Create the post
     $sql = sprintf("insert into posts (created,updated,content,featured_image,title,tags,type,status,slug,reference_url) value (now(),now(),'%s','%s','%s','%s','%s','%s','%s','%s')",
