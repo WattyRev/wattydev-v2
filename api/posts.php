@@ -86,7 +86,7 @@ function addPost($post) {
         }
         $query = sprintsf("SELECT * from posts WHERE slug = '%s'", mysql_real_escape_string($slug));
         $result = mysql_query($query);
-        if (mysql_num_rows($result)) {
+        if (mysql_num_rows($result) > 0) {
             return generateSlug($iteration + 1);
         }
         return $slug;
