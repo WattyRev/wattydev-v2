@@ -31,6 +31,7 @@ switch ($method) {
 }
 
 function addPost($post) {
+    echo 'add post';
     if (!isset($post)) {
         header('HTTP/1.1 400 Bad Request');
         return 'Please supply a post to create';
