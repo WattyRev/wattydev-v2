@@ -80,8 +80,7 @@ function addPost($post) {
 
     // Generate a slug for the post
     function generateSlug($iteration) {
-        echo 'generating slug';
-        $slug = urlencode(str_replace(' ', '_', $name));
+        $slug = urlencode(str_replace(' ', '_', $post->title));
         if ($iteration > 0) {
             $slug .= "_$iteration";
         }
@@ -90,7 +89,6 @@ function addPost($post) {
         if (mysql_num_rows($result) > 0) {
             return generateSlug($iteration + 1);
         }
-        echo 'generated slug ' . $slug;
         return $slug;
     }
     $post->slug = generateSlug(0);
