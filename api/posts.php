@@ -84,7 +84,7 @@ function addPost($post) {
         if ($iteration > 0) {
             $slug .= "_$iteration";
         }
-        $query = sprintsf("SELECT * from posts WHERE slug = '%s'", mysql_real_escape_string($slug));
+        $query = sprintf("SELECT * from posts WHERE slug = '%s'", mysql_real_escape_string($slug));
         $result = mysql_query($query);
         if (mysql_num_rows($result) > 0) {
             return generateSlug($iteration + 1);
