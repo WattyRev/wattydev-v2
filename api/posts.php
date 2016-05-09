@@ -80,9 +80,7 @@ function addPost($post) {
 
     // Generate a slug for the post
     function generateSlug($iteration, $title) {
-        echo $title;
-        echo str_replace(' ', '_', $title);
-        $slug = urlencode(str_replace(' ', '_', $title));
+        $slug = urlencode(strtolower(str_replace(' ', '_', $title)));
         if ($iteration > 0) {
             $slug .= "_$iteration";
         }
@@ -93,8 +91,6 @@ function addPost($post) {
         }
         return $slug;
     }
-    echo 'about to generate title';
-    var_dump($post);
     $post->slug = generateSlug(0, $post->title);
 
     // Create the post
