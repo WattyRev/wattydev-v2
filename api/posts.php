@@ -31,7 +31,6 @@ switch ($method) {
 }
 
 function addPost($post) {
-    echo 'add post';
     if (!isset($post)) {
         header('HTTP/1.1 400 Bad Request');
         return 'Please supply a post to create';
@@ -92,7 +91,6 @@ function addPost($post) {
         }
         return $slug;
     }
-    echo "about to generate slug";
     $post->slug = generateSlug(0);
 
     // Create the post
