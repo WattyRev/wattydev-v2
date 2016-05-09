@@ -81,7 +81,7 @@ function addPost($post) {
     // Generate a slug for the post
     function generateSlug($iteration) {
         echo $post->title;
-        echo $str_replace(' ', '_', $post->title);
+        echo str_replace(' ', '_', $post->title);
         $slug = urlencode(str_replace(' ', '_', $post->title));
         if ($iteration > 0) {
             $slug .= "_$iteration";
