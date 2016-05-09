@@ -56,7 +56,6 @@ function authenticate() {
     $query = sprintf("SELECT password FROM authentication WHERE email = '%s'",
         mysql_real_escape_string($email));
     $result = mysql_query($query);
-    mysql_close();
 
     // Alert failure
     if (!mysql_num_rows($result)) {
@@ -65,6 +64,7 @@ function authenticate() {
     }
 
     if ($password === mysql_result($result, 1, 'password')) {
+        mysql_close();
         $token = openssl_random_pseudo_bytes(15);
 
         // Check that the token worked
