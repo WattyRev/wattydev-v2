@@ -49,12 +49,6 @@ function addType($type) {
         return 'Cannot update type without title.';
     }
 
-    // Validate the type slug
-    if (!isset($type->slug)) {
-        header('HTTP/1.1 400 Bad Request');
-        return 'Cannot update type without slug.';
-    }
-
     // Validate parent
     if (!isset($type->parent)) {
         $type->parent = 0;
@@ -79,6 +73,21 @@ function addType($type) {
             $newSiblings = array();
         }
     }
+
+    // Generate a slug for the post
+    function generateSlug($iteration, $title) {
+        $slug = urlencode(strtolower(str_replace(' ', '_', $title)));
+        if ($iteration > 0) {
+            $slug .= "_$iteration";
+        }
+        $query = sprintf("SELECT * from types WHERE slug = '%s'", mysql_real_escape_string($slug));
+        $result = mysql_query($query);
+        if (mysql_num_rows($result) > 0) {
+            return generateSlug($iteration + 1, $title);
+        }
+        return $slug;
+    }
+    $type->slug = generateSlug(0, $type->title);
 
     // Create the type
     $sql = sprintf("insert into types (title,slug,parent,children) value ('%s','%s','%s','%s')",

@@ -48,11 +48,20 @@ function addTag($tag) {
         return 'Cannot create tag without title.';
     }
 
-    // Validate the tag slug
-    if (!isset($tag->slug)) {
-        header('HTTP/1.1 400 Bad Request');
-        return 'Cannot create tag without slug.';
+    // Generate a slug for the tag
+    function generateSlug($iteration, $title) {
+        $slug = urlencode(strtolower(str_replace(' ', '_', $title)));
+        if ($iteration > 0) {
+            $slug .= "_$iteration";
+        }
+        $query = sprintf("SELECT * from tags WHERE slug = '%s'", mysql_real_escape_string($slug));
+        $result = mysql_query($query);
+        if (mysql_num_rows($result) > 0) {
+            return generateSlug($iteration + 1, $title);
+        }
+        return $slug;
     }
+    $tag->slug = generateSlug(0, $tag->title);
 
     // Create the tag
     $sql = sprintf("insert into tags (title,slug) value ('%s','%s')",
