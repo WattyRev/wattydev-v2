@@ -362,8 +362,8 @@ function deleteType($id) {
     }
 
     // Remove references in posts
-    $query = sprintf("UPDATE posts SET type = '%s' WHERE type = '%s'",
-        mysql_real_escape_string(0), mysql_real_escape_string($id));
+    $query = sprintf("update posts set type = 0 where type = '%s'",
+        mysql_real_escape_string($id));
 
     // Delete type
     $query = sprintf("DELETE from types WHERE id = '%s'",
