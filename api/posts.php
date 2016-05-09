@@ -91,6 +91,7 @@ function addPost($post) {
         }
         return $slug;
     }
+    echo "about to generate slug";
     $post->slug = generateSlug(0);
 
     // Create the post
