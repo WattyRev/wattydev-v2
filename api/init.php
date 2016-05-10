@@ -8,6 +8,7 @@ $POST = getPostData();
 
 function getPostData() {
     $json = file_get_contents('php://input');
+    var_dump($json);
     return json_decode($json);
 }
 
