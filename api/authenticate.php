@@ -65,7 +65,7 @@ function authenticate($POST) {
 
     if ($password === mysql_result($result, 0, 'password')) {
         mysql_close();
-        $token = openssl_random_pseudo_bytes(15);
+        $token = getToken(15);
 
         // Check that the token worked
         if ($token === false) {
@@ -82,3 +82,15 @@ function authenticate($POST) {
         return $token;
     }
 };
+
+function getToken($length) {
+    $token = "";
+    $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
+    $codeAlphabet.= "0123456789";
+    $max = strlen($codeAlphabet) - 1;
+    for ($i=0; $i < $length; $i++) {
+        $token .= $codeAlphabet[crypto_rand_secure(0, $max)];
+    }
+    return $token;
+}
