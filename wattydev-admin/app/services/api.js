@@ -41,6 +41,7 @@ export default Ember.Service.extend(Ember.Evented, {
             options.success = resolve;
             options.error = reject;
             options.dataType = 'json';
+            options.contentType = "application/json";
             options.crossDomain = true;
             if (this.get('token')) {
                 options.headers = Ember.$.extend({
@@ -84,7 +85,7 @@ export default Ember.Service.extend(Ember.Evented, {
     _put(path, data) {
         return this._ajax({
             url: this.get('apiUrl') + path,
-            data,
+            data: JSON.stringify(data),
             method: 'PUT'
         });
     },
