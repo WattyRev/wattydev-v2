@@ -8,9 +8,7 @@ include 'init.php';
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
     case 'PUT':
-        echo 'is put';
-        var_dump($POST);
-        echo authenticate();
+        echo authenticate($POST);
         break;
     case 'GET':
         echo getAuthentication();
@@ -39,9 +37,7 @@ function getAuthentication() {
 }
 
 // Authenticate using email and password
-function authenticate() {
-    echo 'authenticating';
-    var_dump($post);
+function authenticate($POST) {
     // Check for email address
     if (!isset($POST->email)) {
         header('HTTP/1.1 400 Bad Request');
