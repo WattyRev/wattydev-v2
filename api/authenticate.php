@@ -4,12 +4,11 @@
  */
 include 'init.php';
 
-var_dump($POST);
-
 // Determine behavior based on request method
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
     case 'PUT':
+        var_dump($POST);
         echo authenticate();
         break;
     case 'GET':
