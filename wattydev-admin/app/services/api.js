@@ -9,9 +9,24 @@ export default Ember.Service.extend({
      */
     permalinkService: Ember.inject.service('permalink'),
 
+    /**
+     * The base url to send ajax requests to.
+     *
+     * @property apiUrl
+     * @type {String}
+     * @readOnly
+     */
     apiUrl: Ember.computed('permalinkService.{publicRoot,apiPath}', function () {
         return this.get('permalinkService.publicRoot') + this.get('permalinkService.apiPath');
     }).readOnly(),
+
+    /**
+     * The authentication token to include with requests.
+     *
+     * @property token
+     * @type {String}
+     */
+    token: null,
 
     /**
      * Make an ajax call.
@@ -27,6 +42,11 @@ export default Ember.Service.extend({
             options.error = reject;
             options.dataType = 'json';
             options.crossDomain = true;
+            if (this.get('token')) {
+                options.headers = Ember.$.extend({
+                    'x-wattydev-authentication': this.get('token')
+                }, options.headers);
+            }
             Ember.$.ajax(options);
         });
     },
@@ -75,6 +95,16 @@ export default Ember.Service.extend({
             url: this.get('apiUrl') + path,
             method: 'DELETE'
         });
+    },
+
+    /**
+     * Get authentication token if available.
+     *
+     * @method getAuthentication
+     * @return {Promise}
+     */
+    getAuthentication() {
+        return this._get('authenticate.php');
     },
 
     /**
