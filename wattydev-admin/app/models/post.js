@@ -2,6 +2,22 @@ import Ember from 'ember';
 
 export default Ember.Object.extend({
     /**
+     * Instance of the API service.
+     *
+     * @property apiService
+     * @type {Ember.Service}
+     */
+    apiService: Ember.inject.service('api'),
+
+    /**
+     * Instance of the posts service.
+     *
+     * @property postsService
+     * @type {Ember.Service}
+     */
+    postsService: Ember.inject.service('posts'),
+
+    /**
      * The id of the post.
      *
      * @property id
@@ -109,5 +125,92 @@ export default Ember.Object.extend({
      * @property tags
      * @type {Tag[]}
      */
-    tags: Ember.makeArray()
+    tags: Ember.makeArray(),
+
+    /**
+     * Delete the post.
+     *
+     * @method delete
+     * @return {Promise}
+     */
+    delete() {
+        Ember.assert('Cannot delete a post that has not been saved yet.', this.get('id'));
+        return this.get('apiService').deletePost(this.get('id'));
+    },
+
+    /**
+     * Save the post.
+     *
+     * @method save
+     * @return {Promise}
+     */
+    save() {
+        if (this.get('id')) {
+            return this._createPost();
+        }
+        return this._updatePost();
+    },
+
+    /**
+     * Save the image as a new item.
+     *
+     * @method _createPost
+     * @return {Promise}
+     * @private
+     */
+    _createPost() {
+        // Start the promise chain by saving the post
+        let promise = this.get('apiService').addPost({
+            title: this.get('title'),
+            content: this.get('content'),
+            featuredImage: this.get('featuredImage'),
+            type: this.get('type'),
+            status: this.get('status'),
+            referenceUrl: this.get('referenceUrl'),
+            tags: this.get('tags')
+        });
+
+        promise = promise.then(id => {
+            // Update the model
+            this.set('id', id);
+
+            // Add the saved post to the posts service
+            let postsService = this.get('postsService');
+            if (postsService.get('posts.length')) {
+                let posts = postsService.get('posts');
+                posts.push(this);
+                postsService.set('posts', posts);
+            }
+
+            // Retrieve the data for the post in order to get other generated properties
+            return this.get('apiService').getPost(id);
+        });
+
+        // Set the slug
+        promise = promise.then(post => {
+            this.set('slug', post.slug);
+            return this.get('id');
+        });
+
+        return promise;
+    },
+
+    /**
+     * Update the post record in the database.
+     *
+     * @method _updatePost
+     * @return {Promise}
+     * @private
+     */
+    _updatePost() {
+        return this.get('apiService').updateImage({
+            title: this.get('title'),
+            content: this.get('content'),
+            featuredImage: this.get('featuredImage'),
+            type: this.get('type'),
+            status: this.get('status'),
+            referenceUrl: this.get('referenceUrl'),
+            tags: this.get('tags')
+        });
+    }
 });
