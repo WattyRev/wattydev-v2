@@ -63,7 +63,7 @@ function authenticate($POST) {
         return 'Could not find user.';
     }
 
-    if ($password === mysql_result($result, 1, 'password')) {
+    if ($password === mysql_result($result, 0, 'password')) {
         mysql_close();
         $token = openssl_random_pseudo_bytes(15);
 
