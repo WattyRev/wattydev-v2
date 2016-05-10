@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export default Ember.Service.extend({
+export default Ember.Service.extend(Ember.Evented, {
     /**
      * An instance of the permalink service.
      *
@@ -48,6 +48,12 @@ export default Ember.Service.extend({
                 }, options.headers);
             }
             Ember.$.ajax(options);
+        }).catch(error => {
+            if (error.status === 401) {
+                this.set('token', null);
+            }
+            this.trigger('loggedOut');
+            return Ember.RSVP.reject(error);
         });
     },
 
@@ -105,6 +111,19 @@ export default Ember.Service.extend({
      */
     getAuthentication() {
         return this._get('authenticate.php');
+    },
+
+    /**
+     * Make a request to authenticate the user.
+     *
+     * @method authenticate
+     * @return {Promise}
+     */
+    authenticate(email, password) {
+        return this._put('authenticate.php', {
+            email,
+            password
+        });
     },
 
     /**
