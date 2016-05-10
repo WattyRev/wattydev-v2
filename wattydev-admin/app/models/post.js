@@ -152,6 +152,20 @@ export default Ember.Object.extend({
     },
 
     /**
+     * Rollback any unsaved changes.
+     *
+     * @method rollback
+     * @return {Promise}
+     */
+    rollback() {
+        Ember.assert('Cannot rollback a new post.', this.get('id'));
+        return this.get('apiService').getPost(this.get('id')).then(post => {
+            this.setProperties(post);
+            return this;
+        });
+    },
+
+    /**
      * Save the image as a new item.
      *
      * @method _createPost
