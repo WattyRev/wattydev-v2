@@ -4,6 +4,8 @@
  */
 include 'init.php';
 
+var_dump($POST);
+
 // Determine behavior based on request method
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
@@ -38,7 +40,6 @@ function getAuthentication() {
 
 // Authenticate using email and password
 function authenticate() {
-    var_dump(getPostData());
     // Check for email address
     if (!isset($POST->email)) {
         header('HTTP/1.1 400 Bad Request');
