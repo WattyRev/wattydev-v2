@@ -179,3 +179,14 @@
 [08-May-2016 17:46:45 America/Chicago] PHP Catchable fatal error:  Object of class stdClass could not be converted to string in /home1/r3vfan/public_html/wattydev.com/beta/api/types.php on line 292
 [08-May-2016 17:48:37 America/Chicago] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home1/r3vfan/public_html/wattydev.com/beta/api/types.php on line 360
 [08-May-2016 17:48:37 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/r3vfan/public_html/wattydev.com/beta/api/types.php:360) in /home1/r3vfan/public_html/wattydev.com/beta/api/types.php on line 361
+[08-May-2016 18:58:16 America/Chicago] PHP Warning:  mysql_result(): subtype not found in MySQL result index 8 in /home1/r3vfan/public_html/wattydev.com/beta/api/posts.php on line 262
+[08-May-2016 18:58:16 America/Chicago] PHP Warning:  mysql_result(): subtype not found in MySQL result index 8 in /home1/r3vfan/public_html/wattydev.com/beta/api/posts.php on line 262
+[08-May-2016 18:58:16 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/r3vfan/public_html/wattydev.com/beta/api/posts.php:262) in /home1/r3vfan/public_html/wattydev.com/beta/api/posts.php on line 271
+[08-May-2016 18:59:03 America/Chicago] PHP Warning:  mysql_result(): subtype not found in MySQL result index 8 in /home1/r3vfan/public_html/wattydev.com/beta/api/posts.php on line 296
+[08-May-2016 18:59:03 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/r3vfan/public_html/wattydev.com/beta/api/posts.php:296) in /home1/r3vfan/public_html/wattydev.com/beta/api/posts.php on line 303
+[08-May-2016 19:06:16 America/Chicago] PHP Warning:  sprintf(): Too few arguments in /home1/r3vfan/public_html/wattydev.com/beta/api/tags.php on line 200
+[08-May-2016 19:06:16 America/Chicago] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home1/r3vfan/public_html/wattydev.com/beta/api/tags.php on line 202
+[08-May-2016 19:06:16 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/r3vfan/public_html/wattydev.com/beta/api/tags.php:200) in /home1/r3vfan/public_html/wattydev.com/beta/api/tags.php on line 227
+[08-May-2016 19:46:32 America/Chicago] PHP Fatal error:  Call to undefined function sprintsf() in /home1/r3vfan/public_html/wattydev.com/beta/api/posts.php on line 87
+[08-May-2016 19:51:20 America/Chicago] PHP Fatal error:  Function name must be a string in /home1/r3vfan/public_html/wattydev.com/beta/api/posts.php on line 84
+[08-May-2016 19:53:08 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/r3vfan/public_html/wattydev.com/beta/api/posts.php:96) in /home1/r3vfan/public_html/wattydev.com/beta/api/posts.php on line 114
