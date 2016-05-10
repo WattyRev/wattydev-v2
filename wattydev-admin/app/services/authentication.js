@@ -31,6 +31,7 @@ export default Ember.Service.extend({
     authenticate(email, password) {
         let apiService = this.get('apiService');
         return apiService.authenticate(email, password).then(token => {
+            console.log('authenticated', token);
             apiService.set('token', token);
             return token;
         });

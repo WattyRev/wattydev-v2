@@ -38,8 +38,12 @@ export default Ember.Service.extend(Ember.Evented, {
      */
     _ajax(options) {
         return new Ember.RSVP.Promise((resolve, reject) => {
-            options.success = resolve;
-            options.error = reject;
+            options.success = function (data) {
+                resolve(data);
+            };
+            options.error = function (error) {
+                reject(error);
+            };
             options.dataType = 'json';
             options.contentType = "application/json";
             options.crossDomain = true;
@@ -50,11 +54,12 @@ export default Ember.Service.extend(Ember.Evented, {
             }
             Ember.$.ajax(options);
         }).catch(error => {
+            console.log('catch', error);
             if (error.status === 401) {
                 this.set('token', null);
+                this.trigger('loggedOut');
+                return Ember.RSVP.reject(error);
             }
-            this.trigger('loggedOut');
-            return Ember.RSVP.reject(error);
         });
     },
 

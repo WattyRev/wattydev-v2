@@ -17,7 +17,7 @@ export default Ember.Route.extend({
      */
     apiService: Ember.inject.service('api'),
 
-    model() {
+    beforeModel() {
         let auth = this.get('authenticationService');
         return Ember.RSVP.hash({
             authToken: auth.checkAuthentication().catch(() => {
