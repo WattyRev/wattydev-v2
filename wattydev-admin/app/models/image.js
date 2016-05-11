@@ -129,9 +129,9 @@ export default Ember.Object.extend({
             title: this.get('title'),
             description: this.get('description'),
             file: this.get('file')
-        }).then(id => {
+        }).then(response => {
             // Update the model
-            this.set('id', id);
+            this.set('id', response.id);
             this.set('file', null);
 
             // Add the saved image to the images service
@@ -141,7 +141,7 @@ export default Ember.Object.extend({
                 images.push(this);
                 imagesService.set('images', images);
             }
-            return id;
+            return response.id;
         });
     },
 

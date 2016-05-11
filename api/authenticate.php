@@ -29,7 +29,9 @@ function getAuthentication() {
         $token = $_COOKIE['auth-token'];
 
         // Return the token
-        return $token;
+        $response = new stdClass;
+        $response->token = $token;
+        return json_encode($response);
     } else {
         header('HTTP/1.1 401 Unauthorized');
         return 'No authentication present. Please log in.';
@@ -79,7 +81,9 @@ function authenticate($POST) {
         header('HTTP/1.1 200 OK');
 
         // Return the token
-        return $token;
+        $response = new stdClass;
+        $response->token = $token;
+        return json_encode($response);
     }
 };
 

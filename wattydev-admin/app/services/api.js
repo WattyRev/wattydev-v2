@@ -37,11 +37,13 @@ export default Ember.Service.extend(Ember.Evented, {
      * @private
      */
     _ajax(options) {
-        return new Ember.RSVP.Promise((resolve, reject) => {
+        let promise = new Ember.RSVP.Promise((resolve, reject) => {
             options.success = function (data) {
+                console.log('ajax success');
                 resolve(data);
             };
-            options.error = function (error) {
+            options.error = function (error, a, b) {
+                console.log('ajax error', error, a, b);
                 reject(error);
             };
             options.dataType = 'json';
@@ -54,14 +56,17 @@ export default Ember.Service.extend(Ember.Evented, {
                 }, options.headers);
             }
             Ember.$.ajax(options);
-        }).catch(error => {
-            console.log('catch', error);
+        });
+
+        promise.catch(error => {
             if (error.status === 401) {
                 this.set('token', null);
                 this.trigger('loggedOut');
                 return Ember.RSVP.reject(error);
             }
         });
+
+        return promise;
     },
 
     /**

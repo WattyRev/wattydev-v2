@@ -108,7 +108,9 @@ function addPost($post) {
     if (mysql_query($sql)) {
         $id = mysql_insert_id();
         header('HTTP/1.1 201 Created');
-        return $id;
+        $response = new stdClass;
+        $response->id = $id;
+        return json_encode($response);
 
     // Alert failure
     } else {
@@ -246,7 +248,9 @@ function updatePost($post) {
 
     // Alert success
     header('HTTP/1.1 200 OK');
-    return 'Changes saved.';
+    $response = new stdClass;
+    $response->message = 'Changes saved.';
+    return json_encode($response);
 }
 
 function getPosts() {

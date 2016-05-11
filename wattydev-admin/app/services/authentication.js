@@ -18,6 +18,7 @@ export default Ember.Service.extend({
     checkAuthentication() {
         let apiService = this.get('apiService');
         return apiService.getAuthentication().then(token => {
+            console.log('checked authentication', token);
             apiService.set('token', token);
         });
     },

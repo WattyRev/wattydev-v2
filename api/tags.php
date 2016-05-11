@@ -74,7 +74,9 @@ function addTag($tag) {
 
         // Alert success
         header('HTTP/1.1 201 Created');
-        return $id;
+        $response = new stdClass;
+        $response->id = $id;
+        return json_encode($response);
 
     // Alert failure
     } else {
@@ -140,7 +142,9 @@ function updateTag($tag) {
 
     // Alert success
     header('HTTP/1.1 200 OK');
-    return 'Changes saved.';
+    $response = new stdClass;
+    $response->message = 'Changes saved.';
+    return json_encode($response);
 }
 
 // Get an array of tags

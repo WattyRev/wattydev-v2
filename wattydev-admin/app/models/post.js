@@ -184,9 +184,9 @@ export default Ember.Object.extend({
             tags: this.get('tags')
         });
 
-        promise = promise.then(id => {
+        promise = promise.then(response => {
             // Update the model
-            this.set('id', id);
+            this.set('id', response.id);
 
             // Add the saved post to the posts service
             let postsService = this.get('postsService');
@@ -197,7 +197,7 @@ export default Ember.Object.extend({
             }
 
             // Retrieve the data for the post in order to get other generated properties
-            return this.get('apiService').getPost(id);
+            return this.get('apiService').getPost(response.id);
         });
 
         // Set the slug
