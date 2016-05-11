@@ -8,10 +8,12 @@ include 'init.php';
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
     case 'PUT':
-        echo authenticate($POST);
+        $response = authenticate($POST);
+        echo $response;
         break;
     case 'GET':
-        echo getAuthentication();
+        $response = getAuthentication();
+        echo $response;
         break;
     default:
         break;
