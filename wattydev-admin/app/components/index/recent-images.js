@@ -10,6 +10,25 @@ export default Ember.Component.extend({
     images: null,
 
     /**
+     * Instance of the permalink service.
+     *
+     * @property permalinkService
+     * @type {Ember.Service}
+     */
+    permalinkService: Ember.inject.service('permalink'),
+
+    /**
+     * The base url for the images directory.
+     *
+     * @property publicRoot
+     * @type {String}
+     * @readOnly
+     */
+    baseUrl: Ember.computed('permalinkService.{publicRoot,imagesPath}', function () {
+        return this.get('permalinkService.publicRoot') + this.get('permalinkService.imagesPath');
+    }).readOnly(),
+
+    /**
      * The five most recently created images.
      *
      * @property recentImages
