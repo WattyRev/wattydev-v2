@@ -11,7 +11,7 @@ export default Ember.Route.extend({
 
     model() {
         return Ember.RSVP.hash({
-            posts: this.get('postsService').getPosts().then(posts => {
+            posts: this.get('postsService').getAll().then(posts => {
                 return posts.sortBy('createdDate');
             })
         });

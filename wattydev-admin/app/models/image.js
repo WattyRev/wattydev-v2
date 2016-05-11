@@ -84,7 +84,7 @@ export default Ember.Object.extend({
      */
     delete() {
         Ember.assert('Cannot delete an image that has not been saved yet.', this.get('id'));
-        return this.get('apiService').deleteImage(this.get('id'));
+        return this.get('apiService').deleteItem('image', this.get('id'));
     },
 
     /**
@@ -125,7 +125,7 @@ export default Ember.Object.extend({
      * @private
      */
     _createImage() {
-        return this.get('apiService').addImage({
+        return this.get('apiService').addItem('image', {
             title: this.get('title'),
             description: this.get('description'),
             file: this.get('file')
@@ -136,10 +136,10 @@ export default Ember.Object.extend({
 
             // Add the saved image to the images service
             let imagesService = this.get('imagesService');
-            if (imagesService.get('images.length')) {
-                let images = imagesService.get('images');
+            if (imagesService.get('data.length')) {
+                let images = imagesService.get('data');
                 images.push(this);
-                imagesService.set('images', images);
+                imagesService.set('data', images);
             }
             return response.id;
         });
@@ -161,7 +161,7 @@ export default Ember.Object.extend({
         if (this.get('file')) {
             image.file = this.get('file');
         }
-        return this.get('apiService').updateImage(image).then(() => {
+        return this.get('apiService').updateItem('image', image).then(() => {
             this.set('file', null);
         });
     }

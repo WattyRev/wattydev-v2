@@ -19,10 +19,10 @@ export default Ember.Route.extend({
 
     model() {
         return Ember.RSVP.hash({
-            images: this.get('imagesService').getImages().then(images => {
+            images: this.get('imagesService').getAll().then(images => {
                 return images.sortBy('createdDate').slice(0,10);
             }),
-            posts: this.get('postsService').getPosts().then(posts => {
+            posts: this.get('postsService').getAll().then(posts => {
                 return posts.sortBy('createdDate').slice(0,10);
             })
         });

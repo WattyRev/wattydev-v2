@@ -137,108 +137,88 @@ export default Ember.Service.extend(Ember.Evented, {
     },
 
     /**
-     * Get all the images.
+     * Get the path for the specified model.
      *
-     * @method getImages
-     * @return {Promise}
+     * @method _getPath
+     * @param {String} model The name of the model to get the path for
+     * @return {String}
+     * @private
      */
-    getImages() {
-        return this._get('images.php');
+    _getPath(model) {
+        let path;
+        switch(model) {
+            case 'image':
+                path = 'images.php';
+                break;
+            case 'post':
+                path = 'posts.php';
+                break;
+            case 'type':
+                path = 'types.php';
+                break;
+            case 'tag':
+                path = 'tags.php';
+                break;
+        }
+        return path;
     },
 
     /**
-     * Get an image by id.
+     * Get all the data of specified model.
      *
-     * @method getImage
+     * @method getItems
+     * @param {String} model The model name for what type of data to retrieve
      * @return {Promise}
      */
-    getImage(id) {
-        return this._get('images.php', { id });
+    getItems(model) {
+        return this._get(this._getPath(model));
     },
 
     /**
-     * Add a new image.
+     * Get a record of specified model by id.
      *
-     * @method addImage
-     * @param {Object} image The image to add
+     * @method getItem
+     * @param {String} model The model name for what type of data to retrieve
+     * @param {Number} id The item's id
      * @return {Promise}
      */
-    addImage(image) {
-        return this._put('images.php', { image });
+    getItem(model, id) {
+        return this._get(this._getPath(model), { id });
     },
 
     /**
-     * Update an existing image.
+     * Create a new item of specified model type.
      *
-     * @method updateImage
-     * @param {Object} image The image to update
+     * @method addItem
+     * @param {String} model The model name for what type of data to retrieve
+     * @param {Object} data The item to add
      * @return {Promise}
      */
-    updateImage(image) {
-        return this._put('images.php?update', { image });
+    addItem(model, data) {
+        return this._put(this._getPath(model), { data });
     },
 
     /**
-     * Delete an existing image.
+     * Update an existing item.
      *
-     * @property deleteImage
-     * @param {Number} id The ID of the image to delete
+     * @method updateItem
+     * @param {String} model The model name for what type of data to retrieve
+     * @param {Object} data The data to update
+     * @return {Promise}
+     */
+    updateItem(model, data) {
+        return this._put(this._getPath(model) + '?update', { data });
+    },
+
+    /**
+     * Delete an existing item.
+     *
+     * @property deleteItem
+     * @param {String} model The model name for what type of data to retrieve
+     * @param {Number} id The ID of the item to delete
      * @type {Promise}
      */
-    deleteImage(id) {
-        return this._delete('images.php?id=' + id);
-    },
-
-    /**
-     * Get all the posts.
-     *
-     * @method getPosts
-     * @return {Promise}
-     */
-    getPosts() {
-        return this._get('posts.php');
-    },
-
-    /**
-     * Get a post by id.
-     *
-     * @method getPost
-     * @return {Promise}
-     */
-    getPost(id) {
-        return this._get('posts.php', { id });
-    },
-
-    /**
-     * Add a new post.
-     *
-     * @method addPost
-     * @param {Object} post The post to add
-     * @return {Promise}
-     */
-    addPost(post) {
-        return this._put('posts.php', { post });
-    },
-
-    /**
-     * Update an existing post.
-     *
-     * @method updatePost
-     * @param {Object} post The post to update
-     * @return {Promise}
-     */
-    updatePost(post) {
-        return this._put('posts.php?update', { post });
-    },
-
-    /**
-     * Delete an existing post.
-     *
-     * @property deletePost
-     * @param {Number} id The ID of the post to delete
-     * @type {Promise}
-     */
-    deletePost(id) {
-        return this._delete('posts.php?id=' + id);
+    deleteItem(model, id) {
+        return this._delete(this._getPath(model) + '?id=' + id);
     }
 });

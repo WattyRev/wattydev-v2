@@ -135,7 +135,7 @@ export default Ember.Object.extend({
      */
     delete() {
         Ember.assert('Cannot delete a post that has not been saved yet.', this.get('id'));
-        return this.get('apiService').deletePost(this.get('id'));
+        return this.get('apiService').deleteItem('post', this.get('id'));
     },
 
     /**
@@ -159,7 +159,7 @@ export default Ember.Object.extend({
      */
     rollback() {
         Ember.assert('Cannot rollback a new post.', this.get('id'));
-        return this.get('apiService').getPost(this.get('id')).then(post => {
+        return this.get('apiService').getItem('post', this.get('id')).then(post => {
             this.setProperties(post);
             return this;
         });
@@ -174,7 +174,7 @@ export default Ember.Object.extend({
      */
     _createPost() {
         // Start the promise chain by saving the post
-        let promise = this.get('apiService').addPost({
+        let promise = this.get('apiService').addItem('post', {
             title: this.get('title'),
             content: this.get('content'),
             featuredImage: this.get('featuredImage'),
@@ -190,14 +190,14 @@ export default Ember.Object.extend({
 
             // Add the saved post to the posts service
             let postsService = this.get('postsService');
-            if (postsService.get('posts.length')) {
-                let posts = postsService.get('posts');
+            if (postsService.get('data.length')) {
+                let posts = postsService.get('data');
                 posts.push(this);
-                postsService.set('posts', posts);
+                postsService.set('data', posts);
             }
 
             // Retrieve the data for the post in order to get other generated properties
-            return this.get('apiService').getPost(response.id);
+            return this.get('apiService').getItem('post', response.id);
         });
 
         // Set the slug
@@ -217,7 +217,7 @@ export default Ember.Object.extend({
      * @private
      */
     _updatePost() {
-        return this.get('apiService').updateImage({
+        return this.get('apiService').updateItem('post', {
             title: this.get('title'),
             content: this.get('content'),
             featuredImage: this.get('featuredImage'),
