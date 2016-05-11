@@ -166,7 +166,7 @@ export default Ember.Object.extend({
     },
 
     /**
-     * Save the image as a new item.
+     * Save the post as a new item.
      *
      * @method _createPost
      * @return {Promise}
