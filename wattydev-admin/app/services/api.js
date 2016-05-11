@@ -47,6 +47,7 @@ export default Ember.Service.extend(Ember.Evented, {
             options.dataType = 'json';
             options.contentType = "application/json";
             options.crossDomain = true;
+            options.xhrFields = { withCredentials: true };
             if (this.get('token')) {
                 options.headers = Ember.$.extend({
                     'x-wattydev-authentication': this.get('token')
