@@ -61,12 +61,10 @@ export default Ember.Component.extend({
             });
 
             promise.then(() => {
-                console.log('success');
                 this.sendAction('loggedIn');
             });
 
-            promise.catch((error) => {
-                console.log('error', error);
+            promise.catch(() => {
                 this.set('invalid', true);
             });
         }

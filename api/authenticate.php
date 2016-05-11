@@ -20,13 +20,13 @@ switch ($method) {
 // Get and refresh the authentication token
 function getAuthentication() {
     if (isset($_COOKIE['auth-token'])) {
-        // Refresh the cookie
-        setcookie('auth-token', $token, time() + (86400 * 30), "/");
-
         header('HTTP/1.1 200 OK');
 
         // Get the token from the cookie
         $token = $_COOKIE['auth-token'];
+
+        // Refresh the cookie
+        setcookie('auth-token', $token, time() + (86400 * 30), "/");
 
         // Return the token
         $response = new stdClass;

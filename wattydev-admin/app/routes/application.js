@@ -33,7 +33,6 @@ export default Ember.Route.extend({
      * @return {Void}
      */
     loggedOut() {
-        console.log('logged out');
         this.transitionTo('login');
     },
 

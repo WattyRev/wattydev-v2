@@ -20,9 +20,5 @@ export default Ember.Component.extend({
      * @type {Boolean}
      * @readOnly
      */
-    isVisible: Ember.computed('apiService.token', function () {
-        let token = this.get('apiService.token');
-        console.log(token);
-        return !!token;
-    })
+    isVisible: Ember.computed.bool('apiService.token')
 });

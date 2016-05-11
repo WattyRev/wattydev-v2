@@ -39,11 +39,9 @@ export default Ember.Service.extend(Ember.Evented, {
     _ajax(options) {
         let promise = new Ember.RSVP.Promise((resolve, reject) => {
             options.success = function (data) {
-                console.log('ajax success');
                 resolve(data);
             };
-            options.error = function (error, a, b) {
-                console.log('ajax error', error, a, b);
+            options.error = function (error) {
                 reject(error);
             };
             options.dataType = 'json';
