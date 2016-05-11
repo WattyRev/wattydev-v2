@@ -31,7 +31,7 @@ function getAuthentication() {
         // Return the token
         return $token;
     } else {
-        var_dump($_COOKIE['auth-token']);
+        var_dump($_COOKIE);
         header('HTTP/1.1 401 Unauthorized');
         return 'No authentication present. Please log in.';
     }
