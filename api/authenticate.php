@@ -1,4 +1,5 @@
 <?php
+header('Location: http://wattydev.com/authenticate.php');
 setcookie("test", "test", time() + 1000000, '/', 'wattydev.com');
 $cookie = $_COOKIE['test'];
 /**
