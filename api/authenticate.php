@@ -19,6 +19,7 @@ switch ($method) {
 
 // Get and refresh the authentication token
 function getAuthentication() {
+    var_dump($_COOKIE);
     if (isset($_COOKIE['auth-token'])) {
         header('HTTP/1.1 200 OK');
 
