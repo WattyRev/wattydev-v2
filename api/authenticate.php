@@ -19,7 +19,6 @@ switch ($method) {
 
 // Get and refresh the authentication token
 function getAuthentication() {
-    var_dump($_COOKIE);
     if (isset($_COOKIE['auth-token'])) {
         header('HTTP/1.1 200 OK');
 
@@ -77,9 +76,10 @@ function authenticate($POST) {
         header('HTTP/1.1 200 OK');
 
         // Set the cookie
-        setcookie('auth-token', $token, time() + (3600 * 24), "/");
+        setcookie('auth-token', $token, time() + (86400 * 30), "/");
 
         // Return the token
+        var_dump($_COOKIE['auth-token']);
         return $token;
     }
 };
