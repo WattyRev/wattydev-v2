@@ -8,12 +8,10 @@ include 'init.php';
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
     case 'PUT':
-        $response = authenticate($POST);
-        echo $response;
+        echo authenticate($POST);
         break;
     case 'GET':
-        $response = getAuthentication();
-        echo $response;
+        echo getAuthentication();
         break;
     default:
         break;
@@ -76,12 +74,12 @@ function authenticate($POST) {
         }
 
         // Set the cookie
-        setcookie('auth-token', $token, time() + (86400 * 30), "/");
+        $test = setcookie('auth-token', $token, time() + (86400 * 30), "/");
 
         header('HTTP/1.1 200 OK');
 
         // Return the token
-        var_dump($_COOKIE['auth-token']);
+        var_dump($test);
         return $token;
     }
 };
