@@ -73,13 +73,12 @@ function authenticate($POST) {
             return 'Something went wrong when generating your token.';
         }
 
-        header('HTTP/1.1 200 OK');
-
         // Set the cookie
         setcookie('auth-token', $token, time() + (86400 * 30), "/");
 
+        header('HTTP/1.1 200 OK');
+
         // Return the token
-        var_dump($_COOKIE['auth-token']);
         return $token;
     }
 };
