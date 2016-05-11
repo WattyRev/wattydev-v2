@@ -1,5 +1,5 @@
 <?php
-setcookie('test', 'test', time() + 1000000);
+setcookie("test", "test", time() + 1000000);
 /**
  * Handle client authentication for actions that modify the database.
  */
