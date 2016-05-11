@@ -33,7 +33,7 @@ function getAuthentication() {
         return $token;
     } else {
         header('HTTP/1.1 401 Unauthorized');
-        var_dump($_COOKIE['test']);
+        var_dump($_COOKIE["test"]);
         return 'No authentication present. Please log in.';
     }
 }
