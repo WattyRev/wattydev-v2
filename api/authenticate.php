@@ -20,13 +20,13 @@ switch ($method) {
 // Get and refresh the authentication token
 function getAuthentication() {
     if (isset($_COOKIE['auth-token'])) {
+        // Refresh the cookie
+        setcookie('auth-token', $token, time() + (3600 * 24), "/");
+
         header('HTTP/1.1 200 OK');
 
         // Get the token from the cookie
         $token = $_COOKIE['auth-token'];
-
-        // Refresh the cookie
-        setcookie('auth-token', $token, time() + (3600 * 24), "/");
 
         // Return the token
         return $token;
@@ -79,6 +79,7 @@ function authenticate($POST) {
         header('HTTP/1.1 200 OK');
 
         // Return the token
+        var_dump($_COOKIE['auth-token']);
         return $token;
     }
 };
