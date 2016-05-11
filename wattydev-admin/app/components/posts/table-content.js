@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     /**
-     * The list of posts.
+     * The full list of posts.
      *
      * @property posts
      * @type {Ember.Object[]}
@@ -27,15 +27,4 @@ export default Ember.Component.extend({
     baseUrl: Ember.computed('permalinkService.publicRoot', function () {
         return this.get('permalinkService.publicRoot') + 'posts/';
     }).readOnly(),
-
-    /**
-     * The five most recently created posts.
-     *
-     * @property recentImages
-     * @type {Ember.Object[]}
-     */
-    recentPosts: Ember.computed('posts.@each', function () {
-        let posts = Ember.makeArray(this.get('posts'));
-        return posts.sortBy('created').slice(0, 5);
-    })
 });

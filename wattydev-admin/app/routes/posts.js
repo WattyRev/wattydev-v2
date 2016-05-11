@@ -1,10 +1,19 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+    /**
+     * Instance of the posts service.
+     *
+     * @property postsService
+     * @type {Ember.Service}
+     */
+    postsService: Ember.inject.service('posts'),
+
     model() {
-        let postsPromise = this.get('posts').getPosts();
         return Ember.RSVP.hash({
-            posts: postsPromise
+            posts: this.get('postsService').getPosts().then(posts => {
+                return posts.sortBy('createdDate');
+            })
         });
     }
 });

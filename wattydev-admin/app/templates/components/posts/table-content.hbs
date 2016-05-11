@@ -1,0 +1,47 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Created
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each posts as |post|}}
+            <tr>
+                <td>
+                    {{post.title}}
+                </td>
+                <td>
+                    {{post.type}}
+                </td>
+                <td>
+                    {{post.created}}
+                </td>
+                <td>
+                    {{post.status}}
+                </td>
+                <td>
+                    <a href="{{baseUrl}}{{post.slug}}" target="_blank"><i class="fa fa-eye"></i></a>
+                    {{#link-to 'post' post.id}}<i class="fa fa-pencil"></i>{{/link-to}}
+                </td>
+            </tr>
+        {{else}}
+            <tr>
+                <td colspan="5">You haven't added any posts.</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
