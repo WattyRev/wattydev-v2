@@ -1,10 +1,11 @@
 <?php
 setcookie("test", "test", time() + 1000000, '/', 'wattydev.com');
+$cookie = $_COOKIE['test'];
 /**
  * Handle client authentication for actions that modify the database.
  */
 include 'init.php';
-var_dump($_COOKIE['test']);
+var_dump($cookie);
 //
 // // Determine behavior based on request method
 // $method = $_SERVER['REQUEST_METHOD'];
