@@ -1,4 +1,5 @@
 <?php
+setcookie('test', 'test', 1000000);
 /**
  * Handle client authentication for actions that modify the database.
  */
@@ -39,51 +40,50 @@ function getAuthentication() {
 
 // Authenticate using email and password
 function authenticate($POST) {
-    setcookie('test', 'test', 1000000);
     // Check for email address
-    // if (!isset($POST->email)) {
-    //     header('HTTP/1.1 400 Bad Request');
-    //     return 'No email provided';
-    // }
-    //
-    // // Check for password
-    // if (!isset($POST->password)) {
-    //     header('HTTP/1.1 400 Bad Request');
-    //     return 'No password provided';
-    // }
-    // $email = $POST->email;
-    // $password = $POST->password;
-    //
-    // // Get account
-    // $query = sprintf("SELECT password FROM authentication WHERE email = '%s'",
-    //     mysql_real_escape_string($email));
-    // $result = mysql_query($query);
-    //
-    // // Alert failure
-    // if (!mysql_num_rows($result)) {
-    //     header('HTTP/1.1 404 Not Found');
-    //     return 'Could not find user.';
-    // }
-    //
-    // if ($password === mysql_result($result, 0, 'password')) {
-    //     mysql_close();
-    //     $token = getToken(15);
-    //
-    //     // Check that the token worked
-    //     if ($token === false) {
-    //         header('HTTP/1.1 500 Internal Server Error');
-    //         return 'Something went wrong when generating your token.';
-    //     }
-    //
-    //     // Set the cookie
-    //     $test = setcookie('auth-token', $token, time() + (86400 * 30), "/");
-    //
-    //     header('HTTP/1.1 200 OK');
-    //
-    //     // Return the token
-    //     var_dump($test);
-    //     return $token;
-    // }
+    if (!isset($POST->email)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'No email provided';
+    }
+
+    // Check for password
+    if (!isset($POST->password)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'No password provided';
+    }
+    $email = $POST->email;
+    $password = $POST->password;
+
+    // Get account
+    $query = sprintf("SELECT password FROM authentication WHERE email = '%s'",
+        mysql_real_escape_string($email));
+    $result = mysql_query($query);
+
+    // Alert failure
+    if (!mysql_num_rows($result)) {
+        header('HTTP/1.1 404 Not Found');
+        return 'Could not find user.';
+    }
+
+    if ($password === mysql_result($result, 0, 'password')) {
+        mysql_close();
+        $token = getToken(15);
+
+        // Check that the token worked
+        if ($token === false) {
+            header('HTTP/1.1 500 Internal Server Error');
+            return 'Something went wrong when generating your token.';
+        }
+
+        // Set the cookie
+        $test = setcookie('auth-token', $token, time() + (86400 * 30), "/");
+
+        header('HTTP/1.1 200 OK');
+
+        // Return the token
+        var_dump($test);
+        return $token;
+    }
 };
 
 function getToken($length) {
