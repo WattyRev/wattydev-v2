@@ -1,0 +1,39 @@
+<div class="col-md-8 col-lg-10">
+    <div class="form-group">
+        <label for="title-input">Post Title</label>
+        {{input type="text" value=post.title class="form-control"}}
+    </div>
+    <div class="form-group">
+        {{textarea class="form-control full-size" value=post.content}}
+        <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown Cheatsheet</a>
+    </div>
+</div>
+<div class="col-md-4 col-lg-2">
+    <div class="form-group">
+        <button type="button" class="btn btn-primary btn-block">{{if post.id 'Update' 'Publish'}}</button>
+    </div>
+    {{#if post.created}}
+        <p class="text-muted">Created: {{post.created}} | Last Modified: {{post.updated}}</p>
+    {{/if}}
+    <div class="form-group">
+        {{#x-select class="form-control" value=post.status}}
+            {{#each statusOptions as |status|}}
+                {{#x-option value=status.value}}{{status.label}}{{/x-option}}
+            {{/each}}
+        {{/x-select}}
+    </div>
+    <div class="form-group">
+        {{posts/select-type value=post.type}}
+    </div>
+    <div class="form-group">
+        <label>Tags</label>
+        {{posts/select-tags value=post.tags}}
+    </div>
+    <div class="form-group">
+        <label>Reference URL</label>
+        {{input type="text" class="form-control" value=post.referenceUrl}}
+    </div>
+    <div class="form-group">
+        {{posts/select-image value=post.featuredImage}}
+    </div>
+</div>

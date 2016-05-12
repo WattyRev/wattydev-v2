@@ -83,9 +83,9 @@ export default Ember.Object.extend({
      * The featured image
      *
      * @property featuredImage
-     * @type {Ember.Model}
+     * @type {String}
      */
-    featuredImage: 0,
+    featuredImage: '0',
 
     /**
      * The post type
@@ -93,7 +93,7 @@ export default Ember.Object.extend({
      * @property type
      * @type {String}
      */
-    type: 0,
+    type: '0',
 
     /**
      * The post status

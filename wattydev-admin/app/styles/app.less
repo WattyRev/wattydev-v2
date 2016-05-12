@@ -13,3 +13,12 @@ i.fa {
     max-width: 100px;
     max-height: 100px;
 }
+textarea {
+    resize: vertical;
+
+    &.full-size {
+        width: 100%;
+        height: ~"calc(100vh - 250px)";
+        min-height: 400px;
+    }
+}

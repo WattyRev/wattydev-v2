@@ -1,0 +1,7 @@
+{{#x-select class="form-control" value=value action="typeSelected"}}
+    {{#x-option value='0'}}Select a Type{{/x-option}}
+    {{#x-option value='new'}}Create New Type{{/x-option}}
+    {{#each options as |option|}}
+        {{#x-option value=option.id}}{{option.title}}{{/x-option}}
+    {{/each}}
+{{/x-select}}
