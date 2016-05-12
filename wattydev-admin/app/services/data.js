@@ -85,6 +85,9 @@ export default Ember.Service.extend({
      * @return {Promise}
      */
     getOne(id) {
+        if (id === '0') {
+            return Ember.RSVP.resolve();
+        }
         if (this.get('data.length')) {
             return this.get('data').findBy('id', id);
         }

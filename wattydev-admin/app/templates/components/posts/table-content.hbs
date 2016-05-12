@@ -25,7 +25,11 @@
                     {{post.title}}
                 </td>
                 <td>
-                    {{post.type}}
+                    {{#if post.typeData.title}}
+                        {{post.typeData.title}}
+                    {{else}}
+                        Uncategorized
+                    {{/if}}
                 </td>
                 <td>
                     {{post.created}}
