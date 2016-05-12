@@ -1,0 +1,40 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Created
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each images as |image|}}
+            <tr>
+                <td>
+                    <img class="thumbnail-small" src="{{baseUrl}}{{image.url}}">
+                </td>
+                <td>
+                    {{image.title}}
+                </td>
+                <td>
+                    {{image.created}}
+                </td>
+                <td>
+                    <a href="{{baseUrl}}{{image.url}}"><i class="fa fa-eye"></i></a>
+                    {{#link-to 'image' image.id}}<i class="fa fa-pencil"></i>{{/link-to}}
+                </td>
+            </tr>
+        {{else}}
+            <tr>
+                <td colspan="4">You haven't added any posts.</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
