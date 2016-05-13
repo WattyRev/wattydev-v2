@@ -5,3 +5,9 @@
         {{#x-option value=option.id}}{{option.title}}{{/x-option}}
     {{/each}}
 {{/x-select}}
+{{#if isEditableSelection}}
+    <a {{action 'editType' value}}>Edit</a>
+{{/if}}
+{{#if editingType}}
+    {{modal-link tagName='' show=editingType onClose='doneEditing' data=value component='posts/type-form'}}
+{{/if}}

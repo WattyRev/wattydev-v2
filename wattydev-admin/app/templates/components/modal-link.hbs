@@ -1,0 +1,12 @@
+{{yield}}
+{{#if modalInDom}}
+    {{#ember-wormhole to="parallel-universe"}}
+        <div class="modal fade {{if modalShowing 'in'}}" tabindex=-1>
+            <div class="modal-dialog {{sizeClass}}">
+                <div class="modal-content">
+                    {{component component data=data onClose='hideModal'}}
+                </div>
+            </div>
+        </div>
+    {{/ember-wormhole}}
+{{/if}}

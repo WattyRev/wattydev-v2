@@ -37,11 +37,57 @@ export default Ember.Component.extend({
      */
     options: Ember.computed.readOnly('typesService.data'),
 
+    /**
+     * Is the selection an editable type?
+     *
+     * @property isEditable Selection
+     * @type {Boolean}
+     */
+    isEditableSelection: Ember.computed('value', function () {
+        return this.get('value') !== '0' && this.get('value') !== 'new';
+    }),
+
+    /**
+     * Are we currently editing or creating a type?
+     *
+     * @property editingType
+     * @type {Boolean}
+     * @default false
+     */
+    editingType: false,
+
     actions: {
+        /**
+         * If new type is selected, create a new type.
+         *
+         * @method typeSelected
+         * @return {Void}
+         */
         typeSelected() {
             let value = this.get('value');
             if (value === 'new') {
-                console.log('create new type');
+                this.set('editingType', true);
+            }
+        },
+
+        /**
+         * Edit the selected type.
+         *
+         * @method editType
+         * @return {Void}
+         */
+        editType(type) {
+            console.log('edit type', type);
+        },
+
+        doneEditing(response) {
+            this.set('editingType', false);
+            if (this.get('value' === 'new')) {
+                if (response.message === 'saved') {
+                    this.set('value', response.id);
+                } else {
+                    this.set('value', '0');
+                }
             }
         }
     }
