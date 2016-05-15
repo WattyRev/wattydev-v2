@@ -102,5 +102,94 @@ export default Ember.Service.extend({
      */
     createNew() {
         return this.get('dataModel').create();
+    },
+
+    /**
+     * Delete a specified item.
+     *
+     * @method delete
+     * @param {String} id The id of the item to delete
+     * @return {Promise}
+     */
+    delete(id) {
+        Ember.assert('An id is required to delete an item', id);
+        return this.get('apiService').deleteItem(this.get('modelName'), id);
+    },
+
+    /**
+     * Save a specified item.
+     *
+     * @method save
+     * @param {Ember.Object} item The full item object to save
+     * @return {Promise}
+     */
+    save(item) {
+        if (item.get('id')) {
+            return this._updateItem(item);
+        }
+        return this._createItem(item);
+    },
+
+    /**
+     * Rollback changes on specified item.
+     *
+     * @method rollback
+     * @param {Ember.Object} item The full item object to roll back
+     * @return {Promise}
+     */
+    rollback(item) {
+        Ember.assert('Cannot rollback a new item.', item.get('id'));
+        return this.get('apiService').getItem(this.get('modelName'), item.get('id')).then(original => {
+            item.setProperties(original);
+            return item;
+        });
+    },
+
+    /**
+     * Save the item as a new item.
+     *
+     * @method _createItem
+     * @param {Ember.Object} item The item to create
+     * @return {Promise}
+     * @private
+     */
+    _createItem(item) {
+        // Start the promise chain by saving the post
+        let promise = this.get('apiService').addItem(this.get('modelName'), item);
+
+        promise = promise.then(response => {
+            // Update the model
+            item.set('id', response.id);
+
+            // Add the saved post to the posts service
+            if (this.get('data.length')) {
+                let items = this.get('data');
+                items.push(item);
+                this.set('data', items.slice());
+            }
+
+            // Retrieve the data for the post in order to get other generated properties
+            return this.get('apiService').getItem(this.get('modelName'), response.id);
+        });
+
+        // Set the other properties
+        promise = promise.then(requestedItem => {
+            item.setProperties(requestedItem);
+            return item.get('id');
+        });
+
+        return promise;
+    },
+
+    /**
+     * Update the item record in the database.
+     *
+     * @method _updateItem
+     * @param {Ember.Object} item The item to update
+     * @return {Promise}
+     * @private
+     */
+    _updateItem(item) {
+        return this.get('apiService').updateItem(this.get('modelName'), item);
     }
 });

@@ -5,8 +5,8 @@ export default Ember.Component.extend({
     /**
      * The Id of the currently selected type.
      *
-     * @property
-     * @type {}
+     * @property value
+     * @type {String}
      */
     value: null,
 
@@ -35,7 +35,7 @@ export default Ember.Component.extend({
      * @property options
      * @type {Type[]}
      */
-    options: Ember.computed.readOnly('typesService.data'),
+    options: Ember.computed.alias('typesService.data'),
 
     /**
      * Is the selection an editable type?
@@ -82,9 +82,14 @@ export default Ember.Component.extend({
 
         doneEditing(response) {
             this.set('editingType', false);
-            if (this.get('value' === 'new')) {
+            if (this.get('value') === 'new') {
                 if (response.message === 'saved') {
-                    this.set('value', response.id);
+                    Ember.run.next(() => {
+                        if (this.isDestroyed) {
+                            return;
+                        }
+                        this.set('value', response.id);
+                    });
                 } else {
                     this.set('value', '0');
                 }

@@ -1,8 +1,7 @@
 import Ember from 'ember';
+import AutoFocusMixin from 'wattydev-admin/mixins/auto-focus';
 
-export default Ember.Component.extend({
-    tagName: '',
-
+export default Ember.Component.extend(AutoFocusMixin, {
     /**
      * Instance of the types service.
      *
@@ -26,8 +25,8 @@ export default Ember.Component.extend({
      * @property parentsOptions
      * @type {Tyoe[]}
      */
-    parentsOptions: Ember.computed(function () {
-        return this.get('typesService').getAll().then(types => types.rejectBy('id', this.get('type.id')));
+    parentsOptions: Ember.computed('typesService.data', function () {
+        return this.get('typesService.data').rejectBy('id', this.get('type.id'));
     }),
 
     /**
@@ -62,9 +61,9 @@ export default Ember.Component.extend({
          */
         save() {
             this.set('loading', true);
-            this.get('type').save().then(response => {
+            this.get('typesService').save(this.get('type')).then(id => {
                 this.set('loading', false);
-                this.sendAction('onClose', { message: 'saved', id: response.id });
+                this.sendAction('onClose', { message: 'saved', id: id });
             });
         },
     }
