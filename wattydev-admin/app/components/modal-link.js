@@ -3,6 +3,8 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     tagName: 'a',
 
+    attributeBindings: ['type'],
+
     /**
      * Show the modal by default.
      *

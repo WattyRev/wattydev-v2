@@ -1,0 +1,7 @@
+{{#if value}}
+    {{#modal-link tagName="button" class="btn btn-default btn-block" type="button" onClose='doneEditing' data=value component='images/image-manager'}}Select an Image{{/modal-link}}
+{{else}}
+    <div class="text-center">
+        <img src="{{imageUrl}}" class="thumbnail-small" />
+    </div>
+{{/if}}
