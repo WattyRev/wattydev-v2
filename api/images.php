@@ -229,12 +229,11 @@ function getImage($id) {
 
     // Generate the data structure
     $image = (object) array();
-    $image->image = (object) array();
-    $image->image->id = mysql_result($result, 0, 'id');
-    $image->image->created = mysql_result($result, 0, 'created');
-    $image->image->title = mysql_result($result, 0, 'title');
-    $image->image->description = mysql_result($result, 0, 'description');
-    $image->image->url = mysql_result($result, 0, 'url');
+    $image->id = mysql_result($result, 0, 'id');
+    $image->created = mysql_result($result, 0, 'created');
+    $image->title = mysql_result($result, 0, 'title');
+    $image->description = mysql_result($result, 0, 'description');
+    $image->url = mysql_result($result, 0, 'url');
 
     // Alert success
     header('HTTP/1.1 200 OK');
