@@ -55,12 +55,9 @@ export default Ember.Component.extend({
      */
     selectedImage: Ember.computed('value', {
         get() {
-            let image = this.get('imagesService.data').findBy('id', this.get('value'));
-            console.log('updating selectedImage', image);
-            return image;
+            return this.get('imagesService.data').findBy('id', this.get('value'));
         },
         set(key, value) {
-            console.log('setting selectedImage', value);
             this.set('value', value.get('id'));
             return value;
         }
@@ -93,7 +90,7 @@ export default Ember.Component.extend({
      * @type {Boolean}
      */
     invalidNewImage: Ember.computed('newImage.{title,file}', 'loading', function () {
-        return this.get('isLoading') || !this.get('newImage.title') || !this.get('newImage.file');
+        return this.get('loading') || !this.get('newImage.title') || !this.get('newImage.file');
     }),
 
     /**
@@ -104,7 +101,6 @@ export default Ember.Component.extend({
      */
     availableImages: Ember.computed('imagesService.data.@each', 'selectedImage.id', function () {
         let images = this.get('imagesService.data').rejectBy('id', this.get('selectedImage.id'));
-        console.log('updating availableImages', images);
         return images;
     }),
 
@@ -116,7 +112,7 @@ export default Ember.Component.extend({
          * @return {Void}
          */
         addImage() {
-            this.set('isLoading', true);
+            this.set('loading', true);
             let service = this.get('imagesService');
             let rawNewImage = this.get('newImage');
             let image = service.createNew();
@@ -132,7 +128,7 @@ export default Ember.Component.extend({
                     file: ''
                 });
                 this.set('value', id);
-                this.set('isLoading', false);
+                this.set('loading', false);
             });
         },
 

@@ -179,7 +179,6 @@ export default Ember.Service.extend({
         // Set the other properties
         promise = promise.then(requestedItem => {
             item.setProperties(requestedItem);
-            console.log('saved item, updated properties', requestedItem);
             return item.get('id');
         });
 
