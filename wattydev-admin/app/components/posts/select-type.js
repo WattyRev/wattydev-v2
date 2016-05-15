@@ -100,6 +100,8 @@ export default Ember.Component.extend({
                 } else {
                     this.set('value', '0');
                 }
+            } else if (response.message === 'deleted') {
+                this.set('value', '0');
             }
         }
     }

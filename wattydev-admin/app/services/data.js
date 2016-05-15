@@ -113,6 +113,10 @@ export default Ember.Service.extend({
      */
     delete(id) {
         Ember.assert('An id is required to delete an item', id);
+        let data = this.get('data');
+        let item = data.findBy('id', id);
+        data.splice(data.indexOf(item), 1);
+        this.set('data', data.slice());
         return this.get('apiService').deleteItem(this.get('modelName'), id);
     },
 

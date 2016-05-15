@@ -50,7 +50,11 @@ export default Ember.Component.extend(AutoFocusMixin, {
          * @return {Void}
          */
         cancel() {
-            this.sendAction('onClose', { message: 'cancel' });
+            this.set('loading', true);
+            this.get('typesService').rollback(this.get('type')).then(() => {
+                this.set('loading', false);
+                this.sendAction('onClose', { message: 'cancel' });
+            });
         },
 
         /**
@@ -66,5 +70,16 @@ export default Ember.Component.extend(AutoFocusMixin, {
                 this.sendAction('onClose', { message: 'saved', id: id });
             });
         },
+
+        /**
+         * Delete the type.
+         *
+         * @method delete
+         * @return {Void}
+         */
+        delete() {
+            this.get('typesService').delete(this.get('type.id'));
+            this.sendAction('onClose', { message: 'deleted' });
+        }
     }
 });
