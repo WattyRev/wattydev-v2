@@ -20,7 +20,7 @@
     </div>
     <div class="modal-footer">
         {{#if type.id}}
-            <button class="btn btn-danger" type="button" {{action 'delete'}} disabled={{loading}}>Delete</button>
+            <button class="btn btn-danger pull-left" type="button" {{action 'delete'}} disabled={{loading}}>Delete</button>
         {{/if}}
         <button class="btn btn-default" type="button" {{action 'cancel'}} disabled={{loading}}>Cancel</button>
         <button class="btn btn-primary" disabled={{loading}}>Save</button>

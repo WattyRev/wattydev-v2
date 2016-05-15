@@ -180,7 +180,7 @@ function updateType($type) {
         /**
          * Add reference to this type to the new parent
          */
-        if ($type->parent !== 0) {
+        if ($type->parent !== 0 && $type->parent !== '0') {
             // Get the children property from the new parent record
             $query = sprintf("SELECT children FROM types WHERE id = '%s'",
                 mysql_real_escape_string($type->parent));

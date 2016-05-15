@@ -209,7 +209,9 @@ export default Ember.Service.extend(Ember.Evented, {
      * @return {Promise}
      */
     updateItem(model, data) {
-        return this._put(this._getPath(model) + '?update', { data });
+        let request = {};
+        request[model] = data;
+        return this._put(this._getPath(model) + '?update', request);
     },
 
     /**

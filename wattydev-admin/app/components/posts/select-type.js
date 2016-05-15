@@ -71,15 +71,22 @@ export default Ember.Component.extend({
         },
 
         /**
-         * Edit the selected type.
+         * Edit the currently selected type.
          *
          * @method editType
          * @return {Void}
          */
-        editType(type) {
-            console.log('edit type', type);
+        editType() {
+            this.set('editingType', true);
         },
 
+        /**
+         * When the user is done editing a type.
+         *
+         * @method doneEditing
+         * @param {Object} response The response from the modal close event
+         * @return {Void}
+         */
         doneEditing(response) {
             this.set('editingType', false);
             if (this.get('value') === 'new') {
