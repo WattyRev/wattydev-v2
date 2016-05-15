@@ -1,8 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-    tagName: 'form',
-
     classNames: ['row'],
 
     /**
@@ -26,23 +24,15 @@ export default Ember.Component.extend({
         }
     ]),
 
-    /**
-     * Save the record.
-     *
-     * @method save
-     * @return {Void}
-     */
-    save: Ember.on('submit', function () {
+    actions: {
+        /**
+         * Save the record.
+         *
+         * @method save
+         * @return {Void}
+         */
+        save() {
 
-    }),
-
-    /**
-     * Cancel editing and discard changes.
-     *
-     * @method cancel
-     * @return {Void}
-     */
-    cancel() {
-
+        }
     }
 });

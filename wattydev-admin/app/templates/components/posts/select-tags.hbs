@@ -1,0 +1,20 @@
+<div class="selected form-group">
+    {{#each selectedTags as |tag|}}
+        <span class="label label-default">{{tag.title}} <i class="fa fa-times pointer" {{action 'removeTag' tag}}></i></span>
+    {{else}}
+        <em>No tags selected</em>
+    {{/each}}
+</div>
+<div class="form-group suggested">
+    {{#each availableTags as |tag index|}}{{if index ', '}}<a {{action 'selectTag' tag}}>{{tag.title}}</a>{{else}}
+        <em>No tags available</em>
+    {{/each}}
+</div>
+<div class="form-group">
+    <div class="{{if loading 'input-group'}}">
+        {{input class="form-control" value=addingTag type="text" placeholder="Add new tag" action="inputChange" on="key-down"}}
+        {{#if loading}}
+            <div class="input-group-addon"><i class="fa fa-circle-o-notch fa-spin"></i></div>
+        {{/if}}
+    </div>
+</div>

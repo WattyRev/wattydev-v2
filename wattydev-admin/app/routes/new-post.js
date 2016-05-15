@@ -9,6 +9,18 @@ export default Ember.Route.extend({
      */
     postsService: Ember.inject.service('posts'),
 
+    tagsService: Ember.inject.service('tags'),
+
+    typesService: Ember.inject.service('types'),
+
+    beforeModel() {
+        let promises = [
+            this.get('tagsService').getAll(),
+            this.get('typesService').getAll()
+        ];
+        return Ember.RSVP.all(promises);
+    },
+
     model() {
         return {
             post: this.get('postsService').createNew()

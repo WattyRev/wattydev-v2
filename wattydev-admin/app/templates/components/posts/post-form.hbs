@@ -1,6 +1,6 @@
 <div class="col-md-8 col-lg-10">
     <div class="form-group hidden-md hidden-lg">
-        <button type="button" class="btn btn-primary">{{if post.id 'Update' 'Publish'}}</button>
+        <button type="button" class="btn btn-primary" {{action 'save'}}>{{if post.id 'Update' 'Publish'}}</button>
     </div>
     <div class="form-group">
         <label for="title-input">Post Title</label>
@@ -13,7 +13,7 @@
 </div>
 <div class="col-md-4 col-lg-2">
     <div class="form-group hidden-sm hidden-xs">
-        <button type="button" class="btn btn-primary btn-block">{{if post.id 'Update' 'Publish'}}</button>
+        <button type="button" class="btn btn-primary btn-block" {{action 'save'}}>{{if post.id 'Update' 'Publish'}}</button>
     </div>
     {{#if post.created}}
         <p class="text-muted">Created: {{post.created}} | Last Modified: {{post.updated}}</p>
