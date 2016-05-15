@@ -1,0 +1,17 @@
+<label for="file-input" class="file-input">
+    <span class="text">
+        {{#if fileName}}
+            {{fileName}}
+        {{else}}
+            {{#if placeholder}}
+                <span class="text-muted">
+                    {{placeholder}}
+                </span>
+            {{/if}}
+        {{/if}}
+    </span>
+    <span class="btn btn-default">
+        {{buttonLabel}}
+    </span>
+</label>
+<input type="file" id="file-input" />

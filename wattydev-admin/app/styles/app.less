@@ -1,3 +1,5 @@
+@import 'variables.less';
+
 i.fa {
     margin: 0 5px;
 }
@@ -30,4 +32,45 @@ a:not([disabled]), button:not([disabled]) {
 }
 .pointer {
     cursor: pointer;
+}
+.scrolling-list {
+    max-height: 600px;
+    overflow-y: auto;
+}
+.select-item {
+    cursor: pointer;
+    padding: 5px;
+    margin: 5px;
+    float: left;
+    border: 2px solid @gray-lighter;
+    transition: .2s border-color;
+    border-radius: 4px;
+
+    &:hover {
+        border-color: @brand-primary
+    }
+}
+.file-input {
+    cursor: pointer;
+
+    .text {
+        background: #fff;
+        width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-radius: 2px;
+        border: 1px solid @gray-lighter;
+        display: block;
+        height: 35px;
+        float: left;
+        box-shadow: 0 0 2px 1px @gray-lighter inset;
+        padding: 9px;
+        margin-right: 5px;
+    }
+}
+
+.file-input + input {
+  position: fixed;
+  top: -100vh;
 }

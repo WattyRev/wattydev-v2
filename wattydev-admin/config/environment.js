@@ -9,7 +9,7 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
         'font-src': "'self' http://maxcdn.bootstrapcdn.com",
         'style-src': "'self' 'unsafe-inline' https://maxcdn.bootstrapcdn.com ",
-        'img-src': "'self' http://wattydev.com",
+        'img-src': "'self' data: http://wattydev.com",
         'connect-src': "'self' ws://localhost:49152 ws://0.0.0.0:49152 http://0.0.0.0:4200/csp-report http://wattydev.com"
     },
     EmberENV: {
