@@ -57,7 +57,7 @@ export default Ember.Route.extend({
          * @return {Void}
          */
         viewPost(id) {
-            this.transitionTo('post', { id });
+            this.transitionTo('post', { postId: id });
         }
     }
 });
