@@ -1,6 +1,9 @@
 <div class="col-md-8 col-lg-10">
     <div class="form-group hidden-md hidden-lg">
         <button class="btn btn-primary">{{if post.id 'Update' 'Publish'}}</button>
+        {{#if post.created}}
+            <p class="text-muted hidden-md hidden-lg">Created: {{display-date post.createdDate}} | Last Modified: {{display-date post.updatedDate}}</p>
+        {{/if}}
     </div>
     <div class="form-group">
         <label for="title-input">Post Title</label>
@@ -16,7 +19,7 @@
         <button class="btn btn-primary btn-block">{{if post.id 'Update' 'Publish'}}</button>
     </div>
     {{#if post.created}}
-        <p class="text-muted">Created: {{post.created}} | Last Modified: {{post.updated}}</p>
+        <p class="text-muted hidden-sm hidden-xs">Created: {{display-date post.createdDate}} | Last Modified: {{display-date post.updatedDate}}</p>
     {{/if}}
     <div class="form-group">
         <label>Status</label>

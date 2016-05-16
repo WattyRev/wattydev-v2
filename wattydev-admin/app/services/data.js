@@ -40,7 +40,17 @@ export default Ember.Service.extend(PluralsMixin, {
             return Ember.RSVP.resolve(this.get('data'));
         }
         return this.get('apiService').getItems(this.get('modelName')).then(data => {
-            let items = Ember.makeArray(data[plural]).map(item => this.get('dataModel').create(item));
+            // Make JSON values if possible
+            let rawItems = Ember.makeArray(data[plural]);
+            let items = rawItems.map(item => {
+                Object.keys(item).forEach(key => {
+                    let value = item[key];
+                    if (value[0] === '[' || value[0] === '{') {
+                        item[key] = JSON.parse(value);
+                    }
+                });
+                return this.get('dataModel').create(item);
+            });
             this.set('data', items);
             return items;
         });
@@ -79,7 +89,15 @@ export default Ember.Service.extend(PluralsMixin, {
         if (this.get('data.length')) {
             return this.get('data').findBy('id', id);
         }
-        return this.get('apiService').getItem(this.get('modelName'), id).then(item => item ? this.get('dataModel').create(item) : null);
+        return this.get('apiService').getItem(this.get('modelName'), id).then(item => {
+            Object.keys(item).forEach(key => {
+                let value = item[key];
+                if (value[0] === '[' || value[0] === '{') {
+                    item[key] = JSON.parse(value);
+                }
+            });
+            return item ? this.get('dataModel').create(item) : null;
+        });
     },
 
     /**

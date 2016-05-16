@@ -19,7 +19,7 @@ export default Ember.Helper.helper(function(params) {
     let value = params[0];
     let month = MONTHS[value.getMonth()];
     let date = value.getDate();
-    let year = value.getYear();
+    let year = value.getFullYear();
     let hour = value.getHours() > 13 ? value.getHours() - 12 : value.getHours();
     if (!hour) {
         hour = 12;
