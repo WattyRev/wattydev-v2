@@ -6,13 +6,13 @@
     <div class="panel-body">
         <ul class="list-group">
             {{#each recentImages as |image|}}
-                <li class="list-group-item">
-                    <img class="thumbnail-small" src="{{baseUrl}}{{image.url}}" alt="" />
-                    {{image.title}}
+                <li class="list-group-item clearfix">
+                    <img class="thumbnail-small pull-left" src="{{baseUrl}}{{image.url}}" alt="" />
                     <div class="actions pull-right">
                         <a href="{{baseUrl}}{{image.url}}" target="_blank" title="View image"><i class="fa fa-eye"></i></a>
                         {{#link-to 'image' image.id title="Edit image"}}<i class="fa fa-pencil"></i>{{/link-to}}
                     </div>
+                    {{image.title}}
                 </li>
             {{else}}
                 <li class="list-group-item">You haven't added any images yet.</li>

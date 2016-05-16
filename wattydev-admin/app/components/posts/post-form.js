@@ -57,7 +57,7 @@ export default Ember.Component.extend({
     /**
      * Rollback changes when the component is destroyed.
      *
-     * @method _revetChanges
+     * @method _revertChanges
      * @return {Promise}
      * @private
      */

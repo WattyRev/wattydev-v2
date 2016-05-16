@@ -36,6 +36,6 @@ export default Ember.Component.extend({
      */
     recentPosts: Ember.computed('posts.@each', function () {
         let posts = Ember.makeArray(this.get('posts'));
-        return posts.sortBy('created').slice(0, 5);
+        return posts.sortBy('-createdDate').slice(0, 10);
     })
 });

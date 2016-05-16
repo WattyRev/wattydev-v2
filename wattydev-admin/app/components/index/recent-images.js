@@ -36,6 +36,8 @@ export default Ember.Component.extend({
      */
     recentImages: Ember.computed('images.@each', function () {
         let images = Ember.makeArray(this.get('images'));
-        return images.sortBy('created').slice(0, 5);
+        return images.sort(function (a,b) {
+            return b.get('createdDate').getTime() - a.get('createdDate').getTime();
+        }).slice(0, 5);
     })
 });

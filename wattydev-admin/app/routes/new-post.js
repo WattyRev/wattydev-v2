@@ -33,6 +33,14 @@ export default Ember.Route.extend({
      */
     imagesService: Ember.inject.service('images'),
 
+    /**
+     * Instance of the alerts service.
+     *
+     * @property alertsService
+     * @type {Ember.Service}
+     */
+    alertsService: Ember.inject.service('alerts'),
+
     beforeModel() {
         // Preload images tags and types
         let promises = [
@@ -57,6 +65,7 @@ export default Ember.Route.extend({
          * @return {Void}
          */
         viewPost(id) {
+            this.get('alertsService').success('Your post has been saved');
             this.transitionTo('post', { postId: id });
         }
     }

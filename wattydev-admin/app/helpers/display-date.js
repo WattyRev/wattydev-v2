@@ -24,7 +24,7 @@ export default Ember.Helper.helper(function(params) {
     if (!hour) {
         hour = 12;
     }
-    let minutes = value.getMinutes();
+    let minutes = value.getMinutes() > 9 ? value.getMinutes() : '0' + value.getMinutes();
     let ampm = value.getHours() > 11 ? 'PM' : 'AM';
 
     return `${month} ${date}, ${year} ${hour}:${minutes} ${ampm}`;
