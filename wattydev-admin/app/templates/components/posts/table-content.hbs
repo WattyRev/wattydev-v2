@@ -25,16 +25,16 @@
                     {{post.title}}
                 </td>
                 <td>
-                    {{#if post.typeData.title}}
-                        {{post.typeData.title}}
+                    {{#unless post.emptyType}}
+                        {{display-property model="type" id=post.type property="title"}}
                     {{else}}
                         Uncategorized
-                    {{/if}}
+                    {{/unless}}
                 </td>
                 <td>
-                    {{post.created}}
+                    {{display-date post.createdDate}}
                 </td>
-                <td>
+                <td class="capitalize">
                     {{post.status}}
                 </td>
                 <td>

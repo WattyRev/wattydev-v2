@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import PluralsMixin from 'wattydev-admin/mixins/plurals';
 
-export default Ember.Service.extend({
+export default Ember.Service.extend(PluralsMixin, {
     /**
      * The name of the model that this service works with.
      * Provide this property when extending this service.
@@ -26,19 +27,6 @@ export default Ember.Service.extend({
      * @type {Ember.Service}
      */
     apiService: Ember.inject.service('api'),
-
-    /**
-     * A map of plural forms of models.
-     *
-     * @property pluralMap
-     * @type {Object}
-     */
-    pluralMap: Ember.Object.create({
-        post: 'posts',
-        image: 'images',
-        type: 'types',
-        tag: 'tags'
-    }),
 
     /**
      * Get the list of posts.

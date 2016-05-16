@@ -9,18 +9,23 @@ export default Ember.Route.extend({
      */
     postsService: Ember.inject.service('posts'),
 
+    /**
+     * Instance of the types service.
+     *
+     * @property typesService
+     * @type {Ember.Service}
+     */
     typesService: Ember.inject.service('types'),
 
+    beforeModel() {
+        // Preload types
+        return this.get('typesService').getAll();
+    },
+
     model() {
-        let typesService = this.get('typesService');
         return Ember.RSVP.hash({
             posts: this.get('postsService').getAll().then(posts => {
-                return posts.sortBy('createdDate').map(post => {
-                    let typeId = post.get('type');
-                    let type = typesService.getOne(typeId);
-                    post.set('typeData', type);
-                    return post;
-                });
+                return posts.sortBy('-createdDate');
             })
         });
     }

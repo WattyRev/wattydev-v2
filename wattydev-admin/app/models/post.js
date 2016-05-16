@@ -80,6 +80,14 @@ export default Ember.Object.extend({
     type: '0',
 
     /**
+     * Is the post's type empty?
+     *
+     * @property emptyType
+     * @type {Boolean}
+     */
+    emptyType: Ember.computed.equal('type', '0'),
+
+    /**
      * The post status
      *
      * @property status
