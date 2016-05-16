@@ -98,6 +98,18 @@ export default Ember.Component.extend({
          */
         selectUrl() {
             this.$('.url-input').select();
+        },
+
+        /**
+         * Delete the image.
+         *
+         * @method delete
+         * @return {Void}
+         */
+        delete() {
+            this.set('loading', true);
+            this.get('imagesService').delete(this.get('image.id'));
+            this.sendAction('deleted');
         }
     }
 });

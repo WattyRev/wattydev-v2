@@ -75,8 +75,18 @@ export default Ember.Component.extend({
      */
     save: Ember.on('submit', function (event) {
         event.preventDefault();
+        this.set('loading', true);
         this.get('postsService').save(this.get('post')).then(id => {
+            this.set('loading', false);
             this.sendAction('saved', id);
         });
-    })
+    }),
+
+    actions: {
+        delete() {
+            this.set('loading', true);
+            this.get('postsService').delete(this.get('post.id'));
+            this.sendAction('deleted');
+        }
+    }
 });

@@ -32,6 +32,17 @@ export default Ember.Route.extend({
          */
         saved() {
             this.get('alertsService').success('Your image has been updated');
+        },
+
+        /**
+         * The image has been deleted.
+         *
+         * @method deleted
+         * @return {Void}
+         */
+        deleted() {
+            this.get('alertsService').success('Your image has been deleted');
+            this.transitionTo('images');
         }
     }
 });

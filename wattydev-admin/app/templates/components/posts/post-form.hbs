@@ -1,29 +1,29 @@
 <div class="col-md-8 col-lg-10">
     <div class="form-group hidden-md hidden-lg">
-        <button class="btn btn-primary">{{if post.id 'Update' 'Publish'}}</button>
+        <button class="btn btn-primary" disabled={{loading}}>{{if post.id 'Update' 'Publish'}}</button>
         {{#if post.created}}
             <p class="text-muted hidden-md hidden-lg">Created: {{display-date post.createdDate}} | Last Modified: {{display-date post.updatedDate}}</p>
         {{/if}}
     </div>
     <div class="form-group">
         <label for="title-input">Post Title</label>
-        {{input type="text" value=post.title class="form-control" required=true }}
+        {{input type="text" value=post.title class="form-control" required=true disabled=loading }}
     </div>
     <div class="form-group">
-        {{textarea class="form-control full-size" value=post.content}}
+        {{textarea class="form-control full-size" value=post.content disabled=loading}}
         <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown Cheatsheet</a>
     </div>
 </div>
 <div class="col-md-4 col-lg-2">
     <div class="form-group hidden-sm hidden-xs">
-        <button class="btn btn-primary btn-block">{{if post.id 'Update' 'Publish'}}</button>
+        <button class="btn btn-primary btn-block" disabled={{loading}}>{{if post.id 'Update' 'Publish'}}</button>
     </div>
     {{#if post.created}}
         <p class="text-muted hidden-sm hidden-xs">Created: {{display-date post.createdDate}} | Last Modified: {{display-date post.updatedDate}}</p>
     {{/if}}
     <div class="form-group">
         <label>Status</label>
-        {{#x-select class="form-control" value=post.status}}
+        {{#x-select class="form-control" value=post.status disabed=loading}}
             {{#each statusOptions as |status|}}
                 {{#x-option value=status.value}}{{status.label}}{{/x-option}}
             {{/each}}
@@ -39,10 +39,15 @@
     </div>
     <div class="form-group">
         <label>Reference URL</label>
-        {{input type="text" class="form-control" value=post.referenceUrl}}
+        {{input type="text" class="form-control" value=post.referenceUrl disabled=loading}}
     </div>
     <div class="form-group">
         <label>Featured Image</label>
         {{posts/select-image value=post.featuredImage}}
     </div>
+    {{#if post.id}}
+        <div class="form-group">
+            <button class="btn btn-danger" {{action 'delete'}}  disabled={{loading}}>Delete Post</button>
+        </div>
+    {{/if}}
 </div>

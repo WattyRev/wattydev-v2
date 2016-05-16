@@ -65,6 +65,17 @@ export default Ember.Route.extend({
          */
         savedPost() {
             this.get('alertsService').success('Your changes have been saved.');
+        },
+
+        /**
+         * The post has been deleted.
+         *
+         * @method deletedPost
+         * @return {Void}
+         */
+        deletedPost() {
+            this.get('alertsService').success('Your post has been deleted.');
+            this.transitionTo('posts');
         }
     }
 });
