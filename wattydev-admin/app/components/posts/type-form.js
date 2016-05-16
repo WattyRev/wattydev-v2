@@ -50,6 +50,10 @@ export default Ember.Component.extend(AutoFocusMixin, {
          * @return {Void}
          */
         cancel() {
+            if (!this.get('type.id')) {
+                this.sendAction('onClose', { message: 'cancel' });
+                return;
+            }
             this.set('loading', true);
             this.get('typesService').rollback(this.get('type')).then(() => {
                 this.set('loading', false);
