@@ -31,7 +31,7 @@ export default Ember.Object.extend({
      * @property parent
      * @type {Number}
      */
-    parent: 0,
+    parent: '0',
 
     /**
      * The type's children.
@@ -39,5 +39,19 @@ export default Ember.Object.extend({
      * @property children
      * @type {Type[]}
      */
-    children: Ember.makeArray()
+    children: Ember.makeArray(),
+
+    /**
+     * Get a plain hash of the object's properties used to send save requests.
+     *
+     * @method getSaveHash
+     * @return {Object}
+     */
+    getSaveHash() {
+        return this.getProperties([
+            'id',
+            'title',
+            'parent'
+        ]);
+    }
 });

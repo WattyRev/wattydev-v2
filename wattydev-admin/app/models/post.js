@@ -109,5 +109,23 @@ export default Ember.Object.extend({
      * @property tags
      * @type {Tag[]}
      */
-    tags: Ember.makeArray()
+    tags: Ember.makeArray(),
+
+    /**
+     * Get a plain hash of the object's properties used to send save requests.
+     *
+     * @method getSaveHash
+     * @return {Object}
+     */
+    getSaveHash() {
+        return this.getProperties([
+            'id',
+            'title',
+            'content',
+            'featuredImage',
+            'type',
+            'tags',
+            'status'
+        ]);
+    }
 });

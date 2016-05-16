@@ -58,5 +58,20 @@ export default Ember.Object.extend({
      */
     createdDate: Ember.computed('created', function () {
         return new Date(this.get('created'));
-    }).readOnly()
+    }).readOnly(),
+
+    /**
+     * Get a plain hash of the object's properties used to send save requests.
+     *
+     * @method getSaveHash
+     * @return {Object}
+     */
+    getSaveHash() {
+        return this.getProperties([
+            'id',
+            'title',
+            'description',
+            'file'
+        ]);
+    }
 });

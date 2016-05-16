@@ -47,5 +47,17 @@ export default Ember.Route.extend({
         return {
             post: this.get('postsService').createNew()
         };
+    },
+
+    actions: {
+        /**
+         * View specified post page.
+         *
+         * @method viewPost
+         * @return {Void}
+         */
+        viewPost(id) {
+            this.transitionTo('post', { id });
+        }
     }
 });

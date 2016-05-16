@@ -49,7 +49,7 @@ function addPost($post) {
     }
 
     // Validate that featured image exists
-    if (isset($post->featuredImage) && $post->featuredImage !== 0) {
+    if (isset($post->featuredImage) && $post->featuredImage !== '0') {
         $query = sprintf("SELECT * from images WHERE id = '%s'", mysql_real_escape_string($post->featuredImage));
         $result = mysql_query($query);
 
@@ -61,7 +61,7 @@ function addPost($post) {
     }
 
     // Validate that type exists
-    if (isset($post->type) && $post->type !== 0) {
+    if (isset($post->type) && $post->type !== '0') {
         $query = sprintf("SELECT * from types WHERE id = '%s'", mysql_real_escape_string($post->type));
         $result = mysql_query($query);
 
@@ -146,7 +146,7 @@ function updatePost($post) {
     }
 
     // Validate that featured image exists
-    if ($post->featuredImage !== 0) {
+    if ($post->featuredImage !== '0') {
         $query = sprintf("SELECT * from images WHERE id = '%s'", mysql_real_escape_string($post->featuredImage));
         $result = mysql_query($query);
 
@@ -176,7 +176,7 @@ function updatePost($post) {
     }
 
     // Validate that type exists
-    if ($post->type !== 0) {
+    if ($post->type !== '0') {
         $query = sprintf("SELECT * from types WHERE id = '%s'", mysql_real_escape_string($post->type));
         $result = mysql_query($query);
 

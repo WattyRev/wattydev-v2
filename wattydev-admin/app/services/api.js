@@ -196,7 +196,7 @@ export default Ember.Service.extend(Ember.Evented, {
      */
     addItem(model, data) {
         let request = {};
-        request[model] = data;
+        request[model] = data.getSaveHash();
         return this._put(this._getPath(model), request);
     },
 

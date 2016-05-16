@@ -23,5 +23,18 @@ export default Ember.Object.extend({
      * @property slug
      * @type {String}
      */
-    slug: null
+    slug: null,
+
+    /**
+     * Get a plain hash of the object's properties used to send save requests.
+     *
+     * @method getSaveHash
+     * @return {Object}
+     */
+    getSaveHash() {
+        return this.getProperties([
+            'id',
+            'title'
+        ]);
+    }
 });
