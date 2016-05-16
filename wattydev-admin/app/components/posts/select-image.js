@@ -43,7 +43,7 @@ export default Ember.Component.extend({
      */
     image: Ember.computed('value', 'imagesService.data.@each', {
         get() {
-            this.get('imagesService.data').findBy('id', this.get('value'));
+            return this.get('imagesService.data').findBy('id', this.get('value'));
         },
         set(key, value) {
             value = value || Ember.Object.create({id: '0'});
