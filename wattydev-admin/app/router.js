@@ -14,6 +14,10 @@ Router.map(function() {
   this.route('image', { path: 'images/:imageId' });
   this.route('new-image', { path: 'images/new' });
   this.route('login');
+  this.route('tags');
+  this.route('tag', { path: 'tags/:tagId' });
+  this.route('types');
+  this.route('type', { path: 'types/:typeId' });
 });
 
 export default Router;

@@ -1,0 +1,41 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Parent
+            </th>
+            <th>
+                Number of Posts
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each displayedTypes as |type|}}
+            <tr>
+                <td>
+                    {{type.title}}
+                </td>
+                <td>
+                    {{type.parentTitle}}
+                </td>
+                <td>
+                    {{type.numPosts}}
+                </td>
+                <td>
+                    <a href="{{permalinkService.baseTagsUrl}}{{type.slug}}" target="_blank"><i class="fa fa-eye"></i></a>
+                    {{#link-to 'type' type.id}}<i class="fa fa-pencil"></i>{{/link-to}}
+                </td>
+            </tr>
+        {{else}}
+            <tr>
+                <td colspan="5">You haven't added any types.</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>

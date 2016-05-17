@@ -9,5 +9,5 @@
     <a {{action 'editType' value}}>Edit</a>
 {{/if}}
 {{#if editingType}}
-    {{modal-link tagName='' show=editingType onClose='doneEditing' data=value component='posts/type-form'}}
+    {{modal-link tagName='' show=editingType onClose='doneEditing' data=value component='types/type-form'}}
 {{/if}}
