@@ -3,12 +3,12 @@ import AutoFocusMixin from 'wattydev-admin/mixins/auto-focus';
 
 export default Ember.Component.extend(AutoFocusMixin, {
     /**
-     * Instance of the types service.
+     * Instance of the tags service.
      *
-     * @property typesService
+     * @property tagsService
      * @type {Ember.Service}
      */
-    typesService: Ember.inject.service('types'),
+    tagsService: Ember.inject.service('tags'),
 
     /**
      * Are we currently loading something?
@@ -20,26 +20,16 @@ export default Ember.Component.extend(AutoFocusMixin, {
     loading: false,
 
     /**
-     * Options for selecting a parent type.
+     * The tag being edited.
      *
-     * @property parentsOptions
-     * @type {Type[]}
+     * @property tag
+     * @type {Tag}
      */
-    parentsOptions: Ember.computed('typesService.data', function () {
-        return this.get('typesService.data').rejectBy('id', this.get('type.id'));
-    }),
-
-    /**
-     * The type being edited.
-     *
-     * @property type
-     * @type {Type}
-     */
-    type: Ember.computed('data', function () {
+    tag: Ember.computed('data', function () {
         if (this.get('data') === 'new') {
-            return this.get('typesService').createNew();
+            return this.get('tagsService').createNew();
         }
-        return Ember.$.extend({}, this.get('typesService').getOne(this.get('data')));
+        return Ember.$.extend({}, this.get('tagsService').getOne(this.get('data')));
     }),
 
     actions: {
@@ -54,7 +44,7 @@ export default Ember.Component.extend(AutoFocusMixin, {
         },
 
         /**
-         * Save the type.
+         * Save the tag.
          *
          * @method save
          * @return {Void}
@@ -62,22 +52,22 @@ export default Ember.Component.extend(AutoFocusMixin, {
         save() {
             this.set('loading', true);
             if (this.get('data') !== 'new') {
-                this.get('typesService').getOne(this.get('data')).setProperties(this.get('type'));
+                this.get('tagsService').getOne(this.get('data')).setProperties(this.get('tag'));
             }
-            this.get('typesService').save(this.get('type')).then(id => {
+            this.get('tagsService').save(this.get('tag')).then(id => {
                 this.set('loading', false);
                 this.sendAction('onClose', { message: 'saved', id: id });
             });
         },
 
         /**
-         * Delete the type.
+         * Delete the tag.
          *
          * @method delete
          * @return {Void}
          */
         delete() {
-            this.get('typesService').delete(this.get('type.id'));
+            this.get('tagsService').delete(this.get('tag.id'));
             this.sendAction('onClose', { message: 'deleted' });
         }
     }

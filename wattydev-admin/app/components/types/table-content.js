@@ -53,6 +53,8 @@ export default Ember.Component.extend({
             let numPosts = type.get('numPosts') + numChildPosts;
             type.set('numPosts', numPosts);
             return type;
+        }).sort((a,b) => {
+            return b.get('numPosts') - a.get('numPosts');
         });
     }),
 

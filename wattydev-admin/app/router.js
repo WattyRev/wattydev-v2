@@ -15,7 +15,6 @@ Router.map(function() {
   this.route('new-image', { path: 'images/new' });
   this.route('login');
   this.route('tags');
-  this.route('tag', { path: 'tags/:tagId' });
   this.route('types');
 });
 

@@ -1,0 +1,19 @@
+<form {{action "save" on="submit"}}>
+    <div class="modal-header">
+        <button type="button" class="close" {{action 'cancel'}} disabled={{loading}}><span>×</span></button>
+        <h4 class="modal-title">{{if tag.id 'Editing Tag' 'Creating New Tag'}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label>Tag Name</label>
+            {{input type="text" value=tag.title required=true class="form-control" disabled=loading}}
+        </div>
+    </div>
+    <div class="modal-footer">
+        {{#if tag.id}}
+            <button class="btn btn-danger pull-left" type="button" {{action 'delete'}} disabled={{loading}}>Delete</button>
+        {{/if}}
+        <button class="btn btn-default" type="button" {{action 'cancel'}} disabled={{loading}}>Cancel</button>
+        <button class="btn btn-primary" disabled={{loading}}>Save</button>
+    </div>
+</form>

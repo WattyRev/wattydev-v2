@@ -1,5 +1,5 @@
 <div class="container">
     <h1>Tags</h1>
-    <button class="btn btn-primary pull-right">New Tag</button>
-    {{tags/table-content posts=model.tags}}
+    {{#modal-link tagName='button' class="btn btn-primary pull-right" onClose='doneEditing' data="new" component='tags/tag-form'}}New Tag{{/modal-link}}
+    {{tags/table-content doneEditing="doneEditing" tags=model.tags}}
 </div>

@@ -1,0 +1,35 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Number of Posts
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each displayedTags as |tag|}}
+            <tr>
+                <td>
+                    {{tag.title}}
+                </td>
+                <td>
+                    {{tag.numPosts}}
+                </td>
+                <td>
+                    <a href="{{permalinkService.baseTagsUrl}}{{tag.slug}}" target="_blank"><i class="fa fa-eye"></i></a>
+                    {{#modal-link data=tag.id component='tags/tag-form' onClose="doneEditing"}}<i class="fa fa-pencil"></i>{{/modal-link}}
+                </td>
+            </tr>
+        {{else}}
+            <tr>
+                <td colspan="3">You haven't added any tags.</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>

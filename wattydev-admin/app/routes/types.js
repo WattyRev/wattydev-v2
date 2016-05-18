@@ -32,8 +32,8 @@ export default Ember.Route.extend({
 
     model() {
         return Ember.RSVP.hash({
-            types: this.get('typesService').getAll().then(posts => {
-                return posts.sortBy('title');
+            types: this.get('typesService').getAll().then(types => {
+                return types.sortBy('title');
             })
         });
     },
