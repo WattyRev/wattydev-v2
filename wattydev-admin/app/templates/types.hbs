@@ -1,5 +1,5 @@
 <div class="container">
     <h1>Types</h1>
-    {{#modal-link tagName='button' class="btn btn-primary pull-right" onClose='doneCreating' data="new" component='types/type-form'}}New Type{{/modal-link}}
-    {{types/table-content types=model.types}}
+    {{#modal-link tagName='button' class="btn btn-primary pull-right" onClose='doneEditing' data="new" component='types/type-form'}}New Type{{/modal-link}}
+    {{types/table-content types=model.types doneEditing=doneEditing}}
 </div>

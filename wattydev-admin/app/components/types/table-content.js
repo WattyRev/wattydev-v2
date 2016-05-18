@@ -99,5 +99,17 @@ export default Ember.Component.extend({
         });
 
         return total;
+    },
+
+    actions: {
+        /**
+         * When the user is done editing a type, relay the message to the route.
+         *
+         * @method doneEditing
+         * @return {Void}
+         */
+        doneEditing() {
+            this.sendAction('doneEditing');
+        }
     }
 });

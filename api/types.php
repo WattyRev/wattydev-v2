@@ -51,11 +51,11 @@ function addType($type) {
 
     // Validate parent
     if (!isset($type->parent)) {
-        $type->parent = 0;
+        $type->parent = "0";
     }
 
     // Validate that the parent exists
-    if ($type->parent !== 0) {
+    if ($type->parent !== "0") {
         // Get type
         $query = sprintf("SELECT children FROM types WHERE id = '%s'",
             mysql_real_escape_string($type->parent));
@@ -102,7 +102,7 @@ function addType($type) {
         $success = true;
 
         // Add reference to parent type
-        if ($type->parent !== 0) {
+        if ($type->parent !== "0") {
             // Add the new id to the new parent's children
             array_push($newSiblings, $id);
 
@@ -214,7 +214,7 @@ function updateType($type) {
         /**
          * Remove reference from the old parent
          */
-        if ($originalParentId !== 0) {
+        if ($originalParentId !== "0") {
             $query = sprintf("SELECT children FROM types WHERE id = '%s'",
                 mysql_real_escape_string($originalParentId));
             $result = mysql_query($query);
@@ -351,7 +351,7 @@ function deleteType($id) {
     mysql_query($query);
 
     // Remove children references
-    if ($parentId !== 0) {
+    if ($parentId !== "0") {
         $query = sprintf("SELECT children from types WHERE id = '%s'",
             mysql_real_escape_string($parentId));
         $result = mysql_query($query);

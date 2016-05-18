@@ -39,7 +39,7 @@ export default Ember.Component.extend(AutoFocusMixin, {
         if (this.get('data') === 'new') {
             return this.get('typesService').createNew();
         }
-        return this.get('typesService').getOne(this.get('data'));
+        return Ember.$.extend({}, this.get('typesService').getOne(this.get('data')));
     }),
 
     actions: {
@@ -50,15 +50,7 @@ export default Ember.Component.extend(AutoFocusMixin, {
          * @return {Void}
          */
         cancel() {
-            if (!this.get('type.id')) {
-                this.sendAction('onClose', { message: 'cancel' });
-                return;
-            }
-            this.set('loading', true);
-            this.get('typesService').rollback(this.get('type')).then(() => {
-                this.set('loading', false);
-                this.sendAction('onClose', { message: 'cancel' });
-            });
+            this.sendAction('onClose', { message: 'cancel' });
         },
 
         /**
@@ -69,6 +61,9 @@ export default Ember.Component.extend(AutoFocusMixin, {
          */
         save() {
             this.set('loading', true);
+            if (this.get('data') !== 'new') {
+                this.get('typesService').getOne(this.get('data')).setProperties(this.get('type'));
+            }
             this.get('typesService').save(this.get('type')).then(id => {
                 this.set('loading', false);
                 this.sendAction('onClose', { message: 'saved', id: id });

@@ -34,12 +34,14 @@ export default Ember.Route.extend({
         /**
          * When the user is done creating a new type.
          *
-         * @method actions.doneCreating
+         * @method actions.doneEditing
          * @return {}
          */
-        doneCreating(response) {
+        doneEditng(response) {
             if (response.message === 'saved') {
-                this.transitionTo('type', response.id);
+                this.reload();
+            } else if (response.message === 'deleted') {
+                this.reload();
             }
         }
     }

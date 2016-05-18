@@ -83,12 +83,10 @@ export default Ember.Service.extend(PluralsMixin, {
      * @return {Promise}
      */
     getOne(id) {
-        console.log('get one', id);
         if (id === '0') {
             return Ember.RSVP.resolve();
         }
         if (this.get('data.length')) {
-            console.log('getting one', this.get('data', id));
             return this.get('data').findBy('id', id);
         }
         return this.get('apiService').getItem(this.get('modelName'), id).then(item => {
@@ -98,7 +96,6 @@ export default Ember.Service.extend(PluralsMixin, {
                     item[key] = JSON.parse(value);
                 }
             });
-            console.log('getting one', item, id);
             return item ? this.get('dataModel').create(item) : null;
         });
     },

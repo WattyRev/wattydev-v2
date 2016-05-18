@@ -29,7 +29,7 @@
                 </td>
                 <td>
                     <a href="{{permalinkService.baseTagsUrl}}{{type.slug}}" target="_blank"><i class="fa fa-eye"></i></a>
-                    {{#link-to 'type' type.id}}<i class="fa fa-pencil"></i>{{/link-to}}
+                    {{#modal-link data=type.id component='types/type-form' onClose="doneEditing"}}<i class="fa fa-pencil"></i>{{/modal-link}}
                 </td>
             </tr>
         {{else}}
