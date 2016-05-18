@@ -20,5 +20,11 @@ export default Ember.Component.extend({
      * @type {Boolean}
      * @readOnly
      */
-    isVisible: Ember.computed.bool('apiService.token')
+    isVisible: Ember.computed.bool('apiService.token'),
+
+    actions: {
+        signOut() {
+            this.sendAction('signOut');
+        }
+    }
 });

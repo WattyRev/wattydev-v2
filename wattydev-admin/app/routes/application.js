@@ -45,5 +45,14 @@ export default Ember.Route.extend({
     watchForLogOut: Ember.on('afterModel', function () {
         let apiService = this.get('apiService');
         apiService.on('loggedOut', this, this.loggedOut);
-    })
+    }),
+
+    actions: {
+        signOut() {
+            let api = this.get('apiService');
+            api.signOut();
+            api.set('token', null);
+            this.transitionTo('login');
+        }
+    }
 });

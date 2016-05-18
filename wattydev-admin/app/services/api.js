@@ -136,6 +136,10 @@ export default Ember.Service.extend(Ember.Evented, {
         });
     },
 
+    signOut() {
+        return this._delete('authenticate.php');
+    },
+
     /**
      * Get the path for the specified model.
      *

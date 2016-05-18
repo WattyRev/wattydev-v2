@@ -13,6 +13,8 @@ switch ($method) {
     case 'GET':
         echo getAuthentication();
         break;
+    case 'DELETE':
+        echo removeAuthentication();
     default:
         break;
 }
@@ -86,6 +88,11 @@ function authenticate($POST) {
         return json_encode($response);
     }
 };
+
+function removeAuthentication() {
+    setcookie('auth-token', '', time(), "/");
+    header('HTTP/1.1 200 OK');
+}
 
 function getToken($length) {
     $token = "";
