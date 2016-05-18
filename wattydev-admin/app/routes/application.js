@@ -48,6 +48,12 @@ export default Ember.Route.extend({
     }),
 
     actions: {
+        /**
+         * Sign the user out.
+         *
+         * @method signOut
+         * @return {Void}
+         */
         signOut() {
             let api = this.get('apiService');
             api.signOut();
