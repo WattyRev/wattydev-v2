@@ -17,6 +17,14 @@ export default Ember.Route.extend({
      */
     typesService: Ember.inject.service('types'),
 
+    /**
+     * Instance of the alerts service.
+     *
+     * @property alertsService
+     * @type {Ember.Service}
+     */
+    alertsService: Ember.inject.service('alerts'),
+
     beforeModel() {
         // Preload posts
         return this.get('postsService').getAll();
@@ -37,11 +45,13 @@ export default Ember.Route.extend({
          * @method actions.doneEditing
          * @return {}
          */
-        doneEditng(response) {
+        doneEditing(response) {
             if (response.message === 'saved') {
-                this.reload();
+                this.get('alertsService').success('Your type has been saved.');
+                this.refresh();
             } else if (response.message === 'deleted') {
-                this.reload();
+                this.get('alertsService').success('Your type has been deleted.');
+                this.refresh();
             }
         }
     }

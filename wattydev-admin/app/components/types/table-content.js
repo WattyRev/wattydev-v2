@@ -108,8 +108,8 @@ export default Ember.Component.extend({
          * @method doneEditing
          * @return {Void}
          */
-        doneEditing() {
-            this.sendAction('doneEditing');
+        doneEditing(data) {
+            this.sendAction('doneEditing', data);
         }
     }
 });
