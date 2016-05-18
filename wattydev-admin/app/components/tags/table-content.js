@@ -38,7 +38,7 @@ export default Ember.Component.extend({
         // Get the number of posts for each tag
         let parsed = Ember.makeArray(tags.map(tag => {
             tag = Ember.$.extend(Ember.Object.create(), tag);
-            tag.set('numPosts', posts.filter(post => post.get('tags').indexOf(tag.get('id'))).length);
+            tag.set('numPosts', posts.filter(post => post.get('tags').indexOf(tag.get('id')) > -1).length);
 
             return tag;
         }));
