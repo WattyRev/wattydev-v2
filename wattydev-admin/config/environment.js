@@ -46,7 +46,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-      ENV.baseURL = '/admin/';
+      ENV.baseURL = '/site/admin/';
   }
 
   return ENV;
