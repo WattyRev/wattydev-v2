@@ -16,6 +16,8 @@ function getData() {
         return $post->type !== "46" && $post->type !== 46;
     });
 
+    var_dump($posts);
+
     // Set recent blog posts
     $data->$blog = array_filter($posts->posts, function ($post) {
         return $post->type === "46" || $post->type === 46;
