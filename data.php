@@ -15,8 +15,10 @@ class DataService {
         $post->slug = mysql_result($result, $i, 'slug');
         $post->referenceUrl = mysql_result($result, $i, 'reference_url');
 
-        // get the type
         $typeId = mysql_result($result, $i, 'type');
+        $tagIds = json_decode(mysql_result($result, $i, 'tags'));
+
+        // get the type
         $query = sprintf("SELECT * FROM types WHERE id = '%s'",
             mysql_real_escape_string($typeId));
         $result = mysql_query($query);
@@ -26,7 +28,6 @@ class DataService {
 
         // get the tags
         $post->tag = array();
-        $tagIds = json_decode(mysql_result($result, $i, 'tags'));
         foreach($tagIds as $tagId) {
             $query = sprintf("SELECT * FROM tags WHERE id = '%s'",
                 mysql_real_escape_string($tagId));
