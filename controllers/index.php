@@ -9,7 +9,7 @@ $data = (object) array_merge((array) $data, (array) getData());
 
 function getData() {
     global $DS;
-    $posts = $DS->ds_getPosts();
+    $posts = $DS->getPosts();
 
     $data = (object) array();
     // Set recent portfolio items
