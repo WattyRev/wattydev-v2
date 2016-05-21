@@ -8,6 +8,7 @@ $data = (object) array(
 $data = (object) array_merge((array) $data, (array) getData());
 
 function getData() {
+    global $DS;
     $posts = $DS->ds_getPosts();
 
     $data = (object) array();
