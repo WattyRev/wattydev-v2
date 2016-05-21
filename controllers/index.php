@@ -5,7 +5,7 @@ $data = (object) array();
 init();
 
 function init() {
-    $posts = $DS::getPosts();
+    $posts = DataService::getPosts();
 
     // Set recent portfolio items
     $data->portfolio = array_filter($posts->posts, function ($post) {
