@@ -1,7 +1,7 @@
 <?php
 include 'api/database_connect.php';
 
-$ds_getPosts = function() {
+function ds_getPosts() {
     // Get all posts
     $query = sprintf("SELECT * FROM posts ORDER BY created");
     $result = mysql_query($query);
@@ -31,7 +31,7 @@ $ds_getPosts = function() {
 };
 
 
-$ds_getPost = function ($slug) {
+function ds_getPost($slug) {
     // Get post
     $query = sprintf("SELECT * FROM posts WHERE slug = '%s'",
         mysql_real_escape_string($slug));
@@ -60,7 +60,7 @@ $ds_getPost = function ($slug) {
     return $post;
 };
 
-$ds_getTag = function ($slug) {
+function ds_getTag($slug) {
     // Get tag
     $query = sprintf("SELECT * FROM tags WHERE slug = '%s'",
         mysql_real_escape_string($slug));
@@ -104,7 +104,7 @@ $ds_getTag = function ($slug) {
     return $tag;
 };
 
-$ds_getType = function ($slug) {
+function ds_getType($slug) {
     // Get type
     $query = sprintf("SELECT * FROM types WHERE slug = '%s'",
         mysql_real_escape_string($slug));
