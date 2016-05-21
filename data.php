@@ -9,7 +9,6 @@ class DataService {
         $post->created = mysql_result($result, $i, 'created');
         $post->updated = mysql_result($result, $i, 'updated');
         $post->content = mysql_result($result, $i, 'content');
-        $post->featuredImage = mysql_result($result, $i, 'featured_image');
         $post->title = mysql_result($result, $i, 'title');
         $post->status = mysql_result($result, $i, 'status');
         $post->slug = mysql_result($result, $i, 'slug');
@@ -17,6 +16,20 @@ class DataService {
 
         $typeId = mysql_result($result, $i, 'type');
         $tagIds = json_decode(mysql_result($result, $i, 'tags'));
+        $imageId = mysql_result($result, $i, 'featured_image');
+
+        // get the image
+        $query = sprintf("SELECT * FROM images WHERE id = '%s'",
+            mysql_real_escape_string($imageId));
+        $result = mysql_query($query);
+        if(mysql_num_rows($result)) {
+            $post->featuredImage = (object) array();
+            $post->featuredImage->id = mysql_result($result, $i, 'id');
+            $post->featuredImage->created = mysql_result($result, $i, 'created');
+            $post->featuredImage->title = mysql_result($result, $i, 'title');
+            $post->featuredImage->description = mysql_result($result, $i, 'description');
+            $post->featuredImage->url = mysql_result($result, $i, 'url');
+        }
 
         // get the type
         $query = sprintf("SELECT * FROM types WHERE id = '%s'",
