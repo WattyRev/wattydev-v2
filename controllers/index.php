@@ -14,15 +14,13 @@ function getData() {
     $data = (object) array();
     // Set recent portfolio items
     $data->portfolio = array_filter($posts->posts, function ($post) {
-        return $post->type !== "46" && $post->type !== 46;
+        return $post->type->title !== "Blog";
     });
 
     // Set recent blog posts
     $data->blog = array_filter($posts->posts, function ($post) {
-        return $post->type === "46" || $post->type === 46;
+        return $post->type->title === "Blog";
     });
 
     return $data;
 }
-
-var_dump($data);

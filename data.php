@@ -2,6 +2,65 @@
 include 'api/database_connect.php';
 
 class DataService {
+    // Build the post data structure
+    public function buidPost($result, $i) {
+        $post = (object) array();
+        $post->id = mysql_result($result, $i, 'id');
+        $post->created = mysql_result($result, $i, 'created');
+        $post->updated = mysql_result($result, $i, 'updated');
+        $post->content = mysql_result($result, $i, 'content');
+        $post->featuredImage = mysql_result($result, $i, 'featured_image');
+        $post->title = mysql_result($result, $i, 'title');
+        $post->status = mysql_result($result, $i, 'status');
+        $post->slug = mysql_result($result, $i, 'slug');
+        $post->referenceUrl = mysql_result($result, $i, 'reference_url');
+
+        // get the type
+        $typeId = mysql_result($result, $i, 'type');
+        $query = sprintf("SELECT * FROM types WHERE id = '%s'",
+            mysql_real_escape_string($typeId));
+        $result = mysql_query($query);
+        if(mysql_num_rows($result)) {
+            $post->type = $this->buildType($result, 0);
+        }
+
+        // get the tags
+        $post->tag = array();
+        foreach(json_decode(mysql_result($result, $i, 'tags')) as $tagId) {
+            $query = sprintf("SELECT * FROM tags WHERE id = '%s'",
+                mysql_real_escape_string($tagId));
+            $result = mysql_query($query);
+
+            if(mysql_num_rows($result)) {
+                array_push($post->tag, $this->buildTag($result, 0));
+            }
+        }
+        return $post;
+    }
+
+    // Build the tag data structure
+    public function buildTag($result, $i) {
+        $tag = (object) array();
+        $tag->id = mysql_result($result, $i, 'id');
+        $tag->title = mysql_result($result, $i, 'title');
+        $tag->slug = mysql_result($result, $i, 'slug');
+        $tag->posts = array();
+        return $tag;
+    }
+
+    // Build the type data structure
+    public function buildType($result, $i) {
+        $type = (object) array();
+        $type->id = mysql_result($result, $i, 'id');
+        $type->title = mysql_result($result, $i, 'title');
+        $type->slug = mysql_result($result, $i, 'slug');
+        $type->parent = mysql_result($result, $i, 'parent');
+        $type->children = json_decode(mysql_result($result, $i, 'children'));
+        $type->posts = array();
+        return $type;
+    }
+
+    // Get all posts
     public function getPosts() {
         // Get all posts
         $query = sprintf("SELECT * FROM posts ORDER BY created");
@@ -12,19 +71,7 @@ class DataService {
         $posts = (object) array();
         $posts->posts = array();
         for($i = 0; $i < $num; $i++) {
-            $post = (object) array();
-            $post->id = mysql_result($result, $i, 'id');
-            $post->created = mysql_result($result, $i, 'created');
-            $post->updated = mysql_result($result, $i, 'updated');
-            $post->content = mysql_result($result, $i, 'content');
-            $post->featuredImage = mysql_result($result, $i, 'featured_image');
-            $post->title = mysql_result($result, $i, 'title');
-            $post->tags = mysql_result($result, $i, 'tags');
-            $post->type = mysql_result($result, $i, 'type');
-            $post->status = mysql_result($result, $i, 'status');
-            $post->slug = mysql_result($result, $i, 'slug');
-            $post->referenceUrl = mysql_result($result, $i, 'reference_url');
-            array_push($posts->posts, $post);
+            array_push($posts->posts, $this->buildPost($result, $i));
         }
         mysql_close();
 
@@ -43,18 +90,7 @@ class DataService {
         }
 
         // Generate the data structure
-        $post = (object) array();
-        $post->id = mysql_result($result, 0, 'id');
-        $post->created = mysql_result($result, 0, 'created');
-        $post->updated = mysql_result($result, 0, 'updated');
-        $post->content = mysql_result($result, 0, 'content');
-        $post->featuredImage = mysql_result($result, 0, 'featured_image');
-        $post->title = mysql_result($result, 0, 'title');
-        $post->tags = mysql_result($result, 0, 'tags');
-        $post->type = mysql_result($result, 0, 'type');
-        $post->status = mysql_result($result, 0, 'status');
-        $post->slug = mysql_result($result, 0, 'slug');
-        $post->referenceUrl = mysql_result($result, 0, 'reference_url');
+        $post = $this->buildPost($result, 0);
         mysql_close();
 
         return $post;
@@ -72,11 +108,7 @@ class DataService {
         }
 
         // Generate the data structure
-        $tag = (object) array();
-        $tag->id = mysql_result($result, 0, 'id');
-        $tag->title = mysql_result($result, 0, 'title');
-        $tag->slug = mysql_result($result, 0, 'slug');
-        $tag->posts = array();
+        $tag = $this->buildTag($result, 0);
 
         // Get the relevant posts
         $query = "SELECT * from posts WHERE tags LIKE '%[$tag->id]%' OR tags LIKE '%[$tag->id,' OR tags LIKE '%,$tag->id,%' OR tags LIKE '%,$tag->id]%'";
@@ -84,19 +116,7 @@ class DataService {
         $num = mysql_num_rows($result);
         if ($num > 0) {
             for($i = 0; $i < $num; $i++) {
-                $post = (object) array();
-                $post->id = mysql_result($result, $i, 'id');
-                $post->created = mysql_result($result, $i, 'created');
-                $post->updated = mysql_result($result, $i, 'updated');
-                $post->content = mysql_result($result, $i, 'content');
-                $post->featuredImage = mysql_result($result, $i, 'featured_image');
-                $post->title = mysql_result($result, $i, 'title');
-                $post->tags = mysql_result($result, $i, 'tags');
-                $post->type = mysql_result($result, $i, 'type');
-                $post->status = mysql_result($result, $i, 'status');
-                $post->slug = mysql_result($result, $i, 'slug');
-                $post->referenceUrl = mysql_result($result, $i, 'reference_url');
-                array_push($tag->posts, $post);
+                array_push($tag->posts, $this->buildPost($result, $i));
             }
         }
         mysql_close();
@@ -116,13 +136,7 @@ class DataService {
         }
 
         // Generate the data structure
-        $type = (object) array();
-        $type->id = mysql_result($result, 0, 'id');
-        $type->title = mysql_result($result, 0, 'title');
-        $type->slug = mysql_result($result, 0, 'slug');
-        $type->parent = mysql_result($result, 0, 'parent');
-        $type->children = json_decode(mysql_result($result, 0, 'children'));
-        $type->posts = array();
+        $type = $this->buildType($result, 0);
 
         // Get relevant posts
         $query = sprintf("SELECT * FROM posts WHERE type = '%s'",
@@ -130,19 +144,7 @@ class DataService {
         $result = mysql_query($query);
         if ($num > 0) {
             for($i = 0; $i < $num; $i++) {
-                $post = (object) array();
-                $post->id = mysql_result($result, $i, 'id');
-                $post->created = mysql_result($result, $i, 'created');
-                $post->updated = mysql_result($result, $i, 'updated');
-                $post->content = mysql_result($result, $i, 'content');
-                $post->featuredImage = mysql_result($result, $i, 'featured_image');
-                $post->title = mysql_result($result, $i, 'title');
-                $post->tags = mysql_result($result, $i, 'tags');
-                $post->type = mysql_result($result, $i, 'type');
-                $post->status = mysql_result($result, $i, 'status');
-                $post->slug = mysql_result($result, $i, 'slug');
-                $post->referenceUrl = mysql_result($result, $i, 'reference_url');
-                array_push($type->posts, $post);
+                array_push($type->posts, $this->buildPost($result, $i));
             }
         }
         mysql_close();
