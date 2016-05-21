@@ -10,6 +10,8 @@ $directory = explode('/', $uri)[1];
 if ($directory === "") {
     $directory = "/";
 }
-var_dump($uri);
-var_dump($directory);
-echo 'You got routed, son!';
+if (isset($uriMap[$directory])) {
+    include $uriMap[$directory];
+} else {
+    include $uriMap["*"];
+}
