@@ -26,7 +26,8 @@ class DataService {
 
         // get the tags
         $post->tag = array();
-        foreach(json_decode(mysql_result($result, $i, 'tags')) as $tagId) {
+        $tagIds = json_decode(mysql_result($result, $i, 'tags'));
+        foreach($tagIds as $tagId) {
             $query = sprintf("SELECT * FROM tags WHERE id = '%s'",
                 mysql_real_escape_string($tagId));
             $result = mysql_query($query);
