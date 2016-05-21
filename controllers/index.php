@@ -4,8 +4,8 @@ include 'functions.php';
 $data = (object) array(
     'title' => false
 );
-var_dump($data);
-$data = array_merge((array) $data, (array) getData());
+
+$data = (object) array_merge((array) $data, (array) getData());
 
 function getData() {
     $posts = ds_getPosts();
