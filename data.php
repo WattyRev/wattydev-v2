@@ -4,7 +4,7 @@ include 'api/database_connect.php';
 class DataService {
     public function getPosts() {
         // Get all posts
-        $query = sprintf("SELECT * FROM posts");
+        $query = sprintf("SELECT * FROM posts ORDER BY created");
         $result = mysql_query($query);
         $num = mysql_num_rows($result);
 
