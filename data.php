@@ -3,7 +3,7 @@ include 'api/database_connect.php';
 
 class DataService {
     // Build the post data structure
-    public function buidPost($result, $i) {
+    private function buidPost($result, $i) {
         $post = (object) array();
         $post->id = mysql_result($result, $i, 'id');
         $post->created = mysql_result($result, $i, 'created');
@@ -39,7 +39,7 @@ class DataService {
     }
 
     // Build the tag data structure
-    public function buildTag($result, $i) {
+    private function buildTag($result, $i) {
         $tag = (object) array();
         $tag->id = mysql_result($result, $i, 'id');
         $tag->title = mysql_result($result, $i, 'title');
@@ -49,7 +49,7 @@ class DataService {
     }
 
     // Build the type data structure
-    public function buildType($result, $i) {
+    private function buildType($result, $i) {
         $type = (object) array();
         $type->id = mysql_result($result, $i, 'id');
         $type->title = mysql_result($result, $i, 'title');
