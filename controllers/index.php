@@ -4,6 +4,7 @@ include 'functions.php';
 $data = (object) array(
     'title' => false
 );
+var_dump($data);
 init();
 
 function init() {
