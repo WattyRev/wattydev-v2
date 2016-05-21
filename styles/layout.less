@@ -6,6 +6,7 @@ body {
 a {
     cursor: pointer;
     color: #000;
+    text-decoration: none;
     &:hover {
         color: @gray-darkest;
     }
@@ -16,7 +17,7 @@ header {
     left: 0;
     right: 0;
     padding: 7px 10px 25px;
-    box-shadow: 2px 44px 20px -12px #fff inset;
+    box-shadow: 2px 44px 20px -12px @blue inset;
 
     nav {
         float: left;
@@ -30,10 +31,13 @@ header {
             }
         }
     }
+    .brand {
+        float: right;
+    }
 }
 
 .container {
-    max-width: @screen-lg;
+    max-width: @screen-xl;
     margin: 0 auto;
 }
 .clearfix:after {

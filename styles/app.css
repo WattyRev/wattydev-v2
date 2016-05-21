@@ -6,6 +6,7 @@ body {
 a {
   cursor: pointer;
   color: #000;
+  text-decoration: none;
 }
 a:hover {
   color: #141414;
@@ -16,7 +17,7 @@ header {
   left: 0;
   right: 0;
   padding: 7px 10px 25px;
-  box-shadow: 2px 44px 20px -12px #fff inset;
+  box-shadow: 2px 44px 20px -12px #00638A inset;
 }
 header nav {
   float: left;
@@ -30,8 +31,11 @@ header nav a.active,
 header nav a:hover {
   opacity: 1;
 }
+header .brand {
+  float: right;
+}
 .container {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 .clearfix:after {
@@ -41,4 +45,7 @@ header nav a:hover {
 }
 .home section {
   width: 100%;
+}
+.home .about-section {
+  background: #00638A;
 }
