@@ -1,0 +1,35 @@
+{
+  "name": "wattydev",
+  "version": "1.0.0",
+  "description": "My portfolio website",
+  "main": "router.php",
+  "scripts": {
+    "start": "grunt run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WattyRev/wattydev-v2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WattyRev/wattydev-v2/issues"
+  },
+  "homepage": "https://github.com/WattyRev/wattydev-v2#readme",
+  "devDependencies": {
+    "connect-livereload": "^0.5.3",
+    "connect-modrewrite": "^0.8.2",
+    "grunt": "~0.4.5",
+    "grunt-connect-rewrite": "^0.2.1",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-connect": "^0.11.2",
+    "grunt-contrib-copy": "^0.8.2",
+    "grunt-contrib-cssmin": "^0.14.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-less": "^1.0.1",
+    "grunt-contrib-nodeunit": "~0.4.1",
+    "grunt-contrib-uglify": "^0.10.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-injector": "^0.6.0"
+  }
+}
