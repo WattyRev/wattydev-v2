@@ -2,5 +2,5 @@ Options -MultiViews
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ router.php [QSA,L]
-RewriteRule ^beta/api.*$ http://wattydev.com/beta/api/ [R=301,L]
-RewriteRule ^beta/admin.*$ http://wattydev.com/beta/admin/index.html [R=301,L]
+RewriteRule ^site/api.*$ http://wattydev.com/beta/api/ [R=301,L]
+RewriteRule ^site/admin.*$ http://wattydev.com/beta/admin/index.html [R=301,L]
