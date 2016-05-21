@@ -7,7 +7,7 @@ export default Ember.Service.extend({
      * @property publicRoot
      * @type {String}
      */
-    publicRoot: 'http://wattydev.com/beta/',
+    publicRoot: 'http://wattydev.com/',
 
     /**
      * The path for the admin site.
@@ -23,7 +23,7 @@ export default Ember.Service.extend({
      * @property imagesPath
      * @type {String}
      */
-    imagesPath: 'images/',
+    imagesPath: 'site/images/',
 
     /**
      * The path for the tags directory.
@@ -47,7 +47,7 @@ export default Ember.Service.extend({
      * @property apiPath
      * @type {String}
      */
-    apiPath: 'api/',
+    apiPath: 'site/api/',
 
     /**
      * The url for the images directory.
