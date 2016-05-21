@@ -21,7 +21,7 @@ class DataService {
             mysql_real_escape_string($typeId));
         $result = mysql_query($query);
         if(mysql_num_rows($result)) {
-            $post->type = self->buildType($result, 0);
+            $post->type = self::buildType($result, 0);
         }
 
         // get the tags
@@ -32,7 +32,7 @@ class DataService {
             $result = mysql_query($query);
 
             if(mysql_num_rows($result)) {
-                array_push($post->tag, self->buildTag($result, 0));
+                array_push($post->tag, self::buildTag($result, 0));
             }
         }
         return $post;
@@ -71,7 +71,7 @@ class DataService {
         $posts = (object) array();
         $posts->posts = array();
         for($i = 0; $i < $num; $i++) {
-            array_push($posts->posts, self->buildPost($result, $i));
+            array_push($posts->posts, self::buildPost($result, $i));
         }
         mysql_close();
 
@@ -90,7 +90,7 @@ class DataService {
         }
 
         // Generate the data structure
-        $post = self->buildPost($result, 0);
+        $post = self::buildPost($result, 0);
         mysql_close();
 
         return $post;
@@ -108,7 +108,7 @@ class DataService {
         }
 
         // Generate the data structure
-        $tag = self->buildTag($result, 0);
+        $tag = self::buildTag($result, 0);
 
         // Get the relevant posts
         $query = "SELECT * from posts WHERE tags LIKE '%[$tag->id]%' OR tags LIKE '%[$tag->id,' OR tags LIKE '%,$tag->id,%' OR tags LIKE '%,$tag->id]%'";
@@ -116,7 +116,7 @@ class DataService {
         $num = mysql_num_rows($result);
         if ($num > 0) {
             for($i = 0; $i < $num; $i++) {
-                array_push($tag->posts, self->buildPost($result, $i));
+                array_push($tag->posts, self::buildPost($result, $i));
             }
         }
         mysql_close();
@@ -136,7 +136,7 @@ class DataService {
         }
 
         // Generate the data structure
-        $type = self->buildType($result, 0);
+        $type = self::buildType($result, 0);
 
         // Get relevant posts
         $query = sprintf("SELECT * FROM posts WHERE type = '%s'",
@@ -144,7 +144,7 @@ class DataService {
         $result = mysql_query($query);
         if ($num > 0) {
             for($i = 0; $i < $num; $i++) {
-                array_push($type->posts, self->buildPost($result, $i));
+                array_push($type->posts, self::buildPost($result, $i));
             }
         }
         mysql_close();
