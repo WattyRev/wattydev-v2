@@ -24,11 +24,11 @@ class DataService {
         $result = mysql_query($query);
         if(mysql_num_rows($result)) {
             $post->featuredImage = (object) array();
-            $post->featuredImage->id = mysql_result($result, $i, 'id');
-            $post->featuredImage->created = mysql_result($result, $i, 'created');
-            $post->featuredImage->title = mysql_result($result, $i, 'title');
-            $post->featuredImage->description = mysql_result($result, $i, 'description');
-            $post->featuredImage->url = mysql_result($result, $i, 'url');
+            $post->featuredImage->id = mysql_result($result, 0, 'id');
+            $post->featuredImage->created = mysql_result($result, 0, 'created');
+            $post->featuredImage->title = mysql_result($result, 0, 'title');
+            $post->featuredImage->description = mysql_result($result, 0, 'description');
+            $post->featuredImage->url = mysql_result($result, 0, 'url');
         }
 
         // get the type
