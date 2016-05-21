@@ -1,4 +1,4 @@
 <?php
-$basepath = implode('/', array_slice(explode('/', $_SERVER['SCRIPT_NAME']), 0, -1)) . '/';
-var_dump($basepath);
+$uri = substr($_SERVER['REQUEST_URI'], strlen($basepath));
+var_dump($uri);
 echo 'You got routed, son!';
