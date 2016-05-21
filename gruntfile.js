@@ -9,12 +9,8 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-injector');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Project configuration.
   grunt.initConfig({
@@ -22,7 +18,7 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: ['**/*.less'],
-        tasks: ['clean', 'less:development'],
+        tasks: ['less:development'],
         options: {
           spawn: false,
         },

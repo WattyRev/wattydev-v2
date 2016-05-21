@@ -1,0 +1,44 @@
+body {
+  font-family: sans-serif;
+  padding-top: 50px;
+  margin: 0;
+}
+a {
+  cursor: pointer;
+  color: #000;
+}
+a:hover {
+  color: #141414;
+}
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 7px 10px 25px;
+  box-shadow: 2px 44px 20px -12px #fff inset;
+}
+header nav {
+  float: left;
+}
+header nav a {
+  opacity: .8;
+  transition: .2s opacity;
+  margin-right: 10px;
+}
+header nav a.active,
+header nav a:hover {
+  opacity: 1;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.home section {
+  width: 100%;
+}

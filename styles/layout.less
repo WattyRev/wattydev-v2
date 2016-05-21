@@ -1,0 +1,43 @@
+body {
+    font-family: sans-serif;
+    padding-top: 50px;
+    margin: 0;
+}
+a {
+    cursor: pointer;
+    color: #000;
+    &:hover {
+        color: @gray-darkest;
+    }
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 7px 10px 25px;
+    box-shadow: 2px 44px 20px -12px #fff inset;
+
+    nav {
+        float: left;
+        a {
+            opacity: .8;
+            transition: .2s opacity;
+            margin-right: 10px;
+
+            &.active, &:hover {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.container {
+    max-width: @screen-lg;
+    margin: 0 auto;
+}
+.clearfix:after {
+    content: '';
+    display: block;
+    clear: both;
+}
