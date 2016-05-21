@@ -3,7 +3,7 @@ include 'api/database_connect.php';
 
 class DataService {
     // Build the post data structure
-    private function buidPost($result, $i) {
+    private function buildPost($result, $i) {
         $post = (object) array();
         $post->id = mysql_result($result, $i, 'id');
         $post->created = mysql_result($result, $i, 'created');
