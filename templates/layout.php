@@ -7,7 +7,7 @@
             <title>WattyDev.com | <?php echo $data->title; ?></title>
         <?php endif; ?>
 
-        <link rel="stylesheet" href="/styles/app.css" />
+        <link rel="stylesheet" href="/site/styles/app.css" />
     </head>
     <body>
         <header>
