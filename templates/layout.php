@@ -18,6 +18,6 @@
                 Spencer Watson
             </div>
         </header>
-        <?php include $template ?>
+        <?php include 'templates/'.$template ?>
     </body>
 </html>

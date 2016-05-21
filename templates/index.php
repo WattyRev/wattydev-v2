@@ -1,6 +1,6 @@
 <section class="about-section">
     <div class="container">
-        <?php include 'aboutSvg.php'; ?>
+        <?php include 'svg/aboutSvg.php'; ?>
 
         <article>
             <h1>This is me.</h1>
@@ -44,12 +44,12 @@
             </ul>
         </article>
 
-        <?php include 'projectsSvg.php'; ?>
+        <?php include 'svg/projectsSvg.php'; ?>
     </div>
 </section>
 <section class="blog-section">
     <div class="container">
-        <?php include 'blogSvg.php'; ?>
+        <?php include 'svg/blogSvg.php'; ?>
 
         <article>
             <h1>This is waht I talk about.</h1>

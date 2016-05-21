@@ -33,4 +33,4 @@ $router = new Router();
 $template = $router->getTemplate();
 
 include 'controllers/'.$template;
-include 'layout.php';
+include 'templates/layout.php';
