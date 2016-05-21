@@ -1,6 +1,6 @@
 <?php
 $uri = substr($_SERVER['REQUEST_URI'], strlen($basepath));
-$uriMap = (object) array(
+$uriMap = array(
     "/" => "index.php",
     "tag" => "tag.php",
     "type" => "type.php",
