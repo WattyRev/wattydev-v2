@@ -6,7 +6,7 @@ $uriMap = (object) array(
     "type" => "type.php",
     "*" => "post.php"
 );
-$directory = $uri.explode('/');
+$directory = explode('/', $uri);
 var_dump($uri);
 var_dump($directory);
 echo 'You got routed, son!';
