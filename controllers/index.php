@@ -1,7 +1,9 @@
 <?php
 include 'functions.php';
 
-$data = (object) array();
+$data = (object) array(
+    'title' => false
+);
 init();
 
 function init() {
