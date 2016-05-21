@@ -13,10 +13,10 @@ module.exports = function(environment) {
         'connect-src': "'self' ws://localhost:49152 ws://0.0.0.0:49152 http://0.0.0.0:4200/csp-report http://wattydev.com"
     },
     EmberENV: {
-      FEATURES: {
+        FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
-      }
+        }
     },
 
     APP: {
