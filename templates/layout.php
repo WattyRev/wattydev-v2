@@ -11,7 +11,7 @@
     </head>
     <body>
         <header>
-            <div class="container clearfix">>
+            <div class="container clearfix">
                 <a href="/" class="brand">
                     Spencer Watson
                 </a>

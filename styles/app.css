@@ -11,6 +11,7 @@ small {
 a {
   cursor: pointer;
   text-decoration: none;
+  color: #fff;
 }
 a:hover {
   color: #e6e6e6;
@@ -33,6 +34,7 @@ header {
   background: #231F20;
 }
 header nav a {
+  display: inline-block;
   margin-right: 10px;
 }
 .container {
