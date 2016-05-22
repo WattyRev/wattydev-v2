@@ -6,7 +6,7 @@
         <?php else: ?>
             <title>WattyDev.com | <?php echo $data->title; ?></title>
         <?php endif; ?>
-
+        <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="/site/styles/app.css" />
     </head>
     <body>
