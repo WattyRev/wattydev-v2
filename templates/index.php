@@ -6,7 +6,7 @@
             <article>
                 <?php include 'svg/arrow.php'; ?>
                 <h1>This is me.</h1>
-                <p>I’m Spencer, and I’m a frontend developer. I build stuff and post about it here. I also post about other techy things sometimes.</p>
+                <p>I'm Spencer, and I’m a frontend developer. I build stuff and post about it here. I also post about other techy things sometimes.</p>
 
                 <div class="contact-links">
                     <a href="https://www.linkedin.com/in/spencer-watson-921a7043" target="_blank">in</a>

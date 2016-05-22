@@ -18,7 +18,7 @@ a:hover {
 }
 h1 {
   font-family: 'Architects Daughter', cursive;
-  font-size: 42;
+  font-size: 42px;
 }
 @media screen and (max-width: 400px) {
   h1 {
@@ -86,7 +86,7 @@ section {
 .home .about-section article .arrow-svg {
   position: absolute;
   top: 0;
-  left: -50%;
+  left: -200px;
   width: 200px;
 }
 .home .about-section article .contact-links {
