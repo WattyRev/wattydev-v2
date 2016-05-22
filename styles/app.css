@@ -19,6 +19,7 @@ a:hover {
 h1 {
   font-family: 'Architects Daughter', cursive;
   font-size: 42px;
+  margin: 5px 0 10px;
 }
 @media screen and (max-width: 400px) {
   h1 {
@@ -70,10 +71,10 @@ section {
   height: 400px;
 }
 .home .about-section .about-svg {
-  width: 350px;
+  width: 456px;
   position: absolute;
-  bottom: -20px;
-  left: -100px;
+  bottom: -45px;
+  left: -92px;
 }
 .home .about-section article {
   position: relative;
@@ -81,28 +82,32 @@ section {
   width: 60%;
 }
 .home .about-section article h1 {
-  padding-left: 80px;
+  padding-left: 115px;
 }
 .home .about-section article .arrow-svg {
   position: absolute;
-  top: 0;
+  top: 26px;
   left: -100px;
   width: 200px;
 }
 .home .about-section article .contact-links {
-  text-align: left;
+  text-align: right;
 }
 .home .about-section article .contact-links a {
   display: inline-block;
-  height: 20px;
-  width: 20px;
+  height: 27px;
+  width: 27px;
+  text-align: center;
   border: 1px solid #fff;
   border-radius: 8px;
   margin-left: 10px;
 }
 .home .about-section article .contact-links .mail-svg {
-  max-width: 100%;
+  max-width: 70%;
   max-height: 100%;
+  stroke-width: 2px;
+  position: relative;
+  top: -2px;
 }
 .home .about-section article .email-form {
   display: none;
@@ -110,7 +115,7 @@ section {
 .home .portfolio-section .projects-svg {
   position: absolute;
   top: 10%;
-  left: -30%;
+  right: -30%;
 }
 .home .blog-section article {
   float: right;
