@@ -54,7 +54,7 @@ section.gray {
   background: #231F20;
 }
 section.blue {
-  background: blue;
+  background: #00AEEF;
 }
 section {
   position: relative;
@@ -87,6 +87,7 @@ section {
   position: absolute;
   top: 0;
   left: -50%;
+  width: 200px;
 }
 .home .about-section article .contact-links {
   text-align: left;
