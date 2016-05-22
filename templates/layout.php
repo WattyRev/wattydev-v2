@@ -11,15 +11,15 @@
     </head>
     <body>
         <header>
-            <div class="container clearfix">
+            <div class="container clearfix">>
+                <a href="/" class="brand">
+                    Spencer Watson
+                </a>
                 <nav>
                     <a class="about-link">About</a>
                     <a class="portfolio-link">Projects</a>
                     <a class="blog-link">Blog</a>
-                </nav>
-                <a href="/" class="brand">
-                    Spencer Watson
-                </a>
+                </nav
             </div>
         </header>
         <?php include 'templates/'.$template ?>

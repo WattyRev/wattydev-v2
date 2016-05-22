@@ -1,13 +1,26 @@
 body {
     font-family: sans-serif;
     margin: 0;
+    font-size: 16px;
+    color: #fff;
+    padding-top: 30px;
+}
+small {
+    font-size: 14px;
 }
 a {
     cursor: pointer;
-    color: #000;
     text-decoration: none;
     &:hover {
-        color: @gray-darkest;
+        color: darken(#fff, 10%);
+    }
+}
+h1 {
+    font-family: 'Architects Daughter', cursive;
+    font-size: 42;
+
+    @media screen and (max-width: @screen-sm) {
+        font-size: 27px;
     }
 }
 header {
@@ -15,32 +28,33 @@ header {
     top: 0;
     left: 0;
     right: 0;
-    padding: 7px 10px 25px;
-    box-shadow: 2px 44px 20px -12px #fff inset;
+    padding: 7px 10px;
+    background: @gray;
 
-    nav {
-        float: left;
-        a {
-            opacity: .8;
-            transition: .2s opacity;
-            margin-right: 10px;
-
-            &.active, &:hover {
-                opacity: 1;
-            }
-        }
-    }
-    .brand {
-        float: right;
+    nav a {
+        margin-right: 10px;
     }
 }
 
 .container {
     max-width: @screen-xl;
     margin: 0 auto;
+    position: relative;
 }
 .clearfix:after {
     content: '';
     display: block;
     clear: both;
+}
+section.gray {
+    background: @gray;
+}
+section.blue {
+    background: blue;
+}
+section {
+    position: relative;
+    width: 100vw;
+    overflow: hidden;
+    padding: 40px 15px;
 }

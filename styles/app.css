@@ -1,51 +1,139 @@
 body {
   font-family: sans-serif;
   margin: 0;
+  font-size: 16px;
+  color: #fff;
+  padding-top: 30px;
+}
+small {
+  font-size: 14px;
 }
 a {
   cursor: pointer;
-  color: #000;
   text-decoration: none;
 }
 a:hover {
-  color: #141414;
+  color: #e6e6e6;
+}
+h1 {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 42;
+}
+@media screen and (max-width: 400px) {
+  h1 {
+    font-size: 27px;
+  }
 }
 header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  padding: 7px 10px 25px;
-  box-shadow: 2px 44px 20px -12px #fff inset;
-}
-header nav {
-  float: left;
+  padding: 7px 10px;
+  background: #231F20;
 }
 header nav a {
-  opacity: .8;
-  transition: .2s opacity;
   margin-right: 10px;
-}
-header nav a.active,
-header nav a:hover {
-  opacity: 1;
-}
-header .brand {
-  float: right;
 }
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
 }
 .clearfix:after {
   content: '';
   display: block;
   clear: both;
 }
-.home section {
-  width: 100%;
+section.gray {
+  background: #231F20;
+}
+section.blue {
+  background: blue;
+}
+section {
+  position: relative;
+  width: 100vw;
+  overflow: hidden;
+  padding: 40px 15px;
+}
+.home {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 21px;
 }
 .home .about-section {
-  padding-top: 20px;
-  background: #00638A;
+  height: 400px;
+}
+.home .about-section .about-svg {
+  width: 350px;
+  position: absolute;
+  bottom: -20px;
+  left: -100px;
+}
+.home .about-section article {
+  position: relative;
+  float: right;
+  width: 60%;
+}
+.home .about-section article h1 {
+  padding-left: 80px;
+}
+.home .about-section article .arrow-svg {
+  position: absolute;
+  top: 0;
+  left: -50%;
+}
+.home .about-section article .contact-links {
+  text-align: left;
+}
+.home .about-section article .contact-links a {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  margin-left: 10px;
+}
+.home .about-section article .contact-links .mail-svg {
+  max-width: 100%;
+  max-height: 100%;
+}
+.home .about-section article .email-form {
+  display: none;
+}
+.home .portfolio-section .projects-svg {
+  position: absolute;
+  top: 10%;
+  left: -30%;
+}
+.home .blog-section article {
+  float: right;
+  width: 65%;
+}
+.home .blog-section .post-list {
+  float: right;
+}
+.home .blog-section .blog-svg {
+  width: 40%;
+  position: absolute;
+  top: -20px;
+  left: -70px;
+}
+.home .post-list {
+  display: block;
+  list-style: none;
+  margin: 15px;
+  overflow-y: auto;
+  overflow-x: none;
+  max-height: 400px;
+  width: 390px;
+}
+.home .post-list li {
+  display: inline-block;
+  overflow: hidden;
+  height: 120px;
+  width: 100px;
+  background-size: cover;
+  background-position: top center;
+  margin: 15px;
 }

@@ -1,4 +1,4 @@
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg class="blog-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 301.6 211.4" style="enable-background:new 0 0 301.6 211.4;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#FEE9B1;stroke:#231F20;stroke-miterlimit:10;}

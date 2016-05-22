@@ -1,27 +1,22 @@
 <div class="home">
-    <section class="about-section">
-        <div class="container">
+    <section class="about-section gray">
+        <div class="container clearfix">
             <?php include 'svg/aboutSvg.php'; ?>
 
             <article>
+                <?php include 'svg/arrow.php'; ?>
                 <h1>This is me.</h1>
-                <p>
-                    My name is Spencer Watson, and I am a frontend web developer. I currently work as a Software Design Engineer at <a href="http://www.bittitan.com" target="_blank">BitTitan</a> and have been working as a developer since 2012. This is my portfolio website, where I post about all the projects that I work on, and I write blog posts about technical issues that I have solved. If you want to contact me, feel free to do so using one of the buttons below.
-                </p>
+                <p>I’m Spencer, and I’m a frontend developer. I build stuff and post about it here. I also post about other techy things sometimes.</p>
 
                 <div class="contact-links">
-                    <a href="https://www.linkedin.com/in/spencer-watson-921a7043" target="_blank">LinkedIn</a>
-                    <a href="https://www.facebook.com/wattyrev" target="_blank">Facebook</a>
-                    <a href="#">Email</a>
+                    <a href="https://www.linkedin.com/in/spencer-watson-921a7043" target="_blank">in</a>
+                    <a href="https://www.facebook.com/wattyrev" target="_blank">f</a>
+                    <a href="#"><?php include 'svg/mail.php'; ?></a>
                 </div>
                 <form class="email-form">
                     <div class="form-group">
                         <label>Your Email Address</label>
                         <input type="email" placeholder="adoring_fan@gmail.com"/>
-                    </div>
-                    <div class="form-group">
-                        <label>Subject</label>
-                        <input type="text" placeholder="You're so amazing! Will you have my babies!?"/>
                     </div>
                     <div class="form-group">
                         <label>Content</label>
@@ -32,14 +27,13 @@
             </article>
         </div>
     </section>
-    <section class="portfolio-section">
+    <section class="portfolio-section blue">
         <div class="container">
             <article>
                 <h1>This is what I do.</h1>
-                <ul>
+                <ul class="post-list">
                     <?php foreach($data->portfolio as $post):?>
-                        <li>
-                            <img src="http://wattydev.com/site/images/<?php echo $post->featuredImage->url ?>" />
+                        <li data-tooltip="<?php echo $post->title; ?>" style="background-image: url(http://wattydev.com/site/images/<?php echo $post->featuredImage->url ?>)">
                         </li>
                     <?php endforeach?>
                 </ul>
@@ -48,16 +42,15 @@
             <?php include 'svg/projectsSvg.php'; ?>
         </div>
     </section>
-    <section class="blog-section">
-        <div class="container">
+    <section class="blog-section gray">
+        <div class="container clearfix">
             <?php include 'svg/blogSvg.php'; ?>
 
             <article>
                 <h1>This is what I talk about.</h1>
-                <ul>
+                <ul class="post-list">
                     <?php foreach($data->blog as $post):?>
-                        <li>
-                            <img src="http://wattydev.com/site/images/<?php echo $post->featuredImage->url ?>" />
+                        <li data-tooltip="<?php echo $post->title; ?>" style="background-image: url(http://wattydev.com/site/images/<?php echo $post->featuredImage->url ?>)">
                         </li>
                     <?php endforeach?>
                 </ul>
