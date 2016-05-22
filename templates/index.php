@@ -33,8 +33,10 @@
                 <h1>This is what I do.</h1>
                 <ul class="post-list">
                     <?php foreach($data->portfolio as $post):?>
-                        <li data-tooltip="<?php echo $post->title; ?>" style="background-image: url(http://wattydev.com/site/images/<?php echo $post->featuredImage->url ?>)">
-                        </li>
+                        <?php if ($post->featuredImage->url): ?>
+                            <li data-tooltip="<?php echo $post->title; ?>" style="background-image: url(http://wattydev.com/site/images/<?php echo $post->featuredImage->url ?>)">
+                            </li>
+                        <?php endif; ?>
                     <?php endforeach?>
                 </ul>
             </article>
