@@ -89,7 +89,10 @@ WD.Home = {
 
         var eyes = ['left', 'right'];
         eyes.forEach(function (direction) {
-            var pupilPosition = $('.' + direction + '-pupil')[0].getBoundingClientRect();
+            var pupil = $('.' + direction + '-pupil');
+
+            pupil.css('transform', '');
+            var pupilPosition = pupil[0].getBoundingClientRect();
             self._originalPupilPositions[direction] = [pupilPosition.top, pupilPosition.left];
         });
     },
