@@ -20,6 +20,13 @@
         height: ~"calc(100vh - 30px)";
         overflow: hidden;
 
+        @media @screen-sm {
+            height: auto;
+            min-height: auto;
+            position: relative;
+            width: 100vw;
+        }
+
         .container {
             float: right;
         }
@@ -64,6 +71,11 @@
     .content {
         float: right;
 
+        @media @screen-sm {
+            float: none;
+            width: 100vw;
+            min-height: 0;
+        }
         .container {
             float: left;
         }
