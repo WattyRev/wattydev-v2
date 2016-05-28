@@ -20,7 +20,7 @@ a:hover {
   color: #e6e6e6;
 }
 h1 {
-  font-family: 'Architects Daughter', cursive;
+  font-family: 'Architects Daughter', sans-serif;
   font-size: 42px;
   margin: 5px 0 10px;
 }
@@ -38,17 +38,31 @@ header {
   background: #231F20;
   z-index: 100;
 }
-header nav {
+header .contact-links {
+  float: right;
+  font-family: 'Architects Daughter', sans-serif;
+}
+header .contact-links a {
   display: inline-block;
-  margin-left: 15px;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  margin-left: 5px;
 }
-header nav a {
-  margin-right: 10px;
+header .contact-links .mail-svg {
+  max-width: 70%;
+  max-height: 100%;
+  stroke-width: 2px;
+  position: relative;
+  top: -2px;
+  overflow: visible;
+  fill: none;
 }
-@media screen and (max-width: 400px) {
-  .brand {
-    display: none;
-  }
+header .contact-links .github-svg {
+  max-height: 74%;
+  stroke-width: 2px;
 }
 .container {
   width: 1200px;
@@ -154,28 +168,6 @@ section {
   .home .about-section article .arrow-svg {
     display: none;
   }
-}
-.home .about-section article .contact-links {
-  text-align: right;
-}
-.home .about-section article .contact-links a {
-  display: inline-block;
-  height: 27px;
-  width: 27px;
-  text-align: center;
-  border: 1px solid #fff;
-  border-radius: 8px;
-  margin-left: 10px;
-}
-.home .about-section article .contact-links .mail-svg {
-  max-width: 70%;
-  max-height: 100%;
-  stroke-width: 2px;
-  position: relative;
-  top: -2px;
-}
-.home .about-section article .email-form {
-  display: none;
 }
 .home .portfolio-section .projects-svg {
   position: absolute;
@@ -1108,4 +1100,11 @@ section {
 }
 .projects-svg .st17 {
   fill: #00638A;
+}
+.github-svg .st113 {
+  fill-rule: evenodd;
+  clip-rule: evenodd;
+  fill: none;
+  stroke: #FFFFFF;
+  stroke-miterlimit: 10;
 }

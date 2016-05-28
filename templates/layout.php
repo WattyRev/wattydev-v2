@@ -21,11 +21,12 @@
                 <a href="/" class="brand">
                     Spencer Watson
                 </a>
-                <nav>
-                    <a class="about-link">About</a>
-                    <a class="portfolio-link">Projects</a>
-                    <a class="blog-link">Blog</a>
-                </nav
+                <div class="contact-links">
+                    <a href="https://www.linkedin.com/in/spencer-watson-921a7043" target="_blank">in</a>
+                    <a href="https://www.facebook.com/wattyrev" target="_blank">f</a>
+                    <a href="https://github.com/wattyrev" target="_blank"><?php include 'svg/github.php'; ?></a>
+                    <a href="#"><?php include 'svg/mail.php'; ?></a>
+                </div>
             </div>
         </header>
         <?php include 'templates/'.$template ?>

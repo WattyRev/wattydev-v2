@@ -7,23 +7,6 @@
                 <?php include 'svg/arrow.php'; ?>
                 <h1>This is me.</h1>
                 <p>I'm Spencer, and I'm a frontend developer. I build stuff and post about it here. I also post about other techy things sometimes.</p>
-
-                <div class="contact-links">
-                    <a href="https://www.linkedin.com/in/spencer-watson-921a7043" target="_blank">in</a>
-                    <a href="https://www.facebook.com/wattyrev" target="_blank">f</a>
-                    <a href="#"><?php include 'svg/mail.php'; ?></a>
-                </div>
-                <form class="email-form">
-                    <div class="form-group">
-                        <label>Your Email Address</label>
-                        <input type="email" placeholder="adoring_fan@gmail.com"/>
-                    </div>
-                    <div class="form-group">
-                        <label>Content</label>
-                        <textarea></textarea>
-                    </div>
-                    <button>Send</button>
-                </form>
             </article>
         </div>
     </section>
