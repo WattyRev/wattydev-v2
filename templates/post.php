@@ -12,7 +12,7 @@ $showPreview = $data->post->type->title !== 'Blog' && ((isset($data->post->refer
                     <div class="video">
                         <?php
                             $url = $data->post->referenceUrl;
-                            if (strpos('/watch', $url)) {
+                            if (strpos($url, '/watch') !== false) {
                                 $url = str_replace('/watch?v=', '/embed/', $data->post->referenceUrl);
                             }
                         ?>
