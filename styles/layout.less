@@ -36,6 +36,28 @@ h1 {
 textarea {
     resize: vertical;
 }
+code {
+    word-wrap: break-word;
+    background: rgba(255,255,255,.1);
+}
+table {
+    border-collapse: collapse;
+    margin: 50px 10px;
+
+    th {
+        font-weight: bold;
+    }
+    td, th {
+        padding: 5px;
+        text-align: left;
+    }
+    tr {
+        border-bottom: 1px solid @gray-light;
+    }
+    tbody tr:last-child {
+        border-bottom: 0;
+    }
+}
 .clearfix:after {
     content: '';
     display: block;

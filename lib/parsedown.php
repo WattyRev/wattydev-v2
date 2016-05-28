@@ -32,6 +32,9 @@ class Parsedown
         # remove surrounding line breaks
         $text = trim($text, "\n");
 
+        # Input embedded gists
+        $text = $this->gist($text);
+
         # split text into lines
         $lines = explode("\n", $text);
 
@@ -110,6 +113,18 @@ class Parsedown
     protected $unmarkedBlockTypes = array(
         'Code',
     );
+
+    protected function gist($text) {
+        $pattern = '/\{gist \| .*\}/';
+        $matches = array();
+        preg_match($pattern, $text, $matches);
+        foreach($matches as $match) {
+            $url = trim(trim(explode('|', $match)[1], '}'), ' ');
+            $newText = '<script src="' . $url . '.js"></script>';
+            $text = str_replace($match, $newText, $text);
+        }
+        return $text;
+    }
 
     #
     # Blocks

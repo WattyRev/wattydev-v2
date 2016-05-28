@@ -1,7 +1,15 @@
 .post {
+    h1 {
+        margin-bottom: 0px;
+        line-height: 90%;
+    }
     section {
         width: 50vw;
         min-height: ~"calc(100vh - 30px)";
+
+        &.full {
+            width: 100vw;
+        }
     }
     .container {
         width: 100%;
@@ -19,6 +27,23 @@
             border: 2px solid @gray;
             border-radius: 2px;
         }
+        .video {
+            width: 100%;
+            height: 0;
+            padding-bottom: 60%;
+            box-sizing: content-box;
+            position: relative;
+
+            iframe {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+            }
+        }
+        img {
+            width: 100%;
+            max-height: 100vh;
+        }
     }
     .content {
         float: right;
@@ -26,5 +51,10 @@
         .container {
             float: left;
         }
+    }
+    .full .container {
+        width: 100%;
+        max-width: @screen-size-xl;
+        float: none;
     }
 }

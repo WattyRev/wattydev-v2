@@ -37,6 +37,28 @@ h1 {
 textarea {
   resize: vertical;
 }
+code {
+  word-wrap: break-word;
+  background: rgba(255, 255, 255, 0.1);
+}
+table {
+  border-collapse: collapse;
+  margin: 50px 10px;
+}
+table th {
+  font-weight: bold;
+}
+table td,
+table th {
+  padding: 5px;
+  text-align: left;
+}
+table tr {
+  border-bottom: 1px solid #cdcdcd;
+}
+table tbody tr:last-child {
+  border-bottom: 0;
+}
 .clearfix:after {
   content: '';
   display: block;
@@ -469,9 +491,16 @@ section {
     opacity: 1;
   }
 }
+.post h1 {
+  margin-bottom: 0px;
+  line-height: 90%;
+}
 .post section {
   width: 50vw;
   min-height: calc(100vh - 30px);
+}
+.post section.full {
+  width: 100vw;
 }
 .post .container {
   width: 100%;
@@ -489,11 +518,32 @@ section {
   border: 2px solid #231F20;
   border-radius: 2px;
 }
+.post .preview .video {
+  width: 100%;
+  height: 0;
+  padding-bottom: 60%;
+  box-sizing: content-box;
+  position: relative;
+}
+.post .preview .video iframe {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+.post .preview img {
+  width: 100%;
+  max-height: 100vh;
+}
 .post .content {
   float: right;
 }
 .post .content .container {
   float: left;
+}
+.post .full .container {
+  width: 100%;
+  max-width: 1200px;
+  float: none;
 }
 .about-svg .st0 {
   fill: #FEE9B1;
