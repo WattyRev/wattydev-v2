@@ -31,7 +31,7 @@ $showPreview = $data->post->type->title !== 'Blog' && ((isset($data->post->refer
         <div class="container">
             <h1><?php echo $data->post->title; ?></h1>
             <?php if($data->post->type->title !== 'Blog'): ?>
-                <small><a href="<?php echo build_url('type', $data->post->type->slug); ?>"><?php echo $data->post->type->title; ?> Project</a></small>
+                <p><small><a href="<?php echo build_url('type', $data->post->type->slug); ?>"><?php echo $data->post->type->title; ?> Project</a></small></p>
             <?php else: ?>
                 <br/>
             <?php endif; ?>

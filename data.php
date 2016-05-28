@@ -128,9 +128,10 @@ class DataService {
         $tag = self::buildTag($result, 0);
 
         // Get the relevant posts
-        $query = "SELECT * from posts WHERE tags LIKE '%[$tag->id]%' OR tags LIKE '%[$tag->id,' OR tags LIKE '%,$tag->id,%' OR tags LIKE '%,$tag->id]%'";
+        $query = "SELECT * from posts WHERE tags LIKE '%\"$tag->id\"%' ORDER BY created DESC";
         $result = mysql_query($query);
         $num = mysql_num_rows($result);
+
         if ($num > 0) {
             for($i = 0; $i < $num; $i++) {
                 array_push($tag->posts, self::buildPost($result, $i));
@@ -156,9 +157,10 @@ class DataService {
         $type = self::buildType($result, 0);
 
         // Get relevant posts
-        $query = sprintf("SELECT * FROM posts WHERE type = '%s'",
+        $query = sprintf("SELECT * FROM posts WHERE type = '%s' ORDER BY created DESC",
             mysql_real_escape_string($type->id));
         $result = mysql_query($query);
+        $num = mysql_num_rows($result);
         if ($num > 0) {
             for($i = 0; $i < $num; $i++) {
                 array_push($type->posts, self::buildPost($result, $i));
