@@ -29,6 +29,9 @@
 
         <div class="contact-form">
             <div class="overlay"></div>
+            <div class="success">
+                Your message has been sent!
+            </div>
             <div class="modal">
                 <div class="modal-close">&times;</div>
                 <h1>Contact</h1>

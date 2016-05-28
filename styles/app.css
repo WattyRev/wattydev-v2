@@ -177,6 +177,7 @@ section {
   padding: 15px;
   border-radius: 5px;
   box-shadow: 3px 3px 3px #000;
+  transition: .2s transform;
 }
 .contact-form .modal-close {
   position: absolute;
@@ -201,11 +202,30 @@ section {
 .contact-form .messages .error a {
   color: #C10404;
 }
-.contact-form .loading .messages .loading {
+.contact-form.loading .messages .loading {
+  display: block;
+  text-align: center;
+}
+.contact-form.failed .messages .error {
   display: block;
 }
-.contact-form .failed .messages .error {
+.contact-form .success {
+  display: none;
+  z-index: 151;
+  background: #1D7521;
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
+  position: relative;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px #000;
+}
+.contact-form.sent .success {
   display: block;
+}
+.contact-form.sent .modal {
+  transform: translateX(100vw) translateY(-100vh) rotateZ(720deg);
 }
 .home {
   font-family: 'Architects Daughter', cursive;

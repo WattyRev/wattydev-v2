@@ -182,6 +182,7 @@ section {
         padding: 15px;
         border-radius: 5px;
         box-shadow: 3px 3px 3px #000;
+        transition: .2s transform;
     }
     .modal-close {
         position: absolute;
@@ -210,10 +211,31 @@ section {
             }
         }
     }
-    .loading .messages .loading {
+    &.loading .messages .loading {
+        display: block;
+        text-align: center;
+    }
+    &.failed .messages .error {
         display: block;
     }
-    .failed .messages .error {
-        display: block;
+    .success {
+        display: none;
+        z-index: 151;
+        background: @green;
+        width: 90%;
+        max-width: @screen-size-sm;
+        margin: 0 auto;
+        position: relative;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 3px 3px 3px #000;
+    }
+    &.sent {
+        .success {
+            display: block;
+        }
+        .modal {
+            transform: translateX(100vw) translateY(-100vh) rotateZ(720deg);
+        }
     }
 }
