@@ -50,7 +50,7 @@ function addTag($tag) {
 
     // Generate a slug for the tag
     function generateSlug($iteration, $title) {
-        $slug = urlencode(strtolower(str_replace(' ', '_', $title)));
+        $slug = urlencode(strtolower(str_replace(array(' ', '.'), array('_', ''), $title)));
         if ($iteration > 0) {
             $slug .= "_$iteration";
         }

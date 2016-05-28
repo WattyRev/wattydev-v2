@@ -13,6 +13,8 @@ class DataService {
         $post->status = mysql_result($result, $i, 'status');
         $post->slug = mysql_result($result, $i, 'slug');
         $post->referenceUrl = mysql_result($result, $i, 'reference_url');
+        $post->embedx = mysql_result($result, $i, 'embedx');
+        $post->embedy = mysql_result($result, $i, 'embedy');
 
         $typeId = mysql_result($result, $i, 'type');
         $tagIds = json_decode(mysql_result($result, $i, 'tags'));
@@ -40,14 +42,14 @@ class DataService {
         }
 
         // get the tags
-        $post->tag = array();
+        $post->tags = array();
         foreach($tagIds as $tagId) {
             $query = sprintf("SELECT * FROM tags WHERE id = '%s'",
                 mysql_real_escape_string($tagId));
             $result = mysql_query($query);
 
             if(mysql_num_rows($result)) {
-                array_push($post->tag, self::buildTag($result, 0));
+                array_push($post->tags, self::buildTag($result, 0));
             }
         }
         return $post;

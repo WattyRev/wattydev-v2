@@ -12,6 +12,14 @@ function is_development() {
 
 function build_url($type, $slug) {
     $url = '';
+
+    if ($type === 'home') {
+        if (is_development()) {
+            return '/router.php';
+        } else {
+            return '/';
+        }
+    }
     if (is_development() && $type !== 'css' && $type !== 'js') {
         $url .= '/router.php';
     } elseif (!is_development() && ($type === 'css' || $type === 'js')) {

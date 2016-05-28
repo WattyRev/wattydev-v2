@@ -1,0 +1,30 @@
+.post {
+    section {
+        width: 50vw;
+        min-height: ~"calc(100vh - 30px)";
+    }
+    .container {
+        width: 100%;
+        max-width: @screen-size-xl / 2;
+    }
+    .preview {
+        float: left;
+
+        .container {
+            float: right;
+        }
+        iframe {
+            margin: 0 auto;
+            display: block;
+            border: 2px solid @gray;
+            border-radius: 2px;
+        }
+    }
+    .content {
+        float: right;
+
+        .container {
+            float: left;
+        }
+    }
+}

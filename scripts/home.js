@@ -38,6 +38,9 @@ WD.Home = {
      * @return {Void}
      */
     init: function () {
+        if (!$('.home').length) {
+            return;
+        }
         this._calculatePupilMovement();
         this._watchMouse();
         this._watchResize();

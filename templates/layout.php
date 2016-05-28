@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php if(isset($data->title)):?>
+        <?php if(!isset($data->title)):?>
             <title>WattyDev.com</title>
         <?php else: ?>
             <title>WattyDev.com | <?php echo $data->title; ?></title>
@@ -15,7 +15,7 @@
     <body>
         <header>
             <div class="container clearfix">
-                <a href="/" class="brand">
+                <a href="<?php echo build_url('home'); ?>" class="brand">
                     Spencer Watson
                 </a>
                 <div class="contact-links">
