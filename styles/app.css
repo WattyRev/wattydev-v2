@@ -245,6 +245,14 @@ section {
   bottom: -16px;
   left: -92px;
 }
+.home .about-section .about-svg .left-pupil,
+.home .about-section .about-svg .right-pupil {
+  transition: .1s transform;
+}
+.home .about-section .about-svg .eye-lid {
+  transform: translateY(10px);
+  transition: .1s transform;
+}
 @media screen and (max-width: 900px) {
   .home .about-section .about-svg {
     width: 50%;
