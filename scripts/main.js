@@ -43,6 +43,7 @@ WD.Main = {
      */
     _showContactForm: function () {
         $('.contact-form:not(.in)').addClass('in');
+        $('body:not(.modal-open)').addClass('modal-open');
         setTimeout(function () {
             $('.contact-form:not(.visible)').addClass('visible');
         }, 1);
@@ -57,6 +58,7 @@ WD.Main = {
      */
     _hideContactForm: function () {
         $('.contact-form.visible').removeClass('visible');
+        $('body.modal-open').removeClass('modal-open');
         setTimeout(function () {
             $('.contact-form.in').removeClass('in');
             $('.contact-form.sent').removeClass('sent');
