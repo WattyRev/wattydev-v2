@@ -10,7 +10,13 @@ $showPreview = $data->post->type->title !== 'Blog' && ((isset($data->post->refer
             <div class="container">
                 <?php if ($data->post->type->title === 'Video Production' && isset($data->post->referenceUrl) && $data->post->referenceUrl !== ''): ?>
                     <div class="video">
-                        <iframe src="<?php echo str_replace('/watch?v=', '/embed/', $data->post->referenceUrl); ?>" frameborder="0" allowfullscreen></iframe>
+                        <?php
+                            $url = $data->post->referenceUrl;
+                            if (strpos('/watch', $url)) {
+                                $url = str_replace('/watch?v=', '/embed/', $data->post->referenceUrl);
+                            }
+                        ?>
+                        <iframe src="<?php echo $url; ?>" frameborder="0" allowfullscreen></iframe>
                     </div>
                 <?php elseif (isset($data->post->referenceUrl) && $data->post->referenceUrl !== ""): ?>
                     <iframe src="<?php echo $data->post->referenceUrl; ?>" width="<?php echo $data->post->embedx;?>" height="<?php echo $data->post->embedy;?>"></iframe>
