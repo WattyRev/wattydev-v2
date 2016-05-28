@@ -13,10 +13,24 @@ WD.Post = {
         this._watchResize();
     },
 
+    /**
+     * Watch for browser reizing.
+     *
+     * @method _watchResize
+     * @return {Void}
+     * @private
+     */
     _watchResize: function () {
         $(window).resize(this, this._sizeEmbed);
     },
 
+    /**
+     * Set the size for the embed if necessary.
+     *
+     * @method _sizeEmbed
+     * @return {Void}
+     * @private
+     */
     _sizeEmbed: function () {
         if ($('.video').length) {
             return;
