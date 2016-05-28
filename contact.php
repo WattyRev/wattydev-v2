@@ -1,4 +1,4 @@
 <?php
 include 'api/init.php';
 
-var_dump(getPostData());
+var_dump($_POST);
