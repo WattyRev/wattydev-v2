@@ -4,7 +4,7 @@
 	<ellipse class="st13" cx="163.6" cy="105.8" rx="133.9" ry="102.4"/>
 	<path class="st13" d="M50.2,155.5c0,0-15.1,38.4-47.3,50.7c0,0,50.7,6.8,87-15.8S50.2,155.5,50.2,155.5z"/>
 </g>
-<circle class="st7" cx="117.7" cy="105.6" r="17.1"/>
-<circle class="st7" cx="209.3" cy="105.6" r="17.1"/>
-<circle class="st7" cx="163.5" cy="105.6" r="17.1"/>
+<circle class="st7 blog-dot-1" cx="117.7" cy="105.6" r="17.1"/>
+<circle class="st7 blog-dot-3" cx="209.3" cy="105.6" r="17.1"/>
+<circle class="st7 blog-dot-2" cx="163.5" cy="105.6" r="17.1"/>
 </svg>
