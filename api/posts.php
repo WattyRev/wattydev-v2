@@ -94,7 +94,7 @@ function addPost($post) {
     $post->slug = generateSlug(0, $post->title);
 
     // Create the post
-    $sql = sprintf("insert into posts (created,updated,content,featured_image,title,tags,type,status,slug,reference_url) value (now(),now(),'%s','%s','%s','%s','%s','%s','%s','%s')",
+    $sql = sprintf("insert into posts (created,updated,content,featured_image,title,tags,type,status,slug,reference_url,embedx,embedy) value (now(),now(),'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
         mysql_real_escape_string($post->content),
         mysql_real_escape_string($post->featuredImage),
         mysql_real_escape_string($post->title),
@@ -102,7 +102,9 @@ function addPost($post) {
         mysql_real_escape_string($post->type),
         mysql_real_escape_string($post->status),
         mysql_real_escape_string($post->slug),
-        mysql_real_escape_string($post->referenceUrl));
+        mysql_real_escape_string($post->referenceUrl),
+        mysql_real_escape_string($post->embedx),
+        mysql_real_escape_string($post->embedy));
 
     // Alert success
     if (mysql_query($sql)) {
@@ -211,6 +213,18 @@ function updatePost($post) {
         return 'Cannot update post without referenceUrl.';
     }
 
+    // Validate embedx
+    if (!isset($post->embedx)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Cannot update post without embedx.';
+    }
+
+    // Validate embedy
+    if (!isset($post->embedy)) {
+        header('HTTP/1.1 400 Bad Request');
+        return 'Cannot update post without embedy.';
+    }
+
     // Set values
     $vars = array();
     $vars['content'] = $post->content;
@@ -221,6 +235,8 @@ function updatePost($post) {
     $vars['status'] = $post->status;
     $vars['slug'] = $post->slug;
     $vars['reference_url'] = $post->referenceUrl;
+    $vars['embedx'] = $post->embedx;
+    $vars['embedy'] = $post->embedy;
     $success = true;
     foreach($vars as $metric => $val) {
         if (!isset($val)) {
@@ -275,6 +291,8 @@ function getPosts() {
         $post->status = mysql_result($result, $i, 'status');
         $post->slug = mysql_result($result, $i, 'slug');
         $post->referenceUrl = mysql_result($result, $i, 'reference_url');
+        $post->embedx = mysql_result($result, $i, 'embedx');
+        $post->embedy = mysql_result($result, $i, 'embedy');
         array_push($posts->posts, $post);
     }
     mysql_close();
@@ -309,6 +327,8 @@ function getPost($id) {
     $post->status = mysql_result($result, 0, 'status');
     $post->slug = mysql_result($result, 0, 'slug');
     $post->referenceUrl = mysql_result($result, 0, 'reference_url');
+    $post->embedx = mysql_result($result, 0, 'embedx');
+    $post->embedy = mysql_result($result, 0, 'embedy');
     mysql_close();
 
     // Alert success

@@ -42,6 +42,10 @@
         {{input type="text" class="form-control" value=post.referenceUrl disabled=loading}}
     </div>
     <div class="form-group">
+        <label>Embed Dimensions (px)</label>
+        width: {{input type="text" class="form-control" value=post.embedx disabled=loading}} height: {{input type="text" class="form-control" value=post.embedy disabled=loading}}
+    </div>
+    <div class="form-group">
         <label>Featured Image</label>
         {{posts/select-image value=post.featuredImage}}
     </div>

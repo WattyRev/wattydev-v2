@@ -120,6 +120,24 @@ export default Ember.Object.extend({
     tags: Ember.makeArray(),
 
     /**
+     * The width of the embed if available.
+     *
+     * @property embedx
+     * @type {String}
+     * @default "1200"
+     */
+    embedx: "1200",
+
+    /**
+     * The height of the embed if available.
+     *
+     * @property embedy
+     * @type {String}
+     * @default "1080"
+     */
+    embedy: "1080",
+
+    /**
      * Get a plain hash of the object's properties used to send save requests.
      *
      * @method getSaveHash
