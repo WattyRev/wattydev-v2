@@ -3,13 +3,33 @@
     font-size: 21px;
     .about-section {
         .container {
-            height: 400px;
+            height: 429px;
+
+            @media @screen-md {
+                height: auto;
+            }
         }
         .about-svg {
             width: 456px;
             position: absolute;
-            bottom: -45px;
+            bottom: -16px;
             left: -92px;
+
+            @media @screen-md {
+                width: 50%;
+                position: relative;
+                bottom: auto;
+                left: auto;
+                float: left;
+                magin-left: 2%;
+            }
+            @media @screen-sm {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                margin: 0 0 0 -200px;
+                width: 400px;
+            }
         }
 
         article {
@@ -17,14 +37,37 @@
             float: right;
             width: 60%;
 
+            @media @screen-md {
+                width: 45%;
+            }
+            @media @screen-sm {
+                width: 100%;
+                margin: 0 auto;
+                max-width: 500px;
+                float: none;
+                padding-top: 60px;
+            }
             h1 {
                 padding-left: 115px;
+
+                @media @screen-md {
+                    padding: 0;
+                    margin: 17px 0 30px;
+                }
+                @media @screen-sm {
+                    text-align:center;
+                    margin: 0 0 322px;
+                }
             }
             .arrow-svg {
                 position: absolute;
                 top: 26px;
                 left: -100px;
                 width: 200px;
+
+                @media @screen-md {
+                    display: none;
+                }
             }
             .contact-links {
                 text-align: right;
@@ -52,25 +95,52 @@
             }
         }
     }
-    .portfolio-section .projects-svg {
-        position: absolute;
-        top: 21%;
-        right: -10%;
-        height: 300px;
+    .portfolio-section {
+        .projects-svg {
+            position: absolute;
+            top: 21%;
+            right: -10%;
+            height: 300px;
+
+            @media @screen-md {
+                display: none;
+            }
+        }
+        .post-list {
+            width: 59%;
+
+            @media @screen-md {
+                width: 100%;
+            }
+        }
     }
     .blog-section {
         article {
             float: right;
             width: 65%;
+            min-height: 346px;
+
+            @media @screen-md {
+                width: 100%;
+            }
         }
         .post-list {
             float: right;
+            width: 95%;
+
+            @media @screen-md {
+                width: 100%;
+            }
         }
         .blog-svg {
             width: 40%;
             position: absolute;
             top: -20px;
             left: -70px;
+
+            @media @screen-md {
+                display: none;
+            }
         }
     }
     .post-list {
@@ -80,16 +150,21 @@
         overflow-y: auto;
         overflow-x: hidden;
         max-height: 346px;
-        width: 59%;
+        padding: 0px;
+        text-align:center;
 
         li {
             display: inline-block;
             overflow: hidden;
             height: 120px;
             width: 136px;
-            background-size: cover;
-            background-position: top center;
+            background-size: contain;
+            background-position: center;
             margin: 5px;
+            background-repeat: no-repeat;
+            background-color: rgba(255,255,255,.5);
+            border-radius: 5px;
+            border: 1px solid #cdcdcd;
         }
     }
 }

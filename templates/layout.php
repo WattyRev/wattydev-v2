@@ -7,7 +7,13 @@
             <title>WattyDev.com | <?php echo $data->title; ?></title>
         <?php endif; ?>
         <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="/site/styles/app.css" />
+        <?php if (is_development()): ?>
+            <link rel="stylesheet" href="/styles/app.css" />
+        <?php else: ?>
+            <link rel="stylesheet" href="/site/styles/app.css" />
+        <?php endif; ?>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         <header>
@@ -23,5 +29,7 @@
             </div>
         </header>
         <?php include 'templates/'.$template ?>
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     </body>
 </html>

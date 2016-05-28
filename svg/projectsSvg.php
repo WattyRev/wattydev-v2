@@ -1,25 +1,5 @@
 <svg class="projects-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 299.5 185.6" style="enable-background:new 0 0 299.5 185.6;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#FEE9B1;stroke:#231F20;stroke-miterlimit:10;}
-	.st1{fill:#FFFFFF;stroke:#231F20;stroke-miterlimit:10;}
-	.st2{fill:#231F20;stroke:#231F20;stroke-miterlimit:10;}
-	.st3{fill:#231F20;}
-	.st4{fill:#FEE9B1;}
-	.st5{fill:#B18C2F;}
-	.st6{fill:#414042;stroke:#231F20;stroke-miterlimit:10;}
-	.st7{fill:#FFFFFF;}
-	.st8{font-family:'MyriadPro-Regular';}
-	.st9{font-size:2.6442px;}
-	.st10{fill:#D1D3D4;}
-	.st11{fill:#808285;}
-	.st12{fill:#302E2F;}
-	.st13{fill:#303539;}
-	.st14{font-size:4.1874px;}
-	.st15{fill:#8C8E90;}
-	.st16{font-size:3.2804px;}
-	.st17{fill:#00638A;}
-</style>
 <path class="st6" d="M286.7,182H12.3c-5,0-9-4-9-9V11.9c0-5,4-9,9-9h274.4c5,0,9,4,9,9V173C295.7,177.9,291.7,182,286.7,182z"/>
 <path class="st2" d="M283.8,171.3H15.5c-1.3,0-2.4-1.1-2.4-2.4V14.8c0-1.3,1.1-2.4,2.4-2.4h268.3c1.3,0,2.4,1.1,2.4,2.4V169
 	C286.2,170.3,285.1,171.3,283.8,171.3z"/>

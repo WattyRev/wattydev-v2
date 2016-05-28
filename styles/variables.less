@@ -3,7 +3,13 @@
 @blue: #00AEEF;
 
 // Screen sizes
-@screen-sm: 400px;
-@screen-md: 600px;
-@screen-lg: 900px;
-@screen-xl: 1200px;
+@screen-size-sm: 400px;
+@screen-size-md: 600px;
+@screen-size-lg: 900px;
+@screen-size-xl: 1200px;
+
+// Media queries
+@screen-xs: ~"screen and (max-width: @{screen-size-sm})";
+@screen-sm: ~"screen and (max-width: @{screen-size-md})";
+@screen-md: ~"screen and (max-width: @{screen-size-lg})";
+@screen-lg: ~"screen and (max-width: @{screen-size-xl})";

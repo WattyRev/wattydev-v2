@@ -1,21 +1,5 @@
 <svg class="about-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 260.4 275.2" style="enable-background:new 0 0 260.4 275.2;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#FEE9B1;stroke:#231F20;stroke-miterlimit:10;}
-	.st1{fill:#FFFFFF;stroke:#231F20;stroke-miterlimit:10;}
-	.st2{fill:#231F20;stroke:#231F20;stroke-miterlimit:10;}
-	.st3{fill:#231F20;}
-	.st4{fill:#FEE9B1;}
-	.st5{fill:#B18C2F;}
-	.st6{fill:#414042;stroke:#231F20;stroke-miterlimit:10;}
-	.st7{fill:#FFFFFF;}
-	.st8{fill:#D1D3D4;}
-	.st9{fill:#808285;}
-	.st10{fill:#302E2F;}
-	.st11{fill:#303539;}
-	.st12{fill:#8C8E90;}
-	.st13{fill:#00638A;}
-</style>
 <path class="st0" d="M128.2,272.3L128.2,272.3c-57.1-13.2-92.1-49.8-92.1-92.1l-3-46.7c0-54.2,40.9-98.1,95.1-98.1h0
 	c54.2,0,96.1,43.9,96.1,98.1l-2,46.7C221,224.8,184.3,256.3,128.2,272.3z"/>
 <path class="st0" d="M223.8,143.5c0,0,2.6-7.7,8.4-6.5c5.9,1.1,2.3,25.2,0.2,32.8c-2.1,7.7-9-2.6-9-2.6L223.8,143.5z"/>

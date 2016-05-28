@@ -5,7 +5,7 @@
 
 class Router {
     public function getTemplate() {
-        $uri = substr($_SERVER['REQUEST_URI'], strlen($basepath));
+        $uri = $_SERVER['REQUEST_URI'];
 
         // A map of directories and what php file to use
         $uriMap = array(
@@ -15,8 +15,15 @@ class Router {
             "*" => "post.php"
         );
 
+        $uri = str_replace("router.php/", "", $uri, $i);
+        $uri = str_replace("router.php", "", $uri, $i);
+
         // Include the correct file
         $directory = explode('/', $uri)[1];
+
+        // Replace router.php so that it can run locally
+        str_replace("router.php", "", $directory);
+
         if ($directory === "") {
             $directory = "/";
         }

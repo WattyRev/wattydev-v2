@@ -34,8 +34,10 @@
                 <ul class="post-list">
                     <?php foreach($data->portfolio as $post):?>
                         <?php if ($post->featuredImage->url): ?>
-                            <li data-tooltip="<?php echo $post->title; ?>" style="background-image: url(http://wattydev.com/site/images/<?php echo $post->featuredImage->url ?>)">
-                            </li>
+                            <a href="<?php echo build_url('post', $post->slug); ?>">
+                                <li data-tooltip="<?php echo $post->title; ?>" style="background-image: url(http://wattydev.com/site/images/<?php echo $post->featuredImage->url ?>)">
+                                </li>
+                            </a>
                         <?php endif; ?>
                     <?php endforeach?>
                 </ul>
@@ -52,8 +54,10 @@
                 <h1>This is what I talk about.</h1>
                 <ul class="post-list">
                     <?php foreach($data->blog as $post):?>
-                        <li data-tooltip="<?php echo $post->title; ?>" style="background-image: url(http://wattydev.com/site/images/<?php echo $post->featuredImage->url ?>)">
-                        </li>
+                        <a href="<?php echo build_url('post', $post->slug); ?>">
+                            <li data-tooltip="<?php echo $post->title; ?>" style="background-image: url(http://wattydev.com/site/images/<?php echo $post->featuredImage->url ?>)">
+                            </li>
+                        </a>
                     <?php endforeach?>
                 </ul>
             </article>
