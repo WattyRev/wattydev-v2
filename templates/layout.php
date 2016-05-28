@@ -15,7 +15,7 @@
     <body>
         <header>
             <div class="container clearfix">
-                <a href="<?php echo build_url('home'); ?>" class="brand">
+                <a href="<?php echo build_url('home', null); ?>" class="brand">
                     Spencer Watson
                 </a>
                 <div class="contact-links">
