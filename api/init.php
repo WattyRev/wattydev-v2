@@ -32,3 +32,14 @@ function cors() {
         exit(0);
     }
 }
+
+function create_slug($text) {
+    // Replace stuff
+    $text = str_replace(array(' ', '.', '/'), array('_', '', ''), $title);
+
+    // lower case
+    $text = strtolower($text);
+
+    // encode
+    return urlencode($text);
+}
