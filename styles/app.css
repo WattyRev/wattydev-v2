@@ -9,15 +9,16 @@ body {
   padding-top: 30px;
 }
 small {
-  font-size: 14px;
+  font-size: 12px;
 }
 a {
   cursor: pointer;
   text-decoration: none;
   color: #fff;
+  transition: .2s transform;
 }
 a:hover {
-  color: #e6e6e6;
+  transform: scale(1.2);
 }
 h1 {
   font-family: 'Architects Daughter', sans-serif;
@@ -29,12 +30,66 @@ h1 {
     font-size: 27px;
   }
 }
+.pull-right {
+  float: right;
+}
+textarea {
+  resize: vertical;
+}
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.form-group {
+  margin-bottom: 10px;
+}
+.form-group label {
+  display: block;
+  width: 100%;
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+  width: 100%;
+  background: transparent;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  padding: 5px;
+  font-size: 16px;
+  margin: 5px 0;
+  color: #fff;
+  font-family: 'Architects Daughter', sans-serif;
+}
+.form-group textarea {
+  min-height: 200px;
+}
+.btn {
+  padding: 5px;
+  font-family: 'Architects Daughter', sans-serif;
+  background: none;
+  border: 1px solid;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 16px;
+  transition: .2s transform;
+  cursor: pointer;
+}
+.btn:hover {
+  transform: scale(1.2);
+}
+.btn.btn-default {
+  border-color: #fff;
+}
+body.modal-open {
+  overflow: hidden;
+}
 header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  padding: 7px 10px;
+  padding: 7px 15px;
   background: #231F20;
   z-index: 100;
 }
@@ -86,6 +141,53 @@ section {
   width: 100vw;
   overflow: hidden;
   padding: 40px 15px;
+}
+.contact-form {
+  z-index: 150;
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  display: none;
+  opacity: 0;
+  transition: .3s opacity;
+}
+.contact-form.in {
+  display: block;
+}
+.contact-form.visible {
+  opacity: 1;
+}
+.contact-form .overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  opacity: .4;
+  z-index: 150;
+}
+.contact-form .modal {
+  z-index: 151;
+  background: #231F20;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px #000;
+}
+.contact-form .modal-close {
+  position: absolute;
+  top: 5px;
+  right: 7px;
+  padding: 3px;
+  cursor: pointer;
+  transition: .2s transform;
+}
+.contact-form .modal-close:hover {
+  transform: scale(1.2);
 }
 .home {
   font-family: 'Architects Daughter', cursive;

@@ -1,7 +1,6 @@
 var js = [
-];
-var jsProd = [
-    'scripts/app.min.js',
+    'scripts/main.js',
+    'scripts/home.js'
 ];
 
 
@@ -65,7 +64,7 @@ module.exports = function(grunt) {
         },
         my_target: {
             files: {
-                'scripts/app.min.js': js
+                'scripts/app.js': js
             }
         }
     }
@@ -76,13 +75,6 @@ module.exports = function(grunt) {
   grunt.registerTask('run', [
      'less',
      'watch'
-  ]);
-
-  grunt.registerTask('runProd', [
-      'less',
-      'cssmin',
-      'uglify',
-      'watch'
   ]);
 
   grunt.registerTask('build', [
