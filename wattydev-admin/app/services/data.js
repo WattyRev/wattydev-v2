@@ -45,6 +45,9 @@ export default Ember.Service.extend(PluralsMixin, {
             let items = rawItems.map(item => {
                 Object.keys(item).forEach(key => {
                     let value = item[key];
+                    if (!value) {
+                        return;
+                    }
                     if (value[0] === '[' || value[0] === '{') {
                         item[key] = JSON.parse(value);
                     }
