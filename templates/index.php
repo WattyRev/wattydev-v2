@@ -16,12 +16,18 @@
                 <h1>This is what I do.</h1>
                 <ul class="post-list">
                     <?php foreach($data->portfolio as $post):?>
-                        <?php if ($post->featuredImage->url): ?>
-                            <a href="<?php echo build_url('post', $post->slug); ?>">
-                                <li data-tooltip="<?php echo $post->title; ?>" style="background-image: url(http://wattydev.com/site/images/<?php echo $post->featuredImage->url ?>)">
-                                </li>
-                            </a>
-                        <?php endif; ?>
+                        <?php
+                        $url = '';
+                        if ($post->featuredImage->url) {
+                            $url = $post->featuredImage->url;
+                        } else {
+                            $url = '574a0e54395a1.png';
+                        }
+                        ?>
+                        <a href="<?php echo build_url('post', $post->slug); ?>">
+                            <li data-tooltip="<?php echo $post->title; ?>" style="background-image: url(http://wattydev.com/site/images/<?php echo $url ?>)">
+                            </li>
+                        </a>
                     <?php endforeach?>
                 </ul>
             </article>
