@@ -60,6 +60,5 @@ WD.Post = {
         var containerWidth = iframe.parent().width();
         var margin = (containerWidth - iframeWidth) / 2;
         iframe.css('margin-left', margin);
-        console.log(scale);
     }
 };
