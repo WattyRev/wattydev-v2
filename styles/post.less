@@ -27,6 +27,11 @@
             border: 2px solid @gray;
             border-radius: 2px;
             background: #fff;
+            transform-origin: top left;
+            -webkit-transform-origin: top left;
+            -moz-transform-origin: top left;
+            -ms-transform-origin: top left;
+            -o-transform-origin: top left;
         }
         .video {
             width: 100%;
@@ -44,6 +49,14 @@
         img {
             width: 100%;
             max-height: 100vh;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 50;
         }
     }
     .content {

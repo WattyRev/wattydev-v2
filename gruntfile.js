@@ -1,6 +1,7 @@
 var js = [
     'scripts/main.js',
-    'scripts/home.js'
+    'scripts/home.js',
+    'scripts/post.js'
 ];
 
 

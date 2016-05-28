@@ -20,6 +20,7 @@ $showPreview = $data->post->type->title !== 'Blog' && ((isset($data->post->refer
                     </div>
                 <?php elseif (isset($data->post->referenceUrl) && $data->post->referenceUrl !== ""): ?>
                     <iframe src="<?php echo $data->post->referenceUrl; ?>" width="<?php echo $data->post->embedx;?>" height="<?php echo $data->post->embedy;?>"></iframe>
+                    <div class="overlay"></div>
                 <?php elseif (isset($data->post->featuredImage)): ?>
                     <img src="http://wattydev.com/site/images/<?php echo $data->post->featuredImage->url; ?>" />
                 <?php endif; ?>

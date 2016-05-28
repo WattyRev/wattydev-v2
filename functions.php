@@ -47,7 +47,8 @@ function build_url($type, $slug) {
 function get_js() {
     $dev_files = array(
         'main.js',
-        'home.js'
+        'home.js',
+        'post.js'
     );
     $prod_files = array(
         'app.js'

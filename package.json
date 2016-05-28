@@ -4,7 +4,8 @@
   "description": "My portfolio website",
   "main": "router.php",
   "scripts": {
-    "start": "grunt run"
+    "start": "grunt run",
+    "build": "grunt build"
   },
   "repository": {
     "type": "git",
