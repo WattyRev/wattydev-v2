@@ -49,7 +49,7 @@
                     </div>
                     <div class="form-group">
                         <label for="contact-subject">What are you contacting me about?</label>
-                        <input if="contact-subject" type="text" placeholder="I want to give you money" required />
+                        <input id="contact-subject" type="text" placeholder="I want to give you money" required />
                     </div>
                     <div class="form-group">
                         <label for="contact-message">Tell me about it.</label>
