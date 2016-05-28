@@ -14,7 +14,7 @@ function getPostData() {
 function cors() {
 
     // Allow from any origin
-    if (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_ORIGIN'] === 'http://localhost:4200') {
+    if (isset($_SERVER['HTTP_ORIGIN']) && ($_SERVER['HTTP_ORIGIN'] === 'http://localhost:4200' || $_SERVER['HTTP_ORIGIN'] === 'http://localhost:8888')) {
         header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
         header('Access-Control-Allow-Credentials: true');
         header('Access-Control-Max-Age: 86400');    // cache for 1 day
