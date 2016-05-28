@@ -34,7 +34,7 @@ $showPreview = $data->post->type->title !== 'Blog' && ((isset($data->post->refer
                 <small><p>This project uses:
                     <?php foreach($data->post->tags as $i=>$tag):
                         echo $i > 0 ? ', ' : '';
-                        echo $i === count($data->post->tags) - 1 ? 'and ' : '';
+                        echo $i === count($data->post->tags) - 1 && $i !== 0 ? 'and ' : '';
                         ?><a href="<?php echo build_url('tag', $tag->slug); ?>">
                             <?php echo $tag->title; ?>
                         </a><?php
