@@ -8,6 +8,7 @@
         <?php endif; ?>
         <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="<?php echo build_url('css', 'app.css') ?>" />
+        <link rel="icon" href="http://www.wattydev.com/site/favicon.ico" type="image/x-icon" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
