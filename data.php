@@ -80,7 +80,7 @@ class DataService {
     // Get all posts
     public function getPosts() {
         // Get all posts
-        $query = sprintf("SELECT * FROM posts ORDER BY created");
+        $query = sprintf("SELECT * FROM posts ORDER BY created DESC");
         $result = mysql_query($query);
         $num = mysql_num_rows($result);
 
