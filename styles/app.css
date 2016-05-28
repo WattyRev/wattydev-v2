@@ -189,6 +189,24 @@ section {
 .contact-form .modal-close:hover {
   transform: scale(1.2);
 }
+.contact-form .messages span {
+  display: none;
+}
+.contact-form .messages .error {
+  border: 1px solid #C10404;
+  color: #C10404;
+  padding: 10px;
+  border-radius: 5px;
+}
+.contact-form .messages .error a {
+  color: #C10404;
+}
+.contact-form .loading .messages .loading {
+  display: block;
+}
+.contact-form .failed .messages .error {
+  display: block;
+}
 .home {
   font-family: 'Architects Daughter', cursive;
   font-size: 21px;
