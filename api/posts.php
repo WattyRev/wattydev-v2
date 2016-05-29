@@ -81,6 +81,7 @@ function addPost($post) {
     // Generate a slug for the post
     function generateSlug($iteration, $title) {
         $slug = create_slug($title);
+        var_dump($slug);
         if ($iteration > 0) {
             $slug .= "_$iteration";
         }
