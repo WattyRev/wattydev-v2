@@ -80,7 +80,7 @@ class DataService {
     // Get all posts
     public function getPosts() {
         // Get all posts
-        $query = sprintf("SELECT * FROM posts ORDER BY created DESC");
+        $query = sprintf("SELECT * FROM posts WHERE status='published' ORDER BY created DESC");
         $result = mysql_query($query);
         $num = mysql_num_rows($result);
 
@@ -97,7 +97,7 @@ class DataService {
 
     public function getPost($slug) {
         // Get post
-        $query = sprintf("SELECT * FROM posts WHERE slug = '%s'",
+        $query = sprintf("SELECT * FROM posts WHERE slug = '%s' AND (status='published' OR status='unlisted')",
             mysql_real_escape_string($slug));
         $result = mysql_query($query);
 
@@ -128,7 +128,7 @@ class DataService {
         $tag = self::buildTag($result, 0);
 
         // Get the relevant posts
-        $query = "SELECT * from posts WHERE tags LIKE '%\"$tag->id\"%' ORDER BY created DESC";
+        $query = "SELECT * from posts WHERE tags LIKE '%\"$tag->id\"%' AND status='published' ORDER BY created DESC";
         $result = mysql_query($query);
         $num = mysql_num_rows($result);
 
@@ -157,7 +157,7 @@ class DataService {
         $type = self::buildType($result, 0);
 
         // Get relevant posts
-        $query = sprintf("SELECT * FROM posts WHERE type = '%s' ORDER BY created DESC",
+        $query = sprintf("SELECT * FROM posts WHERE type = '%s' AND status='published' ORDER BY created DESC",
             mysql_real_escape_string($type->id));
         $result = mysql_query($query);
         $num = mysql_num_rows($result);
