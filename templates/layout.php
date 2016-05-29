@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php if(!isset($data->title)):?>
+        <?php if(!isset($data->title) || $data->title === false):?>
             <title>WattyDev.com</title>
         <?php else: ?>
             <title>WattyDev.com | <?php echo $data->title; ?></title>
