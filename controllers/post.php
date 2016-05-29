@@ -12,6 +12,10 @@ function getData() {
 
     $post = $DS->getPost($slug);
 
+    if ($post === false) {
+        not_found();
+    }
+
     $data = (object) array(
         "post" => $post,
         "title" => $post->title

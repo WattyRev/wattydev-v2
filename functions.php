@@ -44,6 +44,14 @@ function build_url($type, $slug) {
     return $url;
 }
 
+function not_found() {
+    global $template;
+    global $data;
+
+    $template = '404.php';
+    $data->title = false;
+}
+
 function get_js() {
     $dev_files = array(
         'main.js',

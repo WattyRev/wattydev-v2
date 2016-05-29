@@ -12,6 +12,10 @@ function getData() {
 
     $type = $DS->getType($slug);
 
+    if ($type === false) {
+        not_found();
+    }
+
     $data = (object) array(
         "type" => $type,
         "title" => $type->title

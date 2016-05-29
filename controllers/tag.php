@@ -12,6 +12,10 @@ function getData() {
 
     $tag = $DS->getTag($slug);
 
+    if ($tag === false) {
+        not_found();
+    }
+
     $data = (object) array(
         "tag" => $tag,
         "title" => $tag->title
