@@ -35,7 +35,7 @@ function cors() {
 
 function create_slug($text) {
     // Replace stuff
-    $text = str_replace(array(' ', '.', '/'), array('_', '', ''), $title);
+    $text = str_replace(array(' ', '.', '/'), array('_', '', ''), $text);
 
     // lower case
     $text = strtolower($text);
