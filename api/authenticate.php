@@ -28,7 +28,7 @@ function getAuthentication() {
         $token = $_COOKIE['auth-token'];
 
         // Refresh the cookie
-        setcookie('auth-token', $token, time() + (86400 * 30), "/");
+        setcookie('auth-token', $token, time() + (1000 * 60 * 60 * 24), "/");
 
         // Return the token
         $response = new stdClass;
@@ -78,7 +78,7 @@ function authenticate($POST) {
         }
 
         // Set the cookie
-        $test = setcookie('auth-token', $token, time() + (86400 * 30), "/");
+        $test = setcookie('auth-token', $token, time() + (1000 * 60 * 60 * 24), "/");
 
         header('HTTP/1.1 200 OK');
 
