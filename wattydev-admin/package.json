@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "ember build --environment=production",
-    "start": "ember server",
+    "start": "ember server --output-path dist/",
     "test": "ember test"
   },
   "repository": "",
