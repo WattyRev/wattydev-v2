@@ -211,3 +211,6 @@
 [10-May-2016 22:41:33 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/r3vfan/public_html/wattydev.com/beta/api/authenticate.php:3) in /home1/r3vfan/public_html/wattydev.com/beta/api/init.php on line 30
 [28-May-2016 19:13:27 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/r3vfan/public_html/wattydev.com/site/api/posts.php:84) in /home1/r3vfan/public_html/wattydev.com/site/api/posts.php on line 113
 [03-Jun-2016 21:24:34 America/Chicago] PHP Warning:  array_push() expects at least 2 parameters, 1 given in /home1/r3vfan/public_html/wattydev.com/site/api/images.php on line 80
+[03-Jun-2016 21:24:34 America/Chicago] PHP Warning:  array_push() expects at least 2 parameters, 1 given in /home1/r3vfan/public_html/wattydev.com/site/api/images.php on line 81
+[03-Jun-2016 21:24:36 America/Chicago] PHP Warning:  array_push() expects at least 2 parameters, 1 given in /home1/r3vfan/public_html/wattydev.com/site/api/images.php on line 82
+[03-Jun-2016 21:24:36 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/r3vfan/public_html/wattydev.com/site/api/images.php:80) in /home1/r3vfan/public_html/wattydev.com/site/api/images.php on line 93
