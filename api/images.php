@@ -76,8 +76,7 @@ function addImage($image) {
 
     // Sync with git
     $git_response = array();
-    array_push($git_response, shell_exec("git --help"));
-    array_push($git_response, shell_exec("git add --help"));
+    array_push($git_response, shell_exec("git add ../images"));
     array_push($git_response, shell_exec("git commit -a -m 'Update image file'"));
     array_push($git_response, shell_exec("git push"));
 
