@@ -75,11 +75,11 @@ function addImage($image) {
     }
 
     // Sync with git
-    $git_response = '';
-    $git_response .= shell_exec("git --help") . ' || ';
-    $git_response .= shell_exec("git add --help") . ' || ';
-    $git_response .= shell_exec("git commit -a -m 'Update image file'") . ' || ';
-    $git_response .= shell_exec("git push");
+    $git_response = array();
+    array_push($git_response, shell_exec("git --help"));
+    array_push(shell_exec("git add --help"));
+    array_push(shell_exec("git commit -a -m 'Update image file'"));
+    array_push(shell_exec("git push"));
 
     // Add the image to the database
     $sql = sprintf("insert into images (created,title,description,url) value (now(),'%s','%s','%s')",
