@@ -75,9 +75,10 @@ function addImage($image) {
     }
 
     // Sync with git
-    shell_exec("git add /*");
-    shell_exec("git commit -a -m 'Add image file'");
-    shell_exec("git push");
+    $git_response = '';
+    $git_response .= shell_exec("git add /*") . '\n';
+    $git_response .= shell_exec("git commit -a -m 'Update image file'") . '\n';
+    $git_response .= shell_exec("git push") . '\n';
 
     // Add the image to the database
     $sql = sprintf("insert into images (created,title,description,url) value (now(),'%s','%s','%s')",
@@ -91,6 +92,7 @@ function addImage($image) {
         header('HTTP/1.1 201 Created');
         $response = new stdClass;
         $response->id = $id;
+        $git->$git_response;
         return json_encode($response);
 
     // Alert failure
