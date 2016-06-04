@@ -34,11 +34,11 @@ export default Ember.Component.extend({
      * @type {String}
      */
     fullImageUrl: Ember.computed('permalinkService.baseImageUrl', 'image.url', 'image.file', function () {
-        if (this.get('image.file')) {
-            return 'data:image/png;base64,' + this.get('image.file');
-        }
         if (this.get('image.url')) {
             return this.get('permalinkService.baseImageUrl') + this.get('image.url');
+        }
+        if (this.get('image.file')) {
+            return 'data:image/png;base64,' + this.get('image.file');
         }
         return null;
     }),
