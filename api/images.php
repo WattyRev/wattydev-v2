@@ -92,7 +92,7 @@ function addImage($image) {
         header('HTTP/1.1 201 Created');
         $response = new stdClass;
         $response->id = $id;
-        $git->$git_response;
+        $response->git = $git_response;
         return json_encode($response);
 
     // Alert failure
