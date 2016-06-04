@@ -75,7 +75,7 @@ function addImage($image) {
     }
 
     // Sync with git
-    shell_exec("git add *");
+    shell_exec("git add /*");
     shell_exec("git commit -a -m 'Add image file'");
     shell_exec("git push");
 
@@ -154,7 +154,7 @@ function updateImage($image) {
         }
 
         // Sync with git
-        shell_exec("git add *");
+        shell_exec("git add /*");
         shell_exec("git commit -a -m 'Update image file'");
         shell_exec("git push");
     }
@@ -282,7 +282,7 @@ function deleteImage($id) {
     }
 
     // Sync with git
-    shell_exec("git add *");
+    shell_exec("git add /*");
     shell_exec("git commit -a -m 'Delete image file'");
     shell_exec("git push");
 
